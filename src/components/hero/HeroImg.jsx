@@ -20,7 +20,7 @@ const HeroImg = () => {
         loop
         animationData={animationData}
         play
-        style={{ width: 500, height: 500 }}
+        style={{ width: 550, height: 550 }}
       />
     </div>
   )

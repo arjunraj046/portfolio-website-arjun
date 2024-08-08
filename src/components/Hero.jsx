@@ -6,12 +6,13 @@ import { Download, Send } from "lucide-react"
 
 import {
     RiBriefcase4Fill,
-    RiTeamFill,
-    RiTodoFill,
+    // RiTeamFill,
+    // RiTodoFill,
     RiArrowDownSLine
 } from 'react-icons/ri'
 import Socials from "./hero/Socials"
 import HeroImg from "./hero/HeroImg"
+import  Badge  from "./hero/Badge";
 
 
 
@@ -53,6 +54,7 @@ const Hero = () => {
 
                     {/* image */}
                     <div className="hidden xl:flex relative">
+                        <Badge containerStyles='absolute top-[20%] -left-[5rem]' icon={<RiBriefcase4Fill/>} endCountNum={2} badgeText={'Years of Experience'} />
                         <div className="w-[500px] h-[462px] relative bg-bottom">
                             <HeroImg />
                         </div>
