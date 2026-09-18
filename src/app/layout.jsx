@@ -9,8 +9,9 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Arjun Raj",
-  description: "MERN Stack Developer",
+  title: "Arjun Raj — MERN Full Stack Developer",
+  description:
+    "MERN stack developer with 3+ years of experience building scalable REST APIs and real-time applications. Node.js performance, MongoDB indexing, Redis caching and AWS deployment.",
 };
 
 export default function RootLayout({ children }) {

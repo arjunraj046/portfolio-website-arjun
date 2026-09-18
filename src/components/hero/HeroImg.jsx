@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import Lottie from 'react-lottie-player';
+import dynamic from 'next/dynamic';
+
+// lottie-web touches `document` at import time, so it must stay off the server
+const Lottie = dynamic(() => import('react-lottie-player'), { ssr: false });
 
 const HeroImg = () => {
   const [animationData, setAnimationData] = useState(null);
