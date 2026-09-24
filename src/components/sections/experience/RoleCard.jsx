@@ -66,7 +66,7 @@ const RoleCard = ({ role, variants }) => {
 
                         <h3 className="text-xl font-bold leading-tight mb-1">{role.title}</h3>
                         <p className="text-base font-medium text-foreground/80">{role.company}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{role.period}</p>
+                        {role.period && <p className="text-sm text-muted-foreground mt-1">{role.period}</p>}
                     </div>
 
                     <div>
@@ -101,7 +101,7 @@ const RoleCard = ({ role, variants }) => {
                         <h3 className="text-sm uppercase tracking-[2px] text-primary font-semibold mb-1">
                             {role.company}
                         </h3>
-                        <p className="text-xs text-muted-foreground mb-4">{role.period}</p>
+                        <p className="text-xs text-muted-foreground mb-4">{role.period || role.type}</p>
                         <ul className="space-y-2">
                             {role.highlights.map((item) => (
                                 <li key={item} className="flex gap-2 text-sm text-muted-foreground leading-snug">

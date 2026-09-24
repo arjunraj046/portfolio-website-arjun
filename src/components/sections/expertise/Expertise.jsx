@@ -4,51 +4,11 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-import TechCube from './expertise/TechCube'
-import FlipCard from './expertise/FlipCard'
-
-import { SiReact, SiNodedotjs, SiAmazonaws } from 'react-icons/si'
+import TechCube from './TechCube'
+import FlipCard from './FlipCard'
+import { expertiseAreas } from '@/data/skills'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const cards = [
-    {
-        Icon: SiReact,
-        color: '#61DAFB',
-        title: 'Frontend Engineering',
-        blurb: 'Modular React that stays maintainable as the product grows.',
-        points: [
-            'Clean, modular, scalable React components',
-            'RTK Query for efficient API consumption',
-            'Code-splitting and lazy loading for faster first loads',
-            'Styling with Tailwind CSS'
-        ]
-    },
-    {
-        Icon: SiNodedotjs,
-        color: '#5FA04E',
-        title: 'Backend & Real-time',
-        blurb: 'Scalable REST services, auth flows and high-traffic sockets.',
-        points: [
-            'Scalable REST APIs on Node.js and Express',
-            'High-traffic chat modules over Socket.IO',
-            'Authentication flows and validation layers',
-            'Node.js performance optimization'
-        ]
-    },
-    {
-        Icon: SiAmazonaws,
-        color: '#FF9900',
-        title: 'Data & Cloud',
-        blurb: 'Query efficiency at the bottom, AWS infrastructure on top.',
-        points: [
-            'MongoDB indexing and query optimization',
-            'Redis caching for hot read paths',
-            'AWS EC2, S3 and Route 53 deployments',
-            'Docker images and clean architecture'
-        ]
-    }
-]
 
 const Expertise = () => {
     const root = useRef(null)
@@ -117,7 +77,7 @@ const Expertise = () => {
                 </div>
 
                 <div data-xp-cards className="grid grid-cols-1 md:grid-cols-3 gap-6" style={{ perspective: 1200 }}>
-                    {cards.map((card) => (
+                    {expertiseAreas.map((card) => (
                         <div key={card.title} data-xp-card className="will-change-transform">
                             <FlipCard {...card} />
                         </div>
