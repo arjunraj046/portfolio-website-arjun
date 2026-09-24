@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 import { CheckCircle2, Loader2, Send } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -17,12 +15,24 @@ import { site } from '@/data/site'
 // NEXT_PUBLIC_ variable in .env.local
 const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
 
-const schema = z.object({
-    name: z.string().trim().min(2, 'Please enter your name.').max(100),
-    email: z.string().trim().email('Please enter a valid email address.'),
-    subject: z.string().trim().max(150).optional(),
-    message: z.string().trim().min(10, 'Please write at least 10 characters.').max(3000, 'Please keep it under 3000 characters.')
-})
+// react-hook-form's own rules (no schema library, so the page ships less JS)
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const rules = {
+    name: {
+        validate: (v) => v.trim().length >= 2 || 'Please enter your name.',
+        maxLength: { value: 100, message: 'Please keep your name under 100 characters.' }
+    },
+    email: {
+        validate: (v) => EMAIL.test(v.trim()) || 'Please enter a valid email address.'
+    },
+    subject: {
+        maxLength: { value: 150, message: 'Please keep the subject under 150 characters.' }
+    },
+    message: {
+        validate: (v) => v.trim().length >= 10 || 'Please write at least 10 characters.',
+        maxLength: { value: 3000, message: 'Please keep it under 3000 characters.' }
+    }
+}
 
 const fieldStyles = 'h-11 rounded-lg border-white/60 bg-white/50 dark:border-white/10 dark:bg-white/5'
 
@@ -31,11 +41,12 @@ const ContactForm = () => {
     const [status, setStatus] = useState('idle')
 
     const form = useForm({
-        resolver: zodResolver(schema),
         defaultValues: { name: '', email: '', subject: '', message: '' }
     })
 
-    const onSubmit = async (values, event) => {
+    const onSubmit = async (raw, event) => {
+        const values = Object.fromEntries(Object.entries(raw).map(([key, value]) => [key, value.trim()]))
+
         // hidden honeypot: people never tick it, bots usually do
         if (event?.target?.botcheck?.checked) return
 
@@ -85,6 +96,7 @@ const ContactForm = () => {
                     <FormField
                         control={form.control}
                         name="name"
+                        rules={rules.name}
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Name</FormLabel>
@@ -98,6 +110,7 @@ const ContactForm = () => {
                     <FormField
                         control={form.control}
                         name="email"
+                        rules={rules.email}
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Email</FormLabel>
@@ -113,6 +126,7 @@ const ContactForm = () => {
                 <FormField
                     control={form.control}
                     name="subject"
+                    rules={rules.subject}
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Subject <span className="font-normal text-muted-foreground">(optional)</span></FormLabel>
@@ -127,6 +141,7 @@ const ContactForm = () => {
                 <FormField
                     control={form.control}
                     name="message"
+                    rules={rules.message}
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Message</FormLabel>

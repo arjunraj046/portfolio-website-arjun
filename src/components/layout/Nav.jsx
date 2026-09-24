@@ -2,13 +2,12 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
 
 import { navLinks } from "@/data/site"
 
-// each Nav instance needs its own layoutId, or the active pills of the
-// desktop and mobile navs animate between each other
-const Nav = ({ containerStyles, linkStyles, activeLinkStyles = '', underLineStyles, layoutId = 'underline', onLinkClick }) => {
+// the active link gets a highlight that fades in with plain CSS, so the nav
+// doesn't pull framer-motion into every page
+const Nav = ({ containerStyles, linkStyles, activeLinkStyles = '', underLineStyles, onLinkClick }) => {
     const path = usePathname();
 
     return (
@@ -24,11 +23,7 @@ const Nav = ({ containerStyles, linkStyles, activeLinkStyles = '', underLineStyl
                         className={`capitalize ${linkStyles} ${isActive ? activeLinkStyles : ''}`}
                     >
                         {isActive && (
-                            <motion.span
-                                layoutId={layoutId}
-                                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                                className={underLineStyles}
-                            />
+                            <span aria-hidden="true" className={`animate-in fade-in zoom-in-95 duration-200 ${underLineStyles}`} />
                         )}
                         <span className="relative z-10">{link.name}</span>
                     </Link>

@@ -1,4 +1,4 @@
-import { Briefcase, CalendarClock, GraduationCap, ShieldCheck } from 'lucide-react'
+import { Blocks, Briefcase, CalendarClock, Cloud, Database, Gauge, GraduationCap, KeyRound, Layers, Server, ShieldCheck, Zap } from 'lucide-react'
 
 // everything here comes from the owner's resume; don't add facts it doesn't state
 
@@ -13,15 +13,16 @@ export const aboutStats = [
     { value: '2', label: 'Security certifications: CEH and CPT', Icon: ShieldCheck }
 ]
 
+// each with its own icon, shown in a small tile
 export const strengths = [
-    'Scalable REST APIs',
-    'Real-time apps with Socket.IO',
-    'Node.js performance optimisation',
-    'MongoDB indexing and query efficiency',
-    'Redis caching',
-    'AWS deployment (EC2, S3, Route 53)',
-    'Authentication flows',
-    'Clean, scalable architecture'
+    { label: 'Scalable REST APIs', Icon: Server },
+    { label: 'Real-time apps with Socket.IO', Icon: Zap },
+    { label: 'Node.js performance optimisation', Icon: Gauge },
+    { label: 'MongoDB indexing and query efficiency', Icon: Database },
+    { label: 'Redis caching', Icon: Layers },
+    { label: 'AWS deployment (EC2, S3, Route 53)', Icon: Cloud },
+    { label: 'Authentication flows', Icon: KeyRound },
+    { label: 'Clean, scalable architecture', Icon: Blocks }
 ]
 
 export const education = [
