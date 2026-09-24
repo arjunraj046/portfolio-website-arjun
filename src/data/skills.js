@@ -24,8 +24,6 @@ import {
     SiRabbitmq
 } from 'react-icons/si'
 
-export const aboutText = `I'm Arjun Raj, a MERN stack developer with 3+ years of experience building scalable REST APIs and real-time applications. I work across Node.js, Express, React and TypeScript — tuning Node.js performance, designing MongoDB indexing strategies, caching with Redis and deploying on AWS. I've shipped production backend systems, authentication flows and high-traffic chat modules on Socket.IO, and I care about clean architecture, solid validation layers and code that stays maintainable long after it ships.`
-
 export const skillGroups = {
     languages: {
         label: 'Languages',
@@ -80,42 +78,3 @@ export const skillGroups = {
         ]
     }
 }
-
-export const expertiseAreas = [
-    {
-        Icon: SiReact,
-        color: '#61DAFB',
-        title: 'Frontend Engineering',
-        blurb: 'Modular React that stays maintainable as the product grows.',
-        points: [
-            'Clean, modular, scalable React components',
-            'RTK Query for efficient API consumption',
-            'Code-splitting and lazy loading for faster first loads',
-            'Styling with Tailwind CSS'
-        ]
-    },
-    {
-        Icon: SiNodedotjs,
-        color: '#5FA04E',
-        title: 'Backend & Real-time',
-        blurb: 'Scalable REST services, auth flows and high-traffic sockets.',
-        points: [
-            'Scalable REST APIs on Node.js and Express',
-            'High-traffic chat modules over Socket.IO',
-            'Authentication flows and validation layers',
-            'Node.js performance optimization'
-        ]
-    },
-    {
-        Icon: SiAmazonaws,
-        color: '#FF9900',
-        title: 'Data & Cloud',
-        blurb: 'Query efficiency at the bottom, AWS infrastructure on top.',
-        points: [
-            'MongoDB indexing and query optimization',
-            'Redis caching for hot read paths',
-            'AWS EC2, S3 and Route 53 deployments',
-            'Docker images and clean architecture'
-        ]
-    }
-]
