@@ -1,17 +1,20 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-// components
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import SiteBackground from "@/components/layout/SiteBackground";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { site } from "@/data/site";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Arjun Raj — MERN Full Stack Developer",
-  description:
-    "MERN stack developer with 3+ years of experience building scalable REST APIs and real-time applications. Node.js performance, MongoDB indexing, Redis caching and AWS deployment.",
+  title: {
+    default: `${site.name} — ${site.role}`,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
 };
 
 export default function RootLayout({ children }) {
@@ -19,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute='class' defaultTheme='light'>
-
+          <SiteBackground />
           <Header />
           {children}
           <Footer />

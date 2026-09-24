@@ -1,0 +1,197 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+
+import { skillGroups } from '@/data/skills'
+import HeroAnimation from './HeroAnimation'
+
+// --- feel ----------------------------------------------------------------
+// AUTO_SPIN is the idle turn per 60fps frame (radians). TILT is how far the
+// sphere leans toward the cursor. DRAG turns per pixel dragged; FRICTION is
+// the share of fling speed kept each frame after release. RADIUS is the
+// sphere's size as a share of the stage, so it scales with the screen.
+// CORE is the area around the centre animation where front icons fade out.
+const RADIUS = 0.4
+const CORE = 0.55
+const AUTO_SPIN = 0.0035
+const REDUCED_SPIN = 0.001   // slower idle turn when reduced motion is on
+const TILT = 0.45
+const DRAG = 0.008
+const FRICTION = 0.95
+
+// only tools with a logo; concepts like "REST API" have no Icon
+const items = Object.values(skillGroups).flatMap((group) => group.items).filter((item) => item.Icon)
+
+// spread the icons evenly over the sphere (Fibonacci lattice)
+const points = items.map((_, i) => {
+    const y = 1 - (i / (items.length - 1)) * 2
+    const r = Math.sqrt(1 - y * y)
+    const theta = Math.PI * (3 - Math.sqrt(5)) * i
+    return { x: Math.cos(theta) * r, y, z: Math.sin(theta) * r }
+})
+
+const TechSphere = () => {
+    const stage = useRef(null)
+    const nodes = useRef([])
+
+    useEffect(() => {
+        const el = stage.current
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+        let rotX = -0.25
+        let rotY = 0
+        let velX = 0
+        const idleSpin = reduced ? REDUCED_SPIN : AUTO_SPIN
+        let velY = idleSpin
+        let tiltTarget = -0.25
+        let dragging = false
+        let lastX = 0
+        let lastY = 0
+        let radius = el.offsetWidth * RADIUS
+
+        // project every point through the current rotation. Icons are placed
+        // in 2D and scaled by depth, so they always face the viewer
+        const render = () => {
+            const cosX = Math.cos(rotX), sinX = Math.sin(rotX)
+            const cosY = Math.cos(rotY), sinY = Math.sin(rotY)
+
+            points.forEach((p, i) => {
+                const node = nodes.current[i]
+                if (!node) return
+                const x1 = p.x * cosY - p.z * sinY
+                const z1 = p.x * sinY + p.z * cosY
+                const y1 = p.y * cosX - z1 * sinX
+                const z = p.y * sinX + z1 * cosX      // -1 (back) … 1 (front)
+                const depth = (z + 1) / 2
+
+                // front icons crossing the centre fade so the animation stays visible;
+                // back icons simply sit behind it (it has z-index 50)
+                const distance = Math.hypot(x1, y1)
+                const clear = z > 0 ? Math.min(1, Math.max(0.12, distance / CORE)) : 1
+
+                node.style.transform = `translate(-50%, -50%) translate3d(${x1 * radius}px, ${y1 * radius}px, 0) scale(${0.55 + depth * 0.6})`
+                node.style.opacity = (0.2 + depth * 0.8) * clear
+                node.style.zIndex = Math.round(depth * 100)
+            })
+        }
+
+        render()
+
+        const resize = new ResizeObserver(() => {
+            radius = el.offsetWidth * RADIUS
+            render()
+        })
+        resize.observe(el)
+
+        const tick = () => {
+            const dt = gsap.ticker.deltaRatio()
+            if (!dragging) {
+                // fling speed eases back to the idle spin, tilt eases toward the cursor
+                velY += (idleSpin - velY) * (1 - Math.pow(FRICTION, dt))
+                velX *= Math.pow(FRICTION, dt)
+                rotY += velY * dt
+                rotX += velX * dt + (tiltTarget - rotX) * 0.04 * dt
+            }
+            render()
+        }
+
+        const onPointerMove = (e) => {
+            if (dragging) {
+                const dx = e.clientX - lastX
+                const dy = e.clientY - lastY
+                lastX = e.clientX
+                lastY = e.clientY
+                rotY -= dx * DRAG
+                rotX += dy * DRAG
+                velY = -dx * DRAG
+                velX = dy * DRAG
+                return
+            }
+            if (reduced) return
+            const rect = el.getBoundingClientRect()
+            const py = (e.clientY - rect.top) / rect.height - 0.5
+            tiltTarget = -0.25 + py * TILT
+        }
+
+        const onPointerDown = (e) => {
+            dragging = true
+            lastX = e.clientX
+            lastY = e.clientY
+            el.setPointerCapture?.(e.pointerId)
+            el.classList.add('cursor-grabbing')
+        }
+
+        const onPointerUp = (e) => {
+            if (!dragging) return
+            dragging = false
+            // keep the fling from sending the sphere off tilting forever
+            tiltTarget = rotX
+            el.releasePointerCapture?.(e.pointerId)
+            el.classList.remove('cursor-grabbing')
+        }
+
+        // only animate while the hero is on screen
+        let running = false
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting && !running) { gsap.ticker.add(tick); running = true }
+            if (!entry.isIntersecting && running) { gsap.ticker.remove(tick); running = false }
+        })
+        observer.observe(el)
+
+        el.addEventListener('pointerdown', onPointerDown)
+        el.addEventListener('pointermove', onPointerMove)
+        el.addEventListener('pointerup', onPointerUp)
+        el.addEventListener('pointercancel', onPointerUp)
+
+        return () => {
+            observer.disconnect()
+            resize.disconnect()
+            gsap.ticker.remove(tick)
+            el.removeEventListener('pointerdown', onPointerDown)
+            el.removeEventListener('pointermove', onPointerMove)
+            el.removeEventListener('pointerup', onPointerUp)
+            el.removeEventListener('pointercancel', onPointerUp)
+        }
+    }, [])
+
+    return (
+        <div
+            ref={stage}
+            role="img"
+            aria-label={`Technologies I work with: ${items.map((item) => item.name).join(', ')}`}
+            className="relative h-[520px] w-[520px] 2xl:h-[600px] 2xl:w-[600px] cursor-grab touch-none select-none"
+        >
+            {/* core glow */}
+            <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full
+                bg-[radial-gradient(circle,rgba(56,189,248,0.35),rgba(139,92,246,0.18)_45%,transparent_70%)] blur-2xl" />
+
+            {/* orbit rings */}
+            <div aria-hidden="true" className="absolute inset-0 [perspective:900px]">
+                <div className="absolute inset-[30px] rounded-full border border-foreground/10 [transform:rotateX(72deg)]" />
+                <div className="absolute inset-[30px] rounded-full border border-foreground/10 [transform:rotateX(72deg)_rotateY(60deg)]" />
+                <div className="absolute inset-[30px] rounded-full border border-foreground/10 [transform:rotateX(72deg)_rotateY(-60deg)]" />
+            </div>
+
+            {/* centre: the Lottie animation, with the icons orbiting around it */}
+            <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 z-[50] aspect-[4/3] w-[62%] -translate-x-1/2 -translate-y-1/2">
+                <HeroAnimation className="h-full w-full" />
+            </div>
+
+            {/* icons */}
+            {items.map(({ name, Icon, color, tone }, i) => (
+                <div
+                    key={name}
+                    ref={(node) => { nodes.current[i] = node }}
+                    aria-hidden="true"
+                    title={name}
+                    className="glass absolute left-1/2 top-1/2 flex h-14 w-14 2xl:h-16 2xl:w-16 items-center justify-center rounded-xl text-[28px] 2xl:text-[32px] will-change-transform"
+                >
+                    <Icon style={color ? { color } : undefined} className={tone || ''} />
+                </div>
+            ))}
+        </div>
+    )
+}
+
+export default TechSphere

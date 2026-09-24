@@ -2,96 +2,9 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence, LayoutGroup, useReducedMotion } from 'framer-motion'
-import { GraduationCap, ShieldCheck } from 'lucide-react'
-
-import RoleCard from './experience/RoleCard'
-
-const roles = [
-    {
-        title: 'Full Stack Developer',
-        company: 'Avaibe',
-        period: 'Aug 2024 — Present',
-        type: 'Full-time',
-        current: true,
-        stack: ['Node.js', 'Express', 'React.js', 'TypeScript', 'AWS'],
-        highlights: [
-            'Built scalable web applications with Node.js, Express, React and TypeScript',
-            'Deployed and managed infrastructure on AWS EC2, S3 and Route 53',
-            'Optimized database interactions — indexing strategies and fewer redundant reads and writes',
-            'Introduced code-splitting and lazy loading to improve initial load time',
-            'Designed RTK Query consumption patterns to cut duplicate network requests'
-        ]
-    },
-    {
-        title: 'Associate Full Stack Developer',
-        company: 'Cygnotechlabs',
-        period: 'Nov 2023 — Apr 2024',
-        type: 'Full-time',
-        stack: ['Node.js', 'Express', 'React.js', 'MongoDB', 'PostgreSQL'],
-        highlights: [
-            'Built scalable web applications with Node.js, Express, React and TypeScript',
-            'Managed MongoDB and PostgreSQL databases for efficient data storage',
-            'Handled deployment and infrastructure across AWS S3, Route 53 and EC2',
-            'Contributed to clean, scalable application architecture'
-        ]
-    },
-    {
-        title: 'React and Java Developer',
-        company: 'Inmakes Infotech Pvt Ltd',
-        period: 'Jan 2023 — Jun 2023',
-        type: 'Full-time',
-        stack: ['React.js', 'Tailwind CSS', 'Core Java'],
-        highlights: [
-            'Developed dynamic, responsive web applications with React.js and Tailwind CSS',
-            'Supported the team on core Java tasks across backend development activities'
-        ]
-    },
-    {
-        title: 'Freelance Developer',
-        company: 'Independent',
-        period: 'Ongoing',
-        type: 'Freelance',
-        stack: ['React.js', 'Tailwind CSS'],
-        highlights: [
-            'Built dynamic, responsive web applications with React.js and Tailwind CSS',
-            'Delivered consistent experiences across multiple devices and platforms'
-        ]
-    },
-    {
-        title: 'MERN Full Stack Developer',
-        company: 'Brototype',
-        period: '2022 — 1 year',
-        type: 'Internship',
-        stack: ['MongoDB', 'Express', 'React.js', 'Node.js'],
-        highlights: [
-            'Developed and deployed personal projects across the full MERN stack',
-            'Focused on scalability and optimization techniques throughout'
-        ]
-    }
-]
-
-const filters = ['All', 'Full-time', 'Freelance', 'Internship']
-
-const education = [
-    {
-        Icon: GraduationCap,
-        title: 'Master of Computer Applications — AI & ML',
-        place: 'Amity University Online',
-        period: 'Jan 2023 — Mar 2025'
-    },
-    {
-        Icon: GraduationCap,
-        title: 'B.Com — Computer Application',
-        place: "Mahatma Gandhi University · St Mary's College, Thuruthiply",
-        period: 'Mar 2017 — Mar 2020'
-    },
-    {
-        Icon: ShieldCheck,
-        title: 'CEH — Certified Ethical Hacker · CPT — Certified Penetration Tester',
-        place: 'Red Team Hacker Academy',
-        period: 'Cybersecurity'
-    }
-]
+import RoleCard from './RoleCard'
+import { roles, roleFilters } from '@/data/experience'
+import { education, certifications } from '@/data/about'
 
 const Experience = () => {
     const reduce = useReducedMotion()
@@ -150,7 +63,7 @@ const Experience = () => {
                 {/* filters — the active pill slides between options via layoutId */}
                 <LayoutGroup>
                     <div role="group" aria-label="Filter roles by type" className="flex flex-wrap gap-2 mb-10">
-                        {filters.map((name) => {
+                        {roleFilters.map((name) => {
                             const active = filter === name
                             return (
                                 <button
@@ -201,7 +114,7 @@ const Experience = () => {
                     transition={{ staggerChildren: 0.1 }}
                     className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-12 border-t"
                 >
-                    {education.map(({ Icon, title, place, period }) => (
+                    {[...education, ...certifications].map(({ Icon, title, place, period }) => (
                         <motion.div key={title} variants={card} className="flex gap-4">
                             <Icon size={22} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
                             <div>
