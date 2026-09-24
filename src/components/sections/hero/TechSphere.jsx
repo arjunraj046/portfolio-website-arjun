@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
 
 import { skillGroups } from '@/data/skills'
 import HeroAnimation from './HeroAnimation'
@@ -85,7 +84,7 @@ const TechSphere = () => {
         resize.observe(el)
 
         const tick = () => {
-            const dt = gsap.ticker.deltaRatio()
+            const dt = frameRatio()
             if (!dragging) {
                 // fling speed eases back to the idle spin, tilt eases toward the cursor
                 velY += (idleSpin - velY) * (1 - Math.pow(FRICTION, dt))
@@ -131,11 +130,27 @@ const TechSphere = () => {
             el.classList.remove('cursor-grabbing')
         }
 
+        // a plain requestAnimationFrame loop; frameRatio() is the elapsed time
+        // measured in 60fps frames, so speed is the same on 60Hz and 144Hz screens
+        let frame = 0
+        let last = 0
+        const frameRatio = () => {
+            const now = performance.now()
+            const ratio = Math.min((now - last) / (1000 / 60), 4)
+            last = now
+            return ratio
+        }
+        const loop = () => {
+            if (!running) return
+            tick()
+            frame = requestAnimationFrame(loop)
+        }
+
         // only animate while the hero is on screen
         let running = false
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting && !running) { gsap.ticker.add(tick); running = true }
-            if (!entry.isIntersecting && running) { gsap.ticker.remove(tick); running = false }
+            if (entry.isIntersecting && !running) { running = true; last = performance.now(); frame = requestAnimationFrame(loop) }
+            if (!entry.isIntersecting && running) { running = false; cancelAnimationFrame(frame) }
         })
         observer.observe(el)
 
@@ -147,7 +162,8 @@ const TechSphere = () => {
         return () => {
             observer.disconnect()
             resize.disconnect()
-            gsap.ticker.remove(tick)
+            running = false
+            cancelAnimationFrame(frame)
             el.removeEventListener('pointerdown', onPointerDown)
             el.removeEventListener('pointermove', onPointerMove)
             el.removeEventListener('pointerup', onPointerUp)

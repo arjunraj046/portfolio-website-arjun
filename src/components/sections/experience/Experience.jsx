@@ -1,133 +1,51 @@
-'use client'
-
-import { useState } from 'react'
-import { motion, AnimatePresence, LayoutGroup, useReducedMotion } from 'framer-motion'
+import TiltCard from '@/components/shared/TiltCard'
+import Reveal from '@/components/shared/Reveal'
+import { CardTitle, SectionGlows, SectionHeading } from '@/components/shared/SectionParts'
+import { roles, otherRoles } from '@/data/experience'
 import RoleCard from './RoleCard'
-import { roles, roleFilters } from '@/data/experience'
-import { education, certifications } from '@/data/about'
 
-const Experience = () => {
-    const reduce = useReducedMotion()
-    const [filter, setFilter] = useState('All')
+// a vertical timeline, newest role first, with the shorter entries in one
+// compact card at the end. A server component; only TiltCard and Reveal run
+// in the browser
+const Experience = () => (
+    <section id="experience" aria-labelledby="experience-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
+        <SectionGlows>
+            <div className="absolute left-[10%] top-0 h-80 w-80 rounded-full bg-violet-400/25 blur-3xl dark:bg-violet-500/15" />
+            <div className="absolute right-[6%] top-1/2 h-72 w-72 rounded-full bg-sky-400/25 blur-3xl dark:bg-sky-500/15" />
+        </SectionGlows>
 
-    const visible = filter === 'All' ? roles : roles.filter((r) => r.type === filter)
+        <Reveal className="container mx-auto">
+            <SectionHeading id="experience-heading" label="Experience">Where I&apos;ve worked</SectionHeading>
 
-    // reduced motion keeps the choreography but drops the movement
-    const headingWord = reduce
-        ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
-        : {
-            hidden: { opacity: 0, rotateX: -90, y: 14 },
-            show: { opacity: 1, rotateX: 0, y: 0, transition: { type: 'spring', stiffness: 150, damping: 15 } }
-        }
+            {/* the rail runs through the dots, fading out at the bottom */}
+            <ol className="relative space-y-6 before:absolute before:left-[11px] before:top-3 before:bottom-0 before:w-px
+                           before:bg-gradient-to-b before:from-sky-400/70 before:via-foreground/15 before:to-transparent">
+                {roles.map((role) => (
+                    <li key={`${role.company}-${role.title}`} className="relative pl-10 md:pl-14">
+                        <span aria-hidden="true" className="absolute left-0 top-8 flex h-[23px] w-[23px] items-center justify-center rounded-full border border-foreground/15 bg-background">
+                            {role.current && <span className="absolute h-full w-full animate-ping rounded-full bg-sky-400/40" />}
+                            <span className={`h-2.5 w-2.5 rounded-full ${role.current ? 'bg-sky-400' : 'bg-foreground/35'}`} />
+                        </span>
+                        <RoleCard {...role} />
+                    </li>
+                ))}
+            </ol>
 
-    const card = reduce
-        ? { hidden: { opacity: 0 }, show: { opacity: 1 }, exit: { opacity: 0 } }
-        : {
-            hidden: { opacity: 0, y: 44, rotateX: -20 },
-            show: { opacity: 1, y: 0, rotateX: 0, transition: { type: 'spring', stiffness: 110, damping: 18 } },
-            exit: { opacity: 0, scale: 0.92, transition: { duration: 0.18 } }
-        }
-
-    return (
-        <section id="experience" className="relative py-20 xl:py-28 bg-background overflow-hidden">
-            <div className="container mx-auto">
-                {/* heading — each word flips up on its own axis */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ staggerChildren: 0.07 }}
-                    className="mb-10"
-                >
-                    <motion.div
-                        variants={headingWord}
-                        className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]"
-                    >
-                        Experience
-                    </motion.div>
-
-                    <h2 className="text-4xl xl:text-5xl font-bold tracking-[-1px]" style={{ perspective: 800 }}>
-                        {'Where I have shipped.'.split(' ').map((word) => (
-                            <motion.span
-                                key={word}
-                                variants={headingWord}
-                                className="inline-block mr-[0.25em]"
-                                style={{ transformOrigin: 'bottom center' }}
-                            >
-                                {word}
-                            </motion.span>
+            <div data-reveal className="mt-6 pl-10 md:pl-14">
+                <TiltCard max={2} className="glass-card p-6 xl:p-8">
+                    <CardTitle>Also</CardTitle>
+                    <ul className="space-y-5">
+                        {otherRoles.map(({ title, detail }) => (
+                            <li key={title}>
+                                <p className="font-semibold leading-snug">{title}</p>
+                                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{detail}</p>
+                            </li>
                         ))}
-                    </h2>
-                </motion.div>
-
-                {/* filters — the active pill slides between options via layoutId */}
-                <LayoutGroup>
-                    <div role="group" aria-label="Filter roles by type" className="flex flex-wrap gap-2 mb-10">
-                        {roleFilters.map((name) => {
-                            const active = filter === name
-                            return (
-                                <button
-                                    key={name}
-                                    type="button"
-                                    aria-pressed={active}
-                                    onClick={() => setFilter(name)}
-                                    className={`relative rounded-full border px-4 py-2 text-sm font-medium transition-colors
-                                                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
-                                                ${active ? 'text-background' : 'text-muted-foreground hover:text-foreground'}`}
-                                >
-                                    {active && (
-                                        <motion.span
-                                            layoutId="experience-filter-pill"
-                                            className="absolute inset-0 rounded-full bg-primary"
-                                            transition={reduce ? { duration: 0 } : { type: 'spring', stiffness: 320, damping: 30 }}
-                                        />
-                                    )}
-                                    <span className="relative z-10">{name}</span>
-                                </button>
-                            )
-                        })}
-                    </div>
-
-                    {/* roles — cards flip in on scroll, and reshuffle when filtered */}
-                    <motion.div
-                        layout
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, amount: 0.15 }}
-                        transition={{ staggerChildren: 0.08 }}
-                        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
-                        style={{ perspective: 1400 }}
-                    >
-                        <AnimatePresence mode="popLayout">
-                            {visible.map((role) => (
-                                <RoleCard key={role.company + role.title} role={role} variants={card} />
-                            ))}
-                        </AnimatePresence>
-                    </motion.div>
-                </LayoutGroup>
-
-                {/* education and certifications */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ staggerChildren: 0.1 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-12 border-t"
-                >
-                    {[...education, ...certifications].map(({ Icon, title, place, period }) => (
-                        <motion.div key={title} variants={card} className="flex gap-4">
-                            <Icon size={22} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
-                            <div>
-                                <h3 className="font-semibold leading-snug mb-1">{title}</h3>
-                                <p className="text-sm text-muted-foreground">{place}</p>
-                                <p className="text-sm text-muted-foreground mt-1">{period}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                    </ul>
+                </TiltCard>
             </div>
-        </section>
-    )
-}
+        </Reveal>
+    </section>
+)
 
 export default Experience

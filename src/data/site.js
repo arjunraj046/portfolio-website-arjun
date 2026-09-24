@@ -12,6 +12,7 @@ export const site = {
     initials: 'AR',
     role: 'MERN Full Stack Developer',
     shortRole: 'Full Stack Dev',
+    photo: '/images/arjun-photo.webp',
     description:
         'MERN stack developer with 3+ years of experience building scalable REST APIs and real-time applications. Node.js performance, MongoDB indexing, Redis caching and AWS deployment.',
     heroIntro:
@@ -35,11 +36,4 @@ export const socials = [
     { label: 'X (Twitter)', href: 'https://x.com/arjun046G', Icon: RiTwitterXFill },
     { label: 'Instagram', href: 'https://www.instagram.com/arjun_aju_/', Icon: RiInstagramFill },
     { label: 'Facebook', href: 'https://www.facebook.com/arjunaju046', Icon: RiFacebookFill }
-]
-
-export const services = [
-    'REST API development',
-    'Real-time applications',
-    'Performance optimisation',
-    'AWS deployment'
 ]

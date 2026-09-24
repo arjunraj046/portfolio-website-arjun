@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 
-// lottie-web touches `document` at import time, so it must stay off the server
-const Lottie = dynamic(() => import('react-lottie-player'), { ssr: false })
+// lottie-web touches `document` at import time, so it must stay off the server.
+// The light player is ~half the size; it works because this animation uses no expressions
+const Lottie = dynamic(() => import('react-lottie-player/dist/LottiePlayerLight'), { ssr: false })
 
 const HeroAnimation = ({ className = '' }) => {
   const [animationData, setAnimationData] = useState(null)

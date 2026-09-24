@@ -1,19 +1,19 @@
-'use client'
-
 import Link from "next/link"
-import { ArrowUp, ArrowUpRight } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import Socials from "@/components/shared/Socials"
-import { site, navLinks, services } from "@/data/site"
+import { site, navLinks } from "@/data/site"
+import SectionDivider from "@/components/shared/SectionDivider"
 import Logo from "./Logo"
+import BackToTop from "./BackToTop"
 
 const Footer = () => {
   const year = new Date().getFullYear();
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="relative pt-16 pb-6">
+    <footer className="relative pt-4 pb-6">
+      <SectionDivider className="mb-16" />
 
       <div className="container relative mx-auto flex flex-col gap-6">
 
@@ -32,15 +32,15 @@ const Footer = () => {
         </div>
 
         {/* columns */}
-        <div className="glass grid gap-10 rounded-3xl p-8 sm:grid-cols-2 md:p-10 lg:grid-cols-4">
-          <div className="flex flex-col gap-y-5 lg:col-span-2 lg:pr-16">
+        <div className="glass grid gap-10 rounded-3xl p-8 sm:grid-cols-3 md:p-10">
+          <div className="flex flex-col gap-y-5 sm:col-span-2 lg:pr-16">
             <Logo />
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
               {site.description}
             </p>
           </div>
 
-          <div>
+          <div className="sm:justify-self-end sm:pr-8">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-[2px]">Navigation</h3>
             <ul className="flex flex-col gap-y-3">
               {navLinks.map((link) => (
@@ -53,14 +53,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[2px]">What I do</h3>
-            <ul className="flex flex-col gap-y-3">
-              {services.map((service) => (
-                <li key={service} className="text-sm text-muted-foreground">{service}</li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* bottom bar */}
@@ -74,10 +66,7 @@ const Footer = () => {
               iconsStyles='flex h-9 w-9 items-center justify-center rounded-lg border border-white/60 bg-white/40 text-base text-muted-foreground
                 hover:bg-white/80 hover:text-foreground transition-colors dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/15'
             />
-            <Button variant='outline' size='icon' onClick={scrollToTop} aria-label="Back to top"
-              className='rounded-lg border-white/60 bg-white/40 hover:bg-white/80 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/15'>
-              <ArrowUp className="h-4 w-4" />
-            </Button>
+            <BackToTop />
           </div>
         </div>
 
