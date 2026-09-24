@@ -5,24 +5,16 @@ import { useEffect, useRef } from 'react'
 import { skillGroups } from '@/data/skills'
 import HeroAnimation from './HeroAnimation'
 
-// --- feel ----------------------------------------------------------------
-// AUTO_SPIN is the idle turn per 60fps frame (radians). TILT is how far the
-// sphere leans toward the cursor. DRAG turns per pixel dragged; FRICTION is
-// the share of fling speed kept each frame after release. RADIUS is the
-// sphere's size as a share of the stage, so it scales with the screen.
-// CORE is the area around the centre animation where front icons fade out.
 const RADIUS = 0.4
 const CORE = 0.55
 const AUTO_SPIN = 0.0035
-const REDUCED_SPIN = 0.001   // slower idle turn when reduced motion is on
+const REDUCED_SPIN = 0.001
 const TILT = 0.45
 const DRAG = 0.008
 const FRICTION = 0.95
 
-// only tools with a logo; concepts like "REST API" have no Icon
 const items = Object.values(skillGroups).flatMap((group) => group.items).filter((item) => item.Icon)
 
-// spread the icons evenly over the sphere (Fibonacci lattice)
 const points = items.map((_, i) => {
     const y = 1 - (i / (items.length - 1)) * 2
     const r = Math.sqrt(1 - y * y)
@@ -49,8 +41,6 @@ const TechSphere = () => {
         let lastY = 0
         let radius = el.offsetWidth * RADIUS
 
-        // project every point through the current rotation. Icons are placed
-        // in 2D and scaled by depth, so they always face the viewer
         const render = () => {
             const cosX = Math.cos(rotX), sinX = Math.sin(rotX)
             const cosY = Math.cos(rotY), sinY = Math.sin(rotY)
@@ -61,11 +51,9 @@ const TechSphere = () => {
                 const x1 = p.x * cosY - p.z * sinY
                 const z1 = p.x * sinY + p.z * cosY
                 const y1 = p.y * cosX - z1 * sinX
-                const z = p.y * sinX + z1 * cosX      // -1 (back) … 1 (front)
+                const z = p.y * sinX + z1 * cosX
                 const depth = (z + 1) / 2
 
-                // front icons crossing the centre fade so the animation stays visible;
-                // back icons simply sit behind it (it has z-index 50)
                 const distance = Math.hypot(x1, y1)
                 const clear = z > 0 ? Math.min(1, Math.max(0.12, distance / CORE)) : 1
 
@@ -86,7 +74,6 @@ const TechSphere = () => {
         const tick = () => {
             const dt = frameRatio()
             if (!dragging) {
-                // fling speed eases back to the idle spin, tilt eases toward the cursor
                 velY += (idleSpin - velY) * (1 - Math.pow(FRICTION, dt))
                 velX *= Math.pow(FRICTION, dt)
                 rotY += velY * dt
@@ -124,14 +111,11 @@ const TechSphere = () => {
         const onPointerUp = (e) => {
             if (!dragging) return
             dragging = false
-            // keep the fling from sending the sphere off tilting forever
             tiltTarget = rotX
             el.releasePointerCapture?.(e.pointerId)
             el.classList.remove('cursor-grabbing')
         }
 
-        // a plain requestAnimationFrame loop; frameRatio() is the elapsed time
-        // measured in 60fps frames, so speed is the same on 60Hz and 144Hz screens
         let frame = 0
         let last = 0
         const frameRatio = () => {
@@ -146,7 +130,6 @@ const TechSphere = () => {
             frame = requestAnimationFrame(loop)
         }
 
-        // only animate while the hero is on screen
         let running = false
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting && !running) { running = true; last = performance.now(); frame = requestAnimationFrame(loop) }
@@ -178,23 +161,19 @@ const TechSphere = () => {
             aria-label={`Technologies I work with: ${items.map((item) => item.name).join(', ')}`}
             className="relative h-[520px] w-[520px] 2xl:h-[600px] 2xl:w-[600px] cursor-grab touch-none select-none"
         >
-            {/* core glow */}
             <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full
                 bg-[radial-gradient(circle,rgba(56,189,248,0.35),rgba(139,92,246,0.18)_45%,transparent_70%)] blur-2xl" />
 
-            {/* orbit rings */}
             <div aria-hidden="true" className="absolute inset-0 [perspective:900px]">
                 <div className="absolute inset-[30px] rounded-full border border-foreground/10 [transform:rotateX(72deg)]" />
                 <div className="absolute inset-[30px] rounded-full border border-foreground/10 [transform:rotateX(72deg)_rotateY(60deg)]" />
                 <div className="absolute inset-[30px] rounded-full border border-foreground/10 [transform:rotateX(72deg)_rotateY(-60deg)]" />
             </div>
 
-            {/* centre: the Lottie animation, with the icons orbiting around it */}
             <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 z-[50] aspect-[4/3] w-[62%] -translate-x-1/2 -translate-y-1/2">
                 <HeroAnimation className="h-full w-full" />
             </div>
 
-            {/* icons */}
             {items.map(({ name, Icon, color, tone }, i) => (
                 <div
                     key={name}

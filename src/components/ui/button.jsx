@@ -24,7 +24,6 @@ const buttonVariants = cva(
         sm: "h-9 px-3",
         lg: "h-11 px-8",
         icon: "h-10 w-10",
-        // standard call-to-action size: a rectangle with softly rounded corners
         cta: "group h-12 gap-x-2 rounded-xl px-7 text-[15px]",
       },
     },

@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation"
 
 import { navLinks } from "@/data/site"
 
-// the active link gets a highlight that fades in with plain CSS, so the nav
-// doesn't pull framer-motion into every page
 const Nav = ({ containerStyles, linkStyles, activeLinkStyles = '', underLineStyles, onLinkClick }) => {
     const path = usePathname();
 

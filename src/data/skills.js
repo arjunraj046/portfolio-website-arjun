@@ -24,13 +24,8 @@ import {
     SiRabbitmq
 } from 'react-icons/si'
 
-// `tone` is used instead of `color` for marks with no brand colour,
-// so they flip with the theme
-
 export const aboutText = `I'm Arjun Raj, a MERN stack developer with 3+ years of experience building scalable REST APIs and real-time applications. I work across Node.js, Express, React and TypeScript — tuning Node.js performance, designing MongoDB indexing strategies, caching with Redis and deploying on AWS. I've shipped production backend systems, authentication flows and high-traffic chat modules on Socket.IO, and I care about clean architecture, solid validation layers and code that stays maintainable long after it ships.`
 
-// grouped exactly as the resume's Skills section. Items without an Icon
-// (concepts rather than tools) are left out of the hero sphere
 export const skillGroups = {
     languages: {
         label: 'Languages',

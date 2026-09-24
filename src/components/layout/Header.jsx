@@ -7,11 +7,8 @@ import Nav from "./Nav"
 import MobileNav from "./MobileNav"
 import ThemeToggler from "./ThemeToggler"
 
-// shared style for the glass icon buttons in the bar
 const glassButton = 'h-10 w-10 rounded-lg border-white/60 bg-white/40 hover:bg-white/80 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/15'
 
-// a glass bar floating at the top centre of the page, up to 64rem wide,
-// and a little tighter once scrolled
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
 

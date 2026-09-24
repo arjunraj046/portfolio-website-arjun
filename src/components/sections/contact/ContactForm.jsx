@@ -10,12 +10,8 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { site } from '@/data/site'
 
-// Web3Forms emails each submission to the owner. The access key is meant to
-// be public (it can only deliver to the owner's own inbox), so it lives in a
-// NEXT_PUBLIC_ variable in .env.local
 const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
 
-// react-hook-form's own rules (no schema library, so the page ships less JS)
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const rules = {
     name: {
@@ -37,7 +33,6 @@ const rules = {
 const fieldStyles = 'h-11 rounded-lg border-white/60 bg-white/50 dark:border-white/10 dark:bg-white/5'
 
 const ContactForm = () => {
-    // idle | sending | sent | error
     const [status, setStatus] = useState('idle')
 
     const form = useForm({
@@ -47,7 +42,6 @@ const ContactForm = () => {
     const onSubmit = async (raw, event) => {
         const values = Object.fromEntries(Object.entries(raw).map(([key, value]) => [key, value.trim()]))
 
-        // hidden honeypot: people never tick it, bots usually do
         if (event?.target?.botcheck?.checked) return
 
         if (!ACCESS_KEY) {
@@ -158,7 +152,6 @@ const ContactForm = () => {
                     )}
                 />
 
-                {/* honeypot, hidden from people and screen readers */}
                 <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
                 {status === 'error' && (

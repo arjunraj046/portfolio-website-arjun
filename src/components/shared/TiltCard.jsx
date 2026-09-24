@@ -2,9 +2,6 @@
 
 import { useRef } from 'react'
 
-// A card that tilts towards the mouse and settles back when it leaves. Mouse
-// only (touch and pen are ignored), and it runs even with reduced motion on,
-// as the owner asked. `max` is the largest tilt in degrees
 const TiltCard = ({ max = 4, className = '', children, ...props }) => {
     const ref = useRef(null)
 

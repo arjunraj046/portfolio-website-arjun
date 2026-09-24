@@ -6,13 +6,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-// A swipeable, scroll-snapping image gallery. Native scrolling does the work
-// (touch swipe, trackpad, keyboard), so it needs no carousel library
 const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
     const track = useRef(null)
     const [active, setActive] = useState(0)
 
-    // keep the dots in sync with whatever slide is showing
     useEffect(() => {
         const el = track.current
         const slides = Array.from(el.children)
@@ -37,10 +34,24 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
     }
 
     const multiple = images.length > 1
-    const arrow = 'glass absolute top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-lg opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+    const arrow = 'glass absolute top-[calc(50%+1rem)] -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-lg opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
 
     return (
-        <div className={cn('group relative', className)}>
+        <div className={className}>
+            <div className="group relative overflow-clip rounded-xl border border-white/70 bg-white/70 shadow-lg shadow-slate-900/5 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/30">
+            <div aria-hidden="true" className="flex h-8 items-center gap-3 border-b border-foreground/10 px-3.5">
+                <span className="flex gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+                </span>
+                <span className="mx-auto max-w-[60%] truncate rounded-md bg-foreground/[0.06] px-3 py-0.5 text-[11px] font-medium text-muted-foreground">
+                    {title}
+                </span>
+                <span className="w-[42px] text-right text-[11px] tabular-nums text-muted-foreground">
+                    {multiple ? `${active + 1} / ${images.length}` : ''}
+                </span>
+            </div>
             <div
                 ref={track}
                 tabIndex={0}
@@ -48,7 +59,7 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
                 aria-roledescription="carousel"
                 aria-label={`${title} screenshots`}
                 onKeyDown={onKeyDown}
-                className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto scroll-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
             >
                 {images.map((image, i) => (
                     <figure
@@ -64,7 +75,7 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
                             height={image.height}
                             priority={priority && i === 0}
                             sizes="(min-width: 1280px) 720px, (min-width: 768px) 90vw, 100vw"
-                            className="aspect-[2/1] w-full rounded-xl border border-white/60 object-cover object-top dark:border-white/10"
+                            className="aspect-[2/1] w-full object-cover object-top"
                         />
                     </figure>
                 ))}
@@ -80,6 +91,7 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
                     </button>
                 </>
             )}
+            </div>
 
             <div className="mt-3 flex items-center justify-between gap-4">
                 <p className="text-sm text-muted-foreground" aria-live="polite">{images[active].caption}</p>

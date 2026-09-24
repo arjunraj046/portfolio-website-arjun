@@ -6,7 +6,6 @@ import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 
 const ThemeToggler = ({ className = '' }) => {
-    // resolvedTheme is the theme actually showing, even when set to "system"
     const { resolvedTheme, setTheme } = useTheme()
 
     return (

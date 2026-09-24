@@ -4,7 +4,6 @@ import { strengths } from '@/data/about'
 import Reveal from '@/components/shared/Reveal'
 import { CardTitle, SectionGlows, SectionHeading, iconTile } from '@/components/shared/SectionParts'
 
-// core strengths beside every skill group from the resume
 const Skills = () => (
     <section id="skills" aria-labelledby="skills-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
         <SectionGlows>
@@ -18,7 +17,6 @@ const Skills = () => (
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
                 <div data-reveal className="lg:col-span-4"><TiltCard max={3} className="glass-card flex h-full flex-col p-6 xl:p-8">
                     <CardTitle>Core strengths</CardTitle>
-                    {/* rows spread out to the card's height, so there's no empty space below */}
                     <ul className="flex flex-1 flex-col justify-between gap-3">
                         {strengths.map(({ label, Icon }) => (
                             <li key={label} className="group flex items-center gap-3.5">
@@ -31,7 +29,6 @@ const Skills = () => (
                     </ul>
                 </TiltCard></div>
 
-                {/* one row per group, label column aligned */}
                 <div data-reveal className="lg:col-span-8"><TiltCard max={2} className="glass-card h-full p-6 xl:p-8">
                     <CardTitle>Tech stack</CardTitle>
                     <dl className="divide-y divide-foreground/10">

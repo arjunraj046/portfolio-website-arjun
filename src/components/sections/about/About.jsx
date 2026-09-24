@@ -7,7 +7,6 @@ import { aboutSummary, aboutStats } from '@/data/about'
 import Reveal from '@/components/shared/Reveal'
 import { SectionGlows, eyebrow, iconTile } from '@/components/shared/SectionParts'
 
-// the intro: portrait, heading and story, with the stats beside it
 const About = () => (
     <section id="about" aria-labelledby="about-heading" className="relative overflow-x-clip py-16 xl:py-24">
         <SectionGlows>
@@ -19,7 +18,6 @@ const About = () => (
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
                 <div data-reveal className="lg:col-span-8"><TiltCard max={2} className="glass-card h-full p-8 xl:p-10">
                     <div className="flex items-center gap-5 md:gap-7">
-                        {/* the owner's photo, unedited; a small lift on hover only */}
                         <Image
                             src={site.photo}
                             alt={`Portrait of ${site.name}`}
@@ -46,7 +44,6 @@ const About = () => (
                     </div>
                 </TiltCard></div>
 
-                {/* stats, stacked to the intro's height */}
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:col-span-4 lg:grid-cols-1">
                     {aboutStats.map(({ value, label, Icon }) => (
                         <div key={label} data-reveal className="h-full">

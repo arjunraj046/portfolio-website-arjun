@@ -15,16 +15,11 @@ import {
 const SIZE = 208
 const HALF = SIZE / 2
 
-// --- feel of the drag ---------------------------------------------------
-// FRICTION is the share of spin kept each 60fps frame after you let go:
-// lower = grabbier, stops sooner. DRAG_SENSITIVITY is degrees turned per
-// pixel dragged — lower makes the cube feel heavier in the hand.
 const DRAG_SENSITIVITY = 0.32
 const FRICTION = 0.9
 const MIN_VELOCITY = 0.05
 const VELOCITY_SMOOTHING = 0.25
 
-// six faces of a real CSS 3D cube — each pushed out along its own axis
 const faces = [
     { name: 'React.js', Icon: SiReact, color: '#61DAFB', transform: `rotateY(0deg) translateZ(${HALF}px)` },
     { name: 'Node.js', Icon: SiNodedotjs, color: '#5FA04E', transform: `rotateY(90deg) translateZ(${HALF}px)` },
@@ -45,7 +40,6 @@ const TechCube = () => {
             const el = cube.current
             const surface = stage.current
 
-            // perspective lives on the stage wrapper, not here
             gsap.set(el, {
                 transformStyle: 'preserve-3d',
                 rotationX: -18,
@@ -55,8 +49,6 @@ const TechCube = () => {
             let spin = null
             let hovering = false
 
-            // a fresh relative tween each time, so it always picks up the
-            // rotation the user left the cube at instead of snapping back
             const startSpin = () => {
                 if (reduced) return
                 spin?.kill()
@@ -76,16 +68,13 @@ const TechCube = () => {
 
             startSpin()
 
-            // pointer drag — works for mouse, pen and touch
             let dragging = false
             let lastX = 0
             let lastY = 0
-            let velY = 0   // degrees per 60fps frame
+            let velY = 0
             let velX = 0
             let gliding = false
 
-            // friction decay, applied every frame after release until the
-            // cube is practically still, then the idle spin takes back over
             const glide = () => {
                 const dt = gsap.ticker.deltaRatio()
                 const decay = Math.pow(FRICTION, dt)
@@ -135,8 +124,6 @@ const TechCube = () => {
                 lastX = e.clientX
                 lastY = e.clientY
 
-                // smooth the running velocity so a twitch at release
-                // doesn't throw the cube across three turns
                 velY += (dx * DRAG_SENSITIVITY - velY) * VELOCITY_SMOOTHING
                 velX += (-dy * DRAG_SENSITIVITY - velX) * VELOCITY_SMOOTHING
 
@@ -156,7 +143,6 @@ const TechCube = () => {
                 startGlide()
             }
 
-            // hovering pauses the idle spin so a face can be read
             const onEnter = () => { hovering = true; if (!dragging) spin?.pause() }
             const onLeave = () => { hovering = false; if (!dragging) spin?.play() }
 
@@ -182,7 +168,6 @@ const TechCube = () => {
         return () => ctx.revert()
     }, [])
 
-    // arrow keys step the cube a quarter turn at a time
     const onKeyDown = (e) => {
         const step = { ArrowLeft: ['rotationY', -90], ArrowRight: ['rotationY', 90], ArrowUp: ['rotationX', 90], ArrowDown: ['rotationX', -90] }[e.key]
         if (!step) return

@@ -2,8 +2,6 @@ import { MapPin } from 'lucide-react'
 
 import TiltCard from '@/components/shared/TiltCard'
 
-// one role on the Experience timeline: monogram, title and company, then the
-// location, the highlights and the stack. No dates: the owner doesn't want them
 const RoleCard = ({ title, company, employment, location, current, mark, stack, highlights }) => (
     <div data-reveal>
         <TiltCard max={2} className="glass-card p-6 xl:p-8">
