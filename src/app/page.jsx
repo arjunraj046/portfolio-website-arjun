@@ -5,6 +5,10 @@ import Credentials from "@/components/sections/about/Credentials";
 import Experience from "@/components/sections/experience/Experience";
 import SectionDivider from "@/components/shared/SectionDivider";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <main>

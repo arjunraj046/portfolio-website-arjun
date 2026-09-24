@@ -5,8 +5,13 @@ import ContactForm from "@/components/sections/contact/ContactForm";
 import { site, socials } from "@/data/site";
 
 export const metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description: `Get in touch with ${site.name}, ${site.role}. Send a message, email or call.`,
+  openGraph: {
+    title: `Contact | ${site.name}`,
+    description: `Get in touch with ${site.name}, ${site.role}. Send a message, email or call.`,
+  },
 };
 
 const profile = (label) => socials.find((social) => social.label === label).href;

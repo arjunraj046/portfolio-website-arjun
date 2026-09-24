@@ -6,6 +6,7 @@ import SectionDivider from "@/components/shared/SectionDivider";
 import { projects } from "@/data/projects";
 
 export const metadata = {
+  alternates: { canonical: "/projects" },
   title: "Projects",
   description: "Projects by Arjun Raj, MERN full stack developer: backend systems, real-time features and full stack web applications.",
   openGraph: { images: [projects[0].images[0].src] },
