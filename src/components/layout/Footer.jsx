@@ -17,7 +17,6 @@ const Footer = () => {
 
       <div className="container relative mx-auto flex flex-col gap-6">
 
-        {/* call to action */}
         <div className="glass flex flex-col items-center justify-between gap-6 rounded-3xl p-8 text-center md:flex-row md:p-10 md:text-left">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Have a project in mind?</h2>
@@ -31,7 +30,6 @@ const Footer = () => {
           </Button>
         </div>
 
-        {/* columns */}
         <div className="glass grid gap-10 rounded-3xl p-8 sm:grid-cols-3 md:p-10">
           <div className="flex flex-col gap-y-5 sm:col-span-2 lg:pr-16">
             <Logo />
@@ -55,7 +53,6 @@ const Footer = () => {
 
         </div>
 
-        {/* bottom bar */}
         <div className="glass flex flex-col-reverse items-center justify-between gap-6 rounded-2xl px-6 py-4 md:flex-row">
           <p className="text-sm text-muted-foreground">
             &copy; {year} {site.name}. All rights reserved.

@@ -2,10 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 
-// mouse parallax for the hero's floating icons: deeper icons travel further.
-// A small eased requestAnimationFrame loop that only runs while the mouse is
-// moving. The icons themselves are rendered on the server (FloatingIcons) and
-// passed in as children, so their SVGs don't ship as JavaScript
 const IconParallax = ({ children }) => {
     const root = useRef(null)
 

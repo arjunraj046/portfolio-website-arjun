@@ -1,10 +1,3 @@
-// titles, companies, types and locations come from the owner's LinkedIn;
-// highlights and stacks from their resume, backend first (the owner wants the
-// backend work to lead). Which role had REST APIs, auth flows and Socket.IO chat
-// was confirmed by the owner. Don't add facts they haven't stated.
-// The owner doesn't want dates or durations shown, so there are none here.
-// `mark` is the monogram tile shown in place of a logo (decorative colours)
-
 export const roles = [
     {
         title: 'Full Stack Developer',
@@ -55,7 +48,6 @@ export const roles = [
     }
 ]
 
-// a shorter entry from the resume, shown in one compact card below the roles
 export const otherRoles = [
     {
         title: 'MERN Full Stack Developer · Packapeer Academy Private Limited',

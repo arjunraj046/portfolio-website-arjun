@@ -4,9 +4,6 @@ import { CardTitle, SectionGlows, SectionHeading } from '@/components/shared/Sec
 import { roles, otherRoles } from '@/data/experience'
 import RoleCard from './RoleCard'
 
-// a vertical timeline, newest role first, with the shorter entries in one
-// compact card at the end. A server component; only TiltCard and Reveal run
-// in the browser
 const Experience = () => (
     <section id="experience" aria-labelledby="experience-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
         <SectionGlows>
@@ -17,7 +14,6 @@ const Experience = () => (
         <Reveal className="container mx-auto">
             <SectionHeading id="experience-heading" label="Experience">Where I&apos;ve worked</SectionHeading>
 
-            {/* the rail runs through the dots, fading out at the bottom */}
             <ol className="relative space-y-6 before:absolute before:left-[11px] before:top-3 before:bottom-0 before:w-px
                            before:bg-gradient-to-b before:from-sky-400/70 before:via-foreground/15 before:to-transparent">
                 {roles.map((role) => (

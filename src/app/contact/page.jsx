@@ -22,7 +22,6 @@ export default function ContactPage() {
   return (
     <main className="container mx-auto py-16 xl:py-24">
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_1.3fr] gap-12 xl:gap-16 items-start">
-        {/* intro + direct details */}
         <div>
           <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">Contact</p>
           <h1 className="text-4xl xl:text-5xl font-bold tracking-[-1px] mb-6">Let&apos;s work together.</h1>
@@ -51,7 +50,6 @@ export default function ContactPage() {
           </ul>
         </div>
 
-        {/* form */}
         <section aria-labelledby="form-heading" className="glass rounded-2xl p-6 sm:p-8">
           <h2 id="form-heading" className="text-xl font-semibold mb-1">Send a message</h2>
           <p className="text-sm text-muted-foreground mb-6">I&apos;ll reply to you by email.</p>

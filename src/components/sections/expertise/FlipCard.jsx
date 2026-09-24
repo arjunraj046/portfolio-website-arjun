@@ -36,7 +36,6 @@ const FlipCard = ({ Icon, color, tone, title, blurb, points }) => {
                 className="relative h-full w-full will-change-transform"
                 style={{ transformStyle: 'preserve-3d' }}
             >
-                {/* front */}
                 <div
                     aria-hidden={flipped}
                     className="absolute inset-0 flex flex-col justify-between rounded-lg border bg-card p-6 shadow-sm
@@ -50,7 +49,6 @@ const FlipCard = ({ Icon, color, tone, title, blurb, points }) => {
                     </div>
                 </div>
 
-                {/* back */}
                 <div
                     aria-hidden={!flipped}
                     className="absolute inset-0 flex flex-col justify-center rounded-lg border border-primary/40 bg-card p-6 shadow-md"

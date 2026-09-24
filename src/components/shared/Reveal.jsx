@@ -2,10 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 
-// cards marked `data-reveal` that start below the fold are lowered and
-// faded, then settle in over 0.3s as they scroll into view. Cards already on
-// screen are never hidden, and without JavaScript everything simply shows.
-// Sections using it stay server components; only this wrapper runs here
 const Reveal = ({ className = '', children }) => {
     const root = useRef(null)
 

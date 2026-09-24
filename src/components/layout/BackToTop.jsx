@@ -4,8 +4,6 @@ import { ArrowUp } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
-// the only interactive bit of the footer, split out so the footer itself
-// renders on the server with no JavaScript
 const BackToTop = () => (
   <Button
     variant='outline'

@@ -2,26 +2,23 @@
 
 import { useEffect, useRef } from 'react'
 
-// the reading-progress bar on the right edge. It writes the transform straight
-// to the element once per frame, so scrolling never re-renders React
 const ScrollProgress = () => {
     const bar = useRef(null)
 
     useEffect(() => {
+        const el = bar.current
         let frame = 0
 
         const update = () => {
             frame = 0
             const max = document.documentElement.scrollHeight - window.innerHeight
             const progress = max > 0 ? Math.min(window.scrollY / max, 1) : 0
-            bar.current.style.transform = `translateY(${(progress - 1) * 100}%)`
+            el.style.transform = `translateY(${(progress - 1) * 100}%)`
         }
         const onScroll = () => {
             if (!frame) frame = requestAnimationFrame(update)
         }
 
-        // the page grows as lazily rendered sections get their real height,
-        // so recalculate when the body resizes, not only on scroll
         const resize = new ResizeObserver(onScroll)
         resize.observe(document.body)
         update()

@@ -6,7 +6,6 @@ import {
     RiFacebookFill
 } from 'react-icons/ri'
 
-// who the site is about, used by the hero, footer and page metadata
 export const site = {
     name: 'Arjun Raj',
     initials: 'AR',
@@ -17,7 +16,6 @@ export const site = {
         'MERN stack developer with 3+ years of experience building scalable REST APIs and real-time applications. Node.js performance, MongoDB indexing, Redis caching and AWS deployment.',
     heroIntro:
         'I build scalable REST APIs and real-time applications — Node.js performance, MongoDB indexing, Redis caching and AWS deployment.',
-    // shown on the contact page; the owner approved publishing these
     email: 'arjunraj004466@gmail.com',
     phone: '+91 8848 7849 10',
     phoneHref: 'tel:+918848784910',

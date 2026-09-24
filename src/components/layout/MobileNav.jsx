@@ -6,8 +6,6 @@ import { AlignRight } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
-// the panel (and Radix Dialog with it) is a separate chunk, fetched the first
-// time the button is touched, hovered or focused, so it's ready by the click
 const loadSheet = () => import('./MobileSheet')
 const MobileSheet = dynamic(loadSheet, { ssr: false })
 

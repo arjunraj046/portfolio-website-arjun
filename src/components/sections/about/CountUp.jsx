@@ -2,11 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 
-// counts a stat up from 0 (0, 1, 2, 3+) the first time it scrolls into view.
-// `value` is the final text, like '3+': its number is animated and anything
-// after it is kept as a suffix. The server HTML holds the final value, and
-// screen readers only ever read that, never the ticking digits. It runs even
-// with reduced motion on, as the owner asked
 const DURATION = 1200
 
 const CountUp = ({ value, className = '' }) => {
@@ -25,7 +20,7 @@ const CountUp = ({ value, className = '' }) => {
             const start = performance.now()
             const tick = (now) => {
                 const t = Math.min((now - start) / DURATION, 1)
-                const eased = 1 - (1 - t) * (1 - t) // gentle ease-out, so each number shows
+                const eased = 1 - (1 - t) * (1 - t)
                 el.textContent = `${Math.round(eased * target)}${suffix}`
                 if (t < 1) frame = requestAnimationFrame(tick)
             }

@@ -12,9 +12,6 @@ import {
     SiPostgresql
 } from 'react-icons/si'
 
-// position / size / drift are tuned per icon so the field feels hand placed
-// instead of evenly scattered. `depth` drives the mouse parallax strength;
-// `float` is [x px, y px, rotation deg, seconds, delay seconds] for the CSS drift
 const icons = [
     { Icon: SiReact, color: '#61DAFB', top: '12%', left: '5%', size: 48, depth: 1, float: [8, -22, 10, 3.6, 0], className: '' },
     { Icon: SiDocker, color: '#2496ED', top: '68%', left: '9%', size: 40, depth: 0.6, float: [-10, -18, -8, 4.2, 0.6], className: '' },
@@ -28,9 +25,6 @@ const icons = [
     { Icon: SiPostgresql, color: '#4169E1', top: '4%', right: '30%', size: 30, depth: 1.3, float: [-9, -20, -9, 3.5, 1.0], className: 'hidden xl:block' }
 ]
 
-// a server component: the icons are plain SVG in the HTML, and only the small
-// IconParallax wrapper runs in the browser. The endless drift is pure CSS
-// (.icon-float in globals.css)
 const FloatingIcons = () => {
     return (
         <IconParallax>

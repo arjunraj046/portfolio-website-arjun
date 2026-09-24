@@ -31,7 +31,6 @@ const Expertise = () => {
                     scrollTrigger: { trigger: root.current, start: 'top 72%' }
                 })
 
-                // cards swing up out of the page plane as they come into view
                 gsap.from('[data-xp-card]', {
                     y: 60,
                     opacity: 0,

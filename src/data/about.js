@@ -1,6 +1,5 @@
 import { Blocks, Briefcase, CalendarClock, Cloud, Database, Gauge, GraduationCap, KeyRound, Layers, Server, ShieldCheck, Zap } from 'lucide-react'
 
-// everything here comes from the owner's resume; don't add facts it doesn't state
 
 export const aboutSummary = [
     "I'm Arjun Raj, a MERN stack developer with 3+ years of experience building scalable REST APIs and real-time applications. I'm strong in Node.js performance optimisation, MongoDB indexing, Redis caching and AWS deployment, and I've designed production backend systems, authentication flows and high-traffic chat modules with Socket.IO.",
@@ -13,7 +12,6 @@ export const aboutStats = [
     { value: '2', label: 'Security certifications: CEH and CPT', Icon: ShieldCheck }
 ]
 
-// each with its own icon, shown in a small tile
 export const strengths = [
     { label: 'Scalable REST APIs', Icon: Server },
     { label: 'Real-time apps with Socket.IO', Icon: Zap },
@@ -55,5 +53,4 @@ export const certifications = [
     }
 ]
 
-// the 6-month cybersecurity programme both certifications came from
 export const training = 'Cybersecurity programme · 6 months'

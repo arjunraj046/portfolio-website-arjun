@@ -9,19 +9,15 @@ import Socials from '@/components/shared/Socials'
 import Logo from './Logo'
 import Nav from './Nav'
 
-// the mobile menu panel. It pulls in Radix Dialog, so MobileNav only loads
-// this file once the menu is first opened (or about to be)
 const MobileSheet = ({ open, onOpenChange, triggerRef }) => {
   const close = () => onOpenChange(false)
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
-        // there's no SheetTrigger, so hand focus back to the menu button ourselves
         onCloseAutoFocus={(e) => { e.preventDefault(); triggerRef.current?.focus() }}
         className="flex flex-col justify-between overflow-hidden border-l border-white/60 bg-white/60 backdrop-blur-2xl backdrop-saturate-150 dark:border-white/10 dark:bg-slate-900/60"
       >
-        {/* colour behind the glass */}
         <div aria-hidden="true" className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-sky-400/30 blur-3xl dark:bg-sky-500/20" />
         <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-violet-400/30 blur-3xl dark:bg-violet-500/20" />
         <SheetTitle className="sr-only">Menu</SheetTitle>

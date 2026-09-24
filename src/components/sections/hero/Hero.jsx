@@ -8,15 +8,12 @@ import { site } from "@/data/site"
 import FloatingIcons from "./FloatingIcons"
 import HeroArt from "./HeroArt"
 
-// a server component: the heading and text are in the first HTML response and
-// visible straight away; only the icons and the sphere run in the browser
 const Hero = () => {
     return (
         <section className="relative overflow-hidden py-12 xl:py-16 min-h-[84vh] flex items-center">
             <FloatingIcons />
             <div className="container mx-auto relative z-10 w-full">
                 <div className="flex items-center justify-between gap-x-8">
-                    {/* text */}
                     <div className="flex max-w-[600px] flex-col justify-center mx-auto xl:mx-0 text-center xl:text-left">
                         <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">{site.role}</p>
                         <h1 className="h1">Hello, my name is {site.name}</h1>
@@ -45,12 +42,10 @@ const Hero = () => {
                         </div>
                     </div>
 
-                    {/* 3D tech sphere */}
                     <HeroArt />
                 </div>
             </div>
 
-            {/* scroll hint */}
             <div aria-hidden="true" className="hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-6 z-10 animate-bounce">
                 <RiArrowDownSLine className="text-3xl text-primary" />
             </div>
