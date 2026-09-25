@@ -20,7 +20,7 @@ export const site = {
     phone: '+91 8848 7849 10',
     phoneHref: 'tel:+918848784910',
     whatsappHref: `https://wa.me/918848784910?text=${encodeURIComponent("Hi Arjun, I came across your portfolio and would like to connect.")}`,
-    url: 'https://www.arjundev.in',
+    url: 'https://portfolio-website-arjun.vercel.app',
     cvUrl: 'https://drive.google.com/uc?export=download&id=1DYVvs_Zs12ksDZ5n8SDEegVwHiWlf1rr'
 }
 

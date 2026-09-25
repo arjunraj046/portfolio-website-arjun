@@ -195,3 +195,13 @@
   .dark .glass-header.glass-header { background-color: rgb(15 23 42 / 0.9); }
   .glass-header::after { display: none; }
 }
+@layer base {
+  ::selection {
+    background-color: rgb(139 92 246 / 0.28);
+    color: hsl(var(--foreground));
+  }
+  .dark ::selection {
+    background-color: rgb(56 189 248 / 0.35);
+    color: #fff;
+  }
+}
