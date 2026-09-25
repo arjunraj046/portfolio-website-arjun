@@ -16,6 +16,8 @@ const Radio = () => {
     const [station, setStation] = useState(null)
     const [status, setStatus] = useState('idle')
     const [volume, setVolume] = useState(0.7)
+    const [muted, setMuted] = useState(false)
+    const [volumeControl, setVolumeControl] = useState(true)
 
     const close = useCallback(() => {
         setOpen(false)
@@ -50,8 +52,18 @@ const Radio = () => {
     }, [])
 
     useEffect(() => {
+        const probe = document.createElement('audio')
+        probe.volume = 0.5
+        setVolumeControl(probe.volume === 0.5)
+    }, [])
+
+    useEffect(() => {
         audio.current.volume = volume
     }, [volume])
+
+    useEffect(() => {
+        audio.current.muted = muted
+    }, [muted])
 
     const play = useCallback((next) => {
         const el = audio.current
@@ -66,6 +78,26 @@ const Radio = () => {
 
     const pause = useCallback(() => audio.current.pause(), [])
 
+    const changeVolume = useCallback((value) => {
+        setVolume(value)
+        setMuted(value === 0)
+    }, [])
+
+    useEffect(() => {
+        if (!('mediaSession' in navigator) || !station) return
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: station.name,
+            artist: [station.country, station.detail].filter(Boolean).join(' · ') || 'Live radio',
+            album: 'Arjun Raj · Radio'
+        })
+        navigator.mediaSession.setActionHandler('play', () => play())
+        navigator.mediaSession.setActionHandler('pause', pause)
+        return () => {
+            navigator.mediaSession.setActionHandler('play', null)
+            navigator.mediaSession.setActionHandler('pause', null)
+        }
+    }, [station, play, pause])
+
     const playing = status === 'playing'
 
     return (
@@ -79,7 +111,10 @@ const Radio = () => {
                     station={station}
                     status={status}
                     volume={volume}
-                    onVolume={setVolume}
+                    onVolume={changeVolume}
+                    muted={muted}
+                    onMute={setMuted}
+                    volumeControl={volumeControl}
                     onPlay={play}
                     onPause={pause}
                 />
