@@ -41,9 +41,9 @@ export default function ContactPage() {
                 <a
                   href={href}
                   {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-                  className="glass flex items-center gap-4 rounded-xl p-4 transition-colors hover:bg-white/70 dark:hover:bg-white/10"
+                  className="glass flex items-center gap-4 rounded-lg p-4 transition-colors hover:bg-white/70 dark:hover:bg-white/10"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
                     <Icon size={20} aria-hidden="true" />
                   </span>
                   <span className="flex min-w-0 flex-col">
@@ -56,7 +56,7 @@ export default function ContactPage() {
           </ul>
         </div>
 
-        <section aria-labelledby="form-heading" className="glass flex flex-col rounded-2xl p-6 sm:p-8">
+        <section aria-labelledby="form-heading" className="glass flex flex-col rounded-xl p-6 sm:p-8">
           <h2 id="form-heading" className="text-xl font-semibold mb-1">Send a message</h2>
           <p className="text-sm text-muted-foreground mb-6">I&apos;ll reply to you by email.</p>
           <ContactForm />

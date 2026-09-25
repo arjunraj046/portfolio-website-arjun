@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Radio from "@/components/layout/Radio";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 import SiteBackground from "@/components/layout/SiteBackground";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { site } from "@/data/site";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
           <Radio />
+          <SmoothScroll />
         </ThemeProvider>
       </body>
     </html>
