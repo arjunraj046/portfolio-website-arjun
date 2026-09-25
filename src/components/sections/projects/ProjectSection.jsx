@@ -2,7 +2,7 @@ import { Building2, ChevronDown, CircleDot, UserRound } from 'lucide-react'
 
 import ImageCarousel from './ImageCarousel'
 
-const chip = 'rounded-lg border border-white/70 bg-white/60 dark:border-white/10 dark:bg-white/[0.07]'
+const chip = 'rounded-md border border-white/70 bg-white/60 dark:border-white/10 dark:bg-white/[0.07]'
 
 const AccordionItem = ({ title, points, group, open = false }) => (
     <details name={group} open={open} className="group/item border-b border-foreground/10 last:border-b-0">
@@ -41,12 +41,12 @@ const ProjectSection = ({ project, number, reverse = false, priority = false }) 
                     {number && (
                         <span className="mr-1 text-sm font-semibold tabular-nums tracking-[2px] text-muted-foreground">{number}</span>
                     )}
-                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-2.5 py-1 text-primary-foreground">
+                    <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-2.5 py-1 text-primary-foreground">
                         <CompanyIcon size={13} aria-hidden="true" /> {company}
                     </span>
                     <span className={`${chip} px-2.5 py-1`}>{role}</span>
                     {status && (
-                        <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-700 dark:text-emerald-300">
+                        <span className="inline-flex items-center gap-1.5 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-700 dark:text-emerald-300">
                             <CircleDot size={12} aria-hidden="true" /> {status}
                         </span>
                     )}
@@ -72,7 +72,7 @@ const ProjectSection = ({ project, number, reverse = false, priority = false }) 
             </div>
             </div>
 
-            <div className="mt-8 grid grid-cols-1 gap-x-6 rounded-xl border border-white/60 bg-white/40 px-4 dark:border-white/10 dark:bg-white/[0.04] md:grid-cols-2 md:px-5">
+            <div className="mt-8 grid grid-cols-1 gap-x-6 rounded-lg border border-white/60 bg-white/40 px-4 dark:border-white/10 dark:bg-white/[0.04] md:grid-cols-2 md:px-5">
                 {columns.map((column, i) => (
                     <div key={i} className="md:[&>details:last-child]:border-b-0 [&:first-child>details:last-child]:border-b md:[&:first-child>details:last-child]:border-b-0">
                         {column.map(({ title: rowTitle, points, open }) => (

@@ -1,4 +1,4 @@
-export const iconTile = 'flex shrink-0 items-center justify-center rounded-lg border border-white/70 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/10'
+export const iconTile = 'flex shrink-0 items-center justify-center rounded-md border border-white/70 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/10'
 
 export const eyebrow = 'text-sm uppercase font-semibold mb-3 text-primary tracking-[4px]'
 

@@ -7,7 +7,7 @@ const RoleCard = ({ title, company, employment, location, current, mark, stack, 
         <TiltCard max={2} className="glass-card p-6 xl:p-8">
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="flex items-start gap-4">
-                    <span aria-hidden="true" className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border text-sm font-bold tracking-wide shadow-sm ${mark.className}`}>
+                    <span aria-hidden="true" className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-md border text-sm font-bold tracking-wide shadow-sm ${mark.className}`}>
                         {mark.text}
                     </span>
                     <div className="min-w-0">
@@ -42,7 +42,7 @@ const RoleCard = ({ title, company, employment, location, current, mark, stack, 
                 {stack.map((name) => (
                     <li
                         key={name}
-                        className="rounded-lg border border-white/70 bg-white/60 px-3 py-1 text-sm shadow-sm dark:border-white/10 dark:bg-white/[0.07]"
+                        className="rounded-md border border-white/70 bg-white/60 px-3 py-1 text-sm shadow-sm dark:border-white/10 dark:bg-white/[0.07]"
                     >
                         {name}
                     </li>

@@ -51,7 +51,7 @@ const rules = {
     }
 }
 
-const fieldStyles = 'h-11 rounded-lg border-white/60 bg-white/50 dark:border-white/10 dark:bg-white/5 aria-[invalid=true]:border-destructive/60'
+const fieldStyles = 'h-11 rounded-md border-white/60 bg-white/50 dark:border-white/10 dark:bg-white/5 aria-[invalid=true]:border-destructive/60'
 
 const Required = () => <span aria-hidden="true" className="ml-0.5 text-destructive">*</span>
 
@@ -208,7 +208,7 @@ const ContactForm = () => {
                 <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
                 {status === 'error' && (
-                    <p role="alert" className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm">
+                    <p role="alert" className="rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm">
                         Sorry, your message couldn&apos;t be sent. Please try again, or email me at{' '}
                         <a href={`mailto:${site.email}`} className="font-medium underline underline-offset-4">{site.email}</a>.
                     </p>

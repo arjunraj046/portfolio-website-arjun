@@ -26,9 +26,9 @@ const MobileSheet = ({ open, onOpenChange, triggerRef }) => {
           <Logo onClick={close} />
           <Nav
             containerStyles='flex flex-col gap-y-2'
-            linkStyles='relative rounded-lg px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/5 transition-colors'
+            linkStyles='relative rounded-md px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/5 transition-colors'
             activeLinkStyles='text-foreground'
-            underLineStyles='absolute inset-0 rounded-lg border border-white/70 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/10'
+            underLineStyles='absolute inset-0 rounded-md border border-white/70 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/10'
             onLinkClick={close}
           />
         </div>

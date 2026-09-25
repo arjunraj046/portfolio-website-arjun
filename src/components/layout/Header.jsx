@@ -7,7 +7,7 @@ import Nav from "./Nav"
 import MobileNav from "./MobileNav"
 import ThemeToggler from "./ThemeToggler"
 
-const glassButton = 'h-10 w-10 rounded-lg border-white/60 bg-white/40 hover:bg-white/80 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/15'
+const glassButton = 'glass-pill h-10 w-10 rounded-md border-transparent bg-white/[0.18] hover:bg-white/40 dark:border-transparent dark:bg-white/[0.06] dark:hover:bg-white/[0.12]'
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -20,16 +20,16 @@ const Header = () => {
     }, [])
 
     return (
-        <header className={`sticky top-0 z-30 flex justify-center px-4 transition-all duration-300 ${scrolled ? 'pt-3' : 'pt-5'}`}>
-            <div className={`flex w-full max-w-5xl items-center justify-between gap-x-4 rounded-2xl px-4 md:px-5 transition-all duration-300
-                ${scrolled ? 'glass-strong py-2' : 'glass py-3'}`}>
+        <header className={`sticky top-0 z-30 flex h-24 items-start justify-center px-4 transition-[padding] duration-500 ease-out ${scrolled ? 'pt-3' : 'pt-5 xl:px-8'}`}>
+            <div className={`flex w-full items-center justify-between gap-x-4 rounded-xl px-4 md:px-5 transition-all duration-500 ease-out
+                glass-header ${scrolled ? 'max-w-5xl py-2 bg-white/[0.35] dark:bg-slate-900/[0.35]' : 'max-w-5xl py-3 xl:max-w-[83.5rem] xl:py-3.5'}`}>
                 <Logo />
 
                 <Nav
                     containerStyles='hidden md:flex items-center gap-x-1'
-                    linkStyles='relative rounded-lg px-5 py-2.5 text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors'
+                    linkStyles='relative rounded-md px-5 py-2.5 text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors'
                     activeLinkStyles='text-foreground'
-                    underLineStyles='absolute inset-0 rounded-lg border border-white/80 bg-white/80 shadow-sm dark:border-white/15 dark:bg-white/15'
+                    underLineStyles='glass-pill absolute inset-0 rounded-md bg-white/35 dark:bg-white/[0.1]'
                 />
 
                 <div className="flex items-center gap-x-2">

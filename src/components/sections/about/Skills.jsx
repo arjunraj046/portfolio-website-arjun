@@ -40,7 +40,7 @@ const Skills = () => (
                                         {items.map(({ name, Icon, color, tone }) => (
                                             <li
                                                 key={name}
-                                                className="inline-flex items-center gap-2 rounded-lg border border-white/70 bg-white/60 px-3 py-1.5 text-sm shadow-sm
+                                                className="inline-flex items-center gap-2 rounded-md border border-white/70 bg-white/60 px-3 py-1.5 text-sm shadow-sm
                                                            transition-colors duration-200 hover:bg-white/90 dark:border-white/10 dark:bg-white/[0.07] dark:hover:bg-white/[0.14]"
                                             >
                                                 {Icon && (

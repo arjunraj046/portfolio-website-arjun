@@ -24,7 +24,7 @@ const About = () => (
                             width={360}
                             height={640}
                             sizes="(min-width: 1280px) 128px, (min-width: 768px) 112px, 96px"
-                            className="aspect-[9/16] h-auto w-24 shrink-0 rounded-xl object-cover shadow-md transition-transform duration-300 ease-out
+                            className="aspect-[9/16] h-auto w-24 shrink-0 rounded-lg object-cover shadow-md transition-transform duration-300 ease-out
                                 hover:-translate-y-1 hover:scale-[1.03] md:w-28 xl:w-32"
                         />
                         <div>
