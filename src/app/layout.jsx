@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import SiteBackground from "@/components/layout/SiteBackground";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { site } from "@/data/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
