@@ -2,6 +2,7 @@ import { Mail, Phone } from "lucide-react";
 import { RiGithubFill, RiLinkedinFill, RiWhatsappFill } from "react-icons/ri";
 
 import ContactForm from "@/components/sections/contact/ContactForm";
+import CopyDetails from "@/components/sections/contact/CopyDetails";
 import { site, socials } from "@/data/site";
 
 export const metadata = {
@@ -23,6 +24,18 @@ const details = [
   { label: "LinkedIn", value: "in/arjun046", href: profile("LinkedIn"), Icon: RiLinkedinFill, external: true },
   { label: "GitHub", value: "arjunraj046", href: profile("GitHub"), Icon: RiGithubFill, external: true },
 ];
+
+const detailsText = [
+  `${site.name} — ${site.role}`,
+  site.description,
+  "",
+  `Email: ${site.email}`,
+  `Phone: ${site.phone}`,
+  `WhatsApp: ${site.whatsappHref.split("?")[0]}`,
+  `LinkedIn: ${profile("LinkedIn").replace(/\/$/, "")}`,
+  `GitHub: ${profile("GitHub")}`,
+  `Portfolio: ${site.url}`,
+].join("\n");
 
 export default function ContactPage() {
   return (
@@ -54,6 +67,10 @@ export default function ContactPage() {
               </li>
             ))}
           </ul>
+
+          <div className="mt-6">
+            <CopyDetails text={detailsText} />
+          </div>
         </div>
 
         <section aria-labelledby="form-heading" className="glass flex flex-col rounded-xl p-6 sm:p-8">

@@ -53,7 +53,7 @@ const rules = {
 
 const fieldStyles = 'h-11 rounded-md border-white/60 bg-white/50 dark:border-white/10 dark:bg-white/5 aria-[invalid=true]:border-destructive/60'
 
-const Required = () => <span aria-hidden="true" className="ml-0.5 text-destructive">*</span>
+const Required = () => <span aria-hidden="true" className="ml-0.5 text-destructive dark:text-red-400">*</span>
 
 const ContactForm = () => {
     const [status, setStatus] = useState('idle')
@@ -113,7 +113,7 @@ const ContactForm = () => {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} noValidate className="flex flex-1 flex-col gap-5">
                 <p className="-mt-2 text-xs text-muted-foreground">
-                    Fields marked <span className="text-destructive">*</span> are required.
+                    Fields marked <span className="text-destructive dark:text-red-400">*</span> are required.
                 </p>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
