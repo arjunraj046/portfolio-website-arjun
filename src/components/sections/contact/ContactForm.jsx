@@ -8,36 +8,61 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { cn } from '@/lib/utils'
 import { site } from '@/data/site'
 
 const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
 
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const LIMITS = { name: 80, email: 254, subject: 120, message: 2000 }
+const NAME = /^[\p{L}][\p{L}\s.'’-]*$/u
+const EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9-]+(\.[A-Z0-9-]+)*\.[A-Z]{2,}$/i
+
 const rules = {
     name: {
-        validate: (v) => v.trim().length >= 2 || 'Please enter your name.',
-        maxLength: { value: 100, message: 'Please keep your name under 100 characters.' }
+        validate: (v) => {
+            const value = v.trim()
+            if (!value) return 'Please enter your name.'
+            if (value.length < 2) return 'Your name should be at least 2 characters.'
+            if (!NAME.test(value)) return 'Please use letters only (spaces, dots, hyphens and apostrophes are fine).'
+            return true
+        },
+        maxLength: { value: LIMITS.name, message: `Please keep your name under ${LIMITS.name} characters.` }
     },
     email: {
-        validate: (v) => EMAIL.test(v.trim()) || 'Please enter a valid email address.'
+        validate: (v) => {
+            const value = v.trim()
+            if (!value) return 'Please enter your email address.'
+            if (!EMAIL.test(value)) return 'Please enter a valid email address, like name@example.com.'
+            return true
+        },
+        maxLength: { value: LIMITS.email, message: 'That email address is too long.' }
     },
     subject: {
-        maxLength: { value: 150, message: 'Please keep the subject under 150 characters.' }
+        maxLength: { value: LIMITS.subject, message: `Please keep the subject under ${LIMITS.subject} characters.` }
     },
     message: {
-        validate: (v) => v.trim().length >= 10 || 'Please write at least 10 characters.',
-        maxLength: { value: 3000, message: 'Please keep it under 3000 characters.' }
+        validate: (v) => {
+            const value = v.trim()
+            if (!value) return 'Please write a message.'
+            if (value.length < 10) return 'Please write at least 10 characters.'
+            return true
+        },
+        maxLength: { value: LIMITS.message, message: `Please keep your message under ${LIMITS.message.toLocaleString()} characters.` }
     }
 }
 
-const fieldStyles = 'h-11 rounded-lg border-white/60 bg-white/50 dark:border-white/10 dark:bg-white/5'
+const fieldStyles = 'h-11 rounded-lg border-white/60 bg-white/50 dark:border-white/10 dark:bg-white/5 aria-[invalid=true]:border-destructive/60'
+
+const Required = () => <span aria-hidden="true" className="ml-0.5 text-destructive">*</span>
 
 const ContactForm = () => {
     const [status, setStatus] = useState('idle')
 
     const form = useForm({
+        mode: 'onTouched',
         defaultValues: { name: '', email: '', subject: '', message: '' }
     })
+    const messageLength = form.watch('message').length
 
     const onSubmit = async (raw, event) => {
         const values = Object.fromEntries(Object.entries(raw).map(([key, value]) => [key, value.trim()]))
@@ -60,6 +85,7 @@ const ContactForm = () => {
                     subject: values.subject || `New message from ${values.name}`,
                     name: values.name,
                     email: values.email,
+                    replyto: values.email,
                     message: values.message
                 })
             })
@@ -74,7 +100,7 @@ const ContactForm = () => {
 
     if (status === 'sent') {
         return (
-            <div role="status" className="flex flex-col items-center justify-center gap-4 py-16 text-center">
+            <div role="status" className="flex flex-1 flex-col items-center justify-center gap-4 py-16 text-center">
                 <CheckCircle2 size={44} aria-hidden="true" className="text-emerald-500" />
                 <h3 className="text-2xl font-semibold">Message sent</h3>
                 <p className="max-w-sm text-muted-foreground">Thanks for getting in touch. I&apos;ll reply to you by email.</p>
@@ -85,17 +111,21 @@ const ContactForm = () => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <form onSubmit={form.handleSubmit(onSubmit)} noValidate className="flex flex-1 flex-col gap-5">
+                <p className="-mt-2 text-xs text-muted-foreground">
+                    Fields marked <span className="text-destructive">*</span> are required.
+                </p>
+
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <FormField
                         control={form.control}
                         name="name"
                         rules={rules.name}
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Name</FormLabel>
+                                <FormLabel>Name<Required /></FormLabel>
                                 <FormControl>
-                                    <Input autoComplete="name" placeholder="Your name" className={fieldStyles} {...field} />
+                                    <Input autoComplete="name" placeholder="Your name" maxLength={LIMITS.name} aria-required="true" className={fieldStyles} {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -107,9 +137,20 @@ const ContactForm = () => {
                         rules={rules.email}
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Email</FormLabel>
+                                <FormLabel>Email<Required /></FormLabel>
                                 <FormControl>
-                                    <Input type="email" autoComplete="email" placeholder="you@example.com" className={fieldStyles} {...field} />
+                                    <Input
+                                        type="email"
+                                        inputMode="email"
+                                        autoComplete="email"
+                                        autoCapitalize="none"
+                                        spellCheck={false}
+                                        placeholder="you@example.com"
+                                        maxLength={LIMITS.email}
+                                        aria-required="true"
+                                        className={fieldStyles}
+                                        {...field}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -125,7 +166,7 @@ const ContactForm = () => {
                         <FormItem>
                             <FormLabel>Subject <span className="font-normal text-muted-foreground">(optional)</span></FormLabel>
                             <FormControl>
-                                <Input placeholder="What's it about?" className={fieldStyles} {...field} />
+                                <Input placeholder="What's it about?" maxLength={LIMITS.subject} className={fieldStyles} {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -137,17 +178,29 @@ const ContactForm = () => {
                     name="message"
                     rules={rules.message}
                     render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Message</FormLabel>
+                        <FormItem className="flex flex-1 flex-col">
+                            <FormLabel>Message<Required /></FormLabel>
                             <FormControl>
                                 <Textarea
-                                    rows={6}
-                                    placeholder="Tell me a little about your project or question"
-                                    className={`${fieldStyles} h-auto min-h-[150px] resize-y`}
+                                    placeholder="Tell me about your project, role or question. Write as much as you need."
+                                    maxLength={LIMITS.message}
+                                    aria-required="true"
+                                    className={`${fieldStyles} h-auto min-h-[150px] flex-1 resize-none overflow-y-auto leading-relaxed`}
                                     {...field}
                                 />
                             </FormControl>
-                            <FormMessage />
+                            <div className="flex items-start justify-between gap-4">
+                                <FormMessage />
+                                <p
+                                    aria-live="polite"
+                                    className={cn(
+                                        'ml-auto shrink-0 text-xs tabular-nums text-muted-foreground',
+                                        messageLength >= LIMITS.message && 'text-destructive'
+                                    )}
+                                >
+                                    {messageLength.toLocaleString()} / {LIMITS.message.toLocaleString()}
+                                </p>
+                            </div>
                         </FormItem>
                     )}
                 />

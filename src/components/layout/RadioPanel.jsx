@@ -4,41 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Loader2, Pause, Play, Volume2, VolumeX, X } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { radioGenres, radioServers } from '@/data/radio'
-
-const fetchStations = async (tag) => {
-    const query = new URLSearchParams({
-        tag,
-        hidebroken: 'true',
-        is_https: 'true',
-        order: 'clickcount',
-        reverse: 'true',
-        limit: '30'
-    })
-    for (const server of radioServers) {
-        try {
-            const response = await fetch(`${server}/json/stations/search?${query}`)
-            if (!response.ok) continue
-            const list = await response.json()
-            const unique = new Map()
-            list
-                .filter((s) => s.url_resolved?.startsWith('https://'))
-                .forEach((s) => { if (!unique.has(s.name.trim().toLowerCase())) unique.set(s.name.trim().toLowerCase(), s) })
-            return [...unique.values()]
-                .slice(0, 15)
-                .map((s) => ({
-                    id: s.stationuuid,
-                    name: s.name.trim(),
-                    country: s.countrycode || s.country,
-                    detail: [s.codec, s.bitrate ? `${s.bitrate} kbps` : ''].filter(Boolean).join(' · '),
-                    url: s.url_resolved
-                }))
-        } catch {
-            continue
-        }
-    }
-    throw new Error('unavailable')
-}
+import { radioGenres } from '@/data/radio'
+import { fetchStations } from '@/lib/radio'
 
 const RadioPanel = ({ open, onClose, station, status, volume, onVolume, muted, onMute, volumeControl, onPlay, onPause }) => {
     const panel = useRef(null)
@@ -119,7 +86,7 @@ const RadioPanel = ({ open, onClose, station, status, volume, onVolume, muted, o
                 <button
                     type="button"
                     onClick={() => {
-                        if (muted && volume === 0) onVolume(0.7)
+                        if (muted && volume === 0) onVolume(0.4)
                         onMute(!muted)
                     }}
                     aria-label={muted ? 'Unmute' : 'Mute'}
