@@ -1,9 +1,16 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+
+import { followGyro, gyroAvailable } from '@/lib/gyro'
 
 const TiltCard = ({ max = 4, className = '', children, ...props }) => {
     const ref = useRef(null)
+
+    useEffect(() => {
+        if (!gyroAvailable()) return
+        return followGyro(ref.current, max)
+    }, [max])
 
     const onPointerMove = (e) => {
         if (e.pointerType !== 'mouse') return

@@ -16,20 +16,20 @@ const About = () => (
 
         <Reveal className="container mx-auto">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                <div data-reveal className="lg:col-span-8"><TiltCard max={2} className="glass-card h-full p-8 xl:p-10">
-                    <div className="flex items-center gap-5 md:gap-7">
+                <div data-reveal className="lg:col-span-8"><TiltCard max={2} className="glass-card h-full p-6 sm:p-8 xl:p-10">
+                    <div className="flex items-center gap-4 sm:gap-5 md:gap-7">
                         <Image
                             src={site.photo}
                             alt={`Portrait of ${site.name}`}
                             width={360}
                             height={640}
-                            sizes="(min-width: 1280px) 128px, (min-width: 768px) 112px, 96px"
-                            className="aspect-[9/16] h-auto w-24 shrink-0 rounded-lg object-cover shadow-md transition-transform duration-300 ease-out
-                                hover:-translate-y-1 hover:scale-[1.03] md:w-28 xl:w-32"
+                            sizes="(min-width: 1280px) 128px, (min-width: 768px) 112px, (min-width: 640px) 96px, 80px"
+                            className="aspect-[9/16] h-auto w-20 shrink-0 rounded-lg object-cover shadow-md transition-transform duration-300 ease-out
+                                hover:-translate-y-1 hover:scale-[1.03] sm:w-24 md:w-28 xl:w-32"
                         />
                         <div>
                             <p className={eyebrow}>About me</p>
-                            <h2 id="about-heading" className="text-2xl md:text-4xl xl:text-5xl font-bold tracking-[-1px]">
+                            <h2 id="about-heading" className="text-[1.375rem] leading-tight sm:text-2xl md:text-4xl xl:text-5xl font-bold tracking-[-1px]">
                                 Ideas, shipped as software that holds up.
                             </h2>
                         </div>
