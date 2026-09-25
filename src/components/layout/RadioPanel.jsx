@@ -40,7 +40,7 @@ const fetchStations = async (tag) => {
     throw new Error('unavailable')
 }
 
-const RadioPanel = ({ open, onClose, station, status, volume, onVolume, onPlay, onPause }) => {
+const RadioPanel = ({ open, onClose, station, status, volume, onVolume, muted, onMute, volumeControl, onPlay, onPause }) => {
     const panel = useRef(null)
     const [genre, setGenre] = useState(radioGenres[0].id)
     const [stations, setStations] = useState({})
@@ -118,22 +118,31 @@ const RadioPanel = ({ open, onClose, station, status, volume, onVolume, onPlay, 
             <div className="mt-4 flex items-center gap-3">
                 <button
                     type="button"
-                    onClick={() => onVolume(volume > 0 ? 0 : 0.7)}
-                    aria-label={volume > 0 ? 'Mute' : 'Unmute'}
-                    className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                    onClick={() => {
+                        if (muted && volume === 0) onVolume(0.7)
+                        onMute(!muted)
+                    }}
+                    aria-label={muted ? 'Unmute' : 'Mute'}
+                    aria-pressed={muted}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground
+                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                    {volume > 0 ? <Volume2 size={16} aria-hidden="true" /> : <VolumeX size={16} aria-hidden="true" />}
+                    {muted ? <VolumeX size={17} aria-hidden="true" /> : <Volume2 size={17} aria-hidden="true" />}
                 </button>
-                <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.05"
-                    value={volume}
-                    onChange={(e) => onVolume(Number(e.target.value))}
-                    aria-label="Volume"
-                    className="h-1.5 w-full cursor-pointer accent-primary"
-                />
+                {volumeControl ? (
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.05"
+                        value={muted ? 0 : volume}
+                        onChange={(e) => onVolume(Number(e.target.value))}
+                        aria-label="Volume"
+                        className="h-6 w-full cursor-pointer touch-none accent-primary"
+                    />
+                ) : (
+                    <p className="text-xs text-muted-foreground">Use your phone&apos;s volume buttons to change the volume.</p>
+                )}
             </div>
 
             <div role="group" aria-label="Genre" className="mt-4 flex flex-wrap gap-1.5">
