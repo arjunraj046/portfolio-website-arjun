@@ -69,14 +69,14 @@ src/
   app/                    routes only: layout, template, page.jsx per route (+ metadata)
   components/
     layout/               site chrome: Header, Footer, Logo, Nav, MobileNav (+ MobileSheet),
-                          ThemeToggler, ScrollProgress, SiteBackground, BackToTop
+                          ThemeToggler, ScrollProgress, SiteBackground, BackToTop, Radio (+ RadioPanel)
     sections/<section>/   one folder per page section, holding the section and its sub-parts
                           (hero/, about/, experience/, projects/, contact/)
     shared/               small pieces reused across sections (Socials, TiltCard, SectionDivider)
     providers/            context providers (ThemeProvider)
     ui/                   shadcn/ui primitives only; add new ones with the shadcn CLI
   data/                   all site content as plain JS: site.js (name, role, CV link, nav links,
-                          socials), about.js, experience.js, projects.js, skills.js
+                          socials), about.js, experience.js, projects.js, radio.js, skills.js
   lib/utils.js            `cn()` class merger
 ```
 
@@ -103,6 +103,7 @@ Rules for new code:
 - `MobileNav` is only the menu button. The panel, `MobileSheet` (Radix Dialog, ~38 kB), is loaded with `next/dynamic` the first time the button is hovered, focused, touched or clicked. It has no `SheetTrigger`, so it returns focus to the button itself in `onCloseAutoFocus`.
 - `HeroArt` only mounts `TechSphere` (and the Lottie and its JSON inside it) when `(min-width: 1280px)` matches, so phones and tablets never download them.
 - Home sections below the fold (Skills, Credentials, Experience) use `.render-lazy` (`content-visibility: auto`), so the browser skips their layout and paint until they're near the viewport. It clips paint to the section, so keep glows and shadows inside its padding. Don't use it on sections with sticky children.
+- Radio (owner's request): `layout/Radio.jsx`, rendered once in the root layout, is a floating round button at the bottom left of every page. It owns the `<audio>` element, so music keeps playing when the pop-up closes and across page changes, and it never autoplays. Its pop-up, `layout/RadioPanel.jsx`, loads with `next/dynamic` on first hover, focus or click (like `MobileSheet`). It fetches stations from the free, keyless Radio Browser API (`data/radio.js`: three API servers tried in turn, and the genres) only for the selected genre, keeps HTTPS streams only (HTTP streams would be blocked as mixed content) and removes duplicate names. Close it with Escape, the X, or a click outside, and focus returns to the button. The playing bars are CSS (`.radio-bar` in `globals.css`). Keep the "Stations from Radio Browser" credit.
 - `Nav` reads `navLinks` from `data/site.js` and is rendered by both the header and the mobile nav.
 - `Footer` is a server component; its only interactive piece, the back-to-top button, is the separate client component `layout/BackToTop.jsx`.
 - `shared/Socials` reads `socials` from `data/site.js`. It takes the styling props `containerStyles` / `iconsStyles`, so the hero, mobile nav and footer can each style it differently.
