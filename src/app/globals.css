@@ -158,3 +158,14 @@
     contain-intrinsic-size: auto 900px;
   }
 }
+@layer utilities {
+  .radio-bar {
+    height: 100%;
+    transform-origin: bottom;
+    animation: radio-bar 1.2s ease-in-out infinite;
+  }
+}
+@keyframes radio-bar {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
