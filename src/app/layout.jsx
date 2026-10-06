@@ -8,6 +8,7 @@ import SmoothScroll from "@/components/layout/SmoothScroll";
 import SiteBackground from "@/components/layout/SiteBackground";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { site } from "@/data/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
           <Radio />
           <SmoothScroll />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
