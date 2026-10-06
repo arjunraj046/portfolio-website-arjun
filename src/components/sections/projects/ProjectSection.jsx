@@ -1,4 +1,6 @@
-import { Building2, ChevronDown, CircleDot, UserRound } from 'lucide-react'
+import { ArrowUpRight, Building2, ChevronDown, CircleDot, UserRound } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 
 import ImageCarousel from './ImageCarousel'
 
@@ -23,9 +25,9 @@ const AccordionItem = ({ title, points, group, open = false }) => (
 )
 
 const ProjectSection = ({ project, number, reverse = false, priority = false }) => {
-    const { slug, title, tagline, company, personal, role, status, summary, stack, images, highlights, features } = project
+    const { slug, title, tagline, company, personal, role, status, summary, stack, images, highlights, features, liveUrl } = project
     const CompanyIcon = personal ? UserRound : Building2
-    const stackGroups = Array.isArray(stack[0]?.items) ? stack : [{ label: null, items: stack }]
+    const stackGroups = (Array.isArray(stack?.[0]?.items) ? stack : [{ label: null, items: stack ?? [] }]).filter((group) => group.items.length)
 
     const rows = [{ title: 'Key highlights', points: highlights }, ...features]
     const half = Math.ceil(rows.length / 2)
@@ -44,7 +46,7 @@ const ProjectSection = ({ project, number, reverse = false, priority = false }) 
                     <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-2.5 py-1 text-primary-foreground">
                         <CompanyIcon size={13} aria-hidden="true" /> {company}
                     </span>
-                    <span className={`${chip} px-2.5 py-1`}>{role}</span>
+                    {role && <span className={`${chip} px-2.5 py-1`}>{role}</span>}
                     {status && (
                         <span className="inline-flex items-center gap-1.5 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-emerald-700 dark:text-emerald-300">
                             <CircleDot size={12} aria-hidden="true" /> {status}
@@ -52,11 +54,21 @@ const ProjectSection = ({ project, number, reverse = false, priority = false }) 
                     )}
                 </div>
 
-                <h3 id={`${slug}-title`} className="mt-4 text-3xl font-bold tracking-tight">{title}</h3>
+                <div className="mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+                    <h3 id={`${slug}-title`} className="text-3xl font-bold tracking-tight">{title}</h3>
+                    {liveUrl && (
+                        <Button asChild variant="outline" size="sm" className="group shrink-0">
+                            <a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`Visit the live ${title} site (opens in a new tab)`}>
+                                Visit live site
+                                <ArrowUpRight size={16} aria-hidden="true" className="ml-1 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                            </a>
+                        </Button>
+                    )}
+                </div>
                 <p className="mt-1 text-muted-foreground">{tagline}</p>
                 <p className="mt-4 leading-relaxed text-muted-foreground">{summary}</p>
 
-                <div className="mt-5 space-y-3">
+                {stackGroups.length > 0 && <div className="mt-5 space-y-3">
                     {stackGroups.map(({ label, items }) => (
                         <div key={label ?? 'stack'} className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
                             {label && <p className="w-20 shrink-0 pt-1 text-xs font-semibold uppercase tracking-[2px] text-muted-foreground">{label}</p>}
@@ -67,7 +79,7 @@ const ProjectSection = ({ project, number, reverse = false, priority = false }) 
                             </ul>
                         </div>
                     ))}
-                </div>
+                </div>}
 
             </div>
             </div>

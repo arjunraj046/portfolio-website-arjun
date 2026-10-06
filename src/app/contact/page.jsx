@@ -4,6 +4,7 @@ import { RiGithubFill, RiLinkedinFill, RiWhatsappFill } from "react-icons/ri";
 import ContactForm from "@/components/sections/contact/ContactForm";
 import CopyDetails from "@/components/sections/contact/CopyDetails";
 import { site, socials } from "@/data/site";
+import { JsonLd, contactGraph } from "@/lib/structuredData";
 
 export const metadata = {
   alternates: { canonical: "/contact" },
@@ -40,6 +41,7 @@ const detailsText = [
 export default function ContactPage() {
   return (
     <main className="container mx-auto py-16 xl:py-24">
+      <JsonLd data={contactGraph()} />
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_1.3fr] gap-12 xl:gap-16">
         <div>
           <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">Contact</p>

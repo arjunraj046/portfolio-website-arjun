@@ -251,6 +251,135 @@ export const projects = [
         ]
     },
     {
+        slug: 'mozhi',
+        title: 'Mozhi AI',
+        liveUrl: 'https://mozhiai.duckdns.org',
+        tagline: 'Multi-tenant AI customer-support SaaS built on RAG',
+        company: 'Personal project',
+        personal: true,
+        role: 'Built end to end',
+        status: 'Live',
+        summary:
+            "Mozhi AI is a production-deployed, multi-tenant SaaS for AI customer support. A business signs up, creates a chatbot, adds its FAQs, policies or documents, and pastes one <script> tag into its website. Visitors then get instant answers grounded only in that company's knowledge, with a safe fallback when no reliable answer exists. I designed and built it end to end: backend, dashboard, embeddable widget, AI pipeline, security, and a ₹0/month production deployment with CI/CD.",
+        stack: [
+            { label: 'Backend', items: ['Python 3.14', 'Django 6.1', 'Django REST Framework', 'SimpleJWT', 'gunicorn'] },
+            { label: 'Frontend', items: ['React', 'JavaScript', 'Vite', 'React Router'] },
+            { label: 'AI', items: ['RAG', 'pgvector (HNSW)', 'fastembed (multilingual MiniLM)', 'Google Gemini'] },
+            { label: 'Data', items: ['PostgreSQL 17', 'Redis'] },
+            { label: 'DevOps', items: ['Docker', 'Docker Compose', 'nginx', "Let's Encrypt", 'GitHub Actions', 'Oracle Cloud (ARM)'] },
+            { label: 'Quality', items: ['pytest (260+ tests)', 'ruff', 'oxlint'] }
+        ],
+        images: [
+            { src: '/projects/mozhi/landing.webp', width: 1600, height: 787, alt: 'Mozhi AI landing page with the headline "Answer every customer question with your own knowledge", next to an example support chat that answers a return-policy question and cites its source, and the live Mozhi Assistant chat widget', caption: 'Landing page with the live chat widget' }
+        ],
+        highlights: [
+            'Built Mozhi AI, a multi-tenant AI customer-support SaaS (Django REST, React, PostgreSQL/pgvector) where businesses turn their FAQs into an embeddable RAG chatbot with source-cited answers and safe fallbacks.',
+            'Implemented a retrieval pipeline with local multilingual embeddings, HNSW vector search scoped per tenant and per bot, a relevance threshold and prompt-injection defences, plus a Redis answer cache and an LLM budget guard to control cost.',
+            'Delivered secure auth (JWT with rotating HttpOnly refresh cookies, email-verified sign-up with hashed one-time codes), a real-time analytics dashboard and 260+ automated tests.',
+            'Deployed to Oracle Cloud ARM at ₹0/month with Docker Compose, nginx, Let\'s Encrypt HTTPS and GitHub Actions CI/CD (auto-deploy over SSH), with health checks and nightly backups.'
+        ],
+        features: [
+            {
+                title: 'The problem it solves',
+                points: [
+                    'Small businesses answer the same questions repeatedly, and generic chatbots either make things up or need costly setup',
+                    'Mozhi answers only from their own content',
+                    "It admits when it doesn't know",
+                    'It goes live on their site within minutes, without coding'
+                ]
+            },
+            {
+                title: 'RAG answers from your own knowledge',
+                points: [
+                    'Paste text or upload .txt, .md or .pdf files',
+                    'Content is split by topic, embedded with a free multilingual model and searched with pgvector, so answers cite their sources',
+                    'RAG flow: question → embedding → cosine search (workspace + chatbot filter) → relevance threshold → grounded prompt → answer with sources, or a safe fallback'
+                ]
+            },
+            {
+                title: 'Safe by design',
+                points: [
+                    'Low-relevance questions get a polite fallback instead of a guess',
+                    'Prompt-injection defences treat visitor messages and documents as untrusted',
+                    'Provider errors never reach visitors'
+                ]
+            },
+            {
+                title: 'One-line embeddable widget',
+                points: [
+                    'Dependency-free JavaScript in a Shadow DOM, so it never clashes with the host site',
+                    'Customisable name, colour, greeting and position',
+                    'Restricted to allowed domains'
+                ]
+            },
+            {
+                title: 'Multi-tenant isolation',
+                points: [
+                    "Every query is scoped to the company's workspace, and every vector search to both workspace and chatbot",
+                    "Requests for another tenant's data return 404, and tests cover this"
+                ]
+            },
+            {
+                title: 'Real-time dashboard',
+                points: [
+                    'Live conversation, answer-rate and question stats with trends and charts',
+                    'A "Couldn\'t answer" list that tells owners exactly what knowledge to add'
+                ]
+            },
+            {
+                title: 'Secure accounts',
+                points: [
+                    'JWT auth with a short-lived access token in memory and a rotating HttpOnly refresh cookie',
+                    'Email-verified sign-up with 6-digit one-time codes, stored hashed and rate-limited',
+                    'Password reset and verified email change'
+                ]
+            },
+            {
+                title: 'Cost controls',
+                points: [
+                    "A Redis answer cache, so repeat questions don't call the AI",
+                    'Per-visitor and per-IP rate limits',
+                    'An LLM budget guard and a usage dashboard for the super admin'
+                ]
+            },
+            {
+                title: 'Architecture',
+                points: [
+                    'Customer website → <script> widget → nginx (HTTPS) → Django REST API (gunicorn)',
+                    'Company dashboard (React) → nginx → the same API',
+                    'The API uses PostgreSQL + pgvector, Redis (cache), and Gemini (answers) with local embeddings'
+                ]
+            },
+            {
+                title: 'Deployment and DevOps',
+                points: [
+                    'Runs on an Oracle Cloud Always Free ARM server with Docker Compose: ₹0/month hosting',
+                    "nginx serves the React build and the minified widget, terminates HTTPS (Let's Encrypt, auto-renewing) and proxies the API",
+                    'CI/CD: every push runs lint and 260+ tests on GitHub Actions; when main passes, it deploys automatically over SSH with a deploy key restricted to a single command',
+                    'Hardening: non-root containers, health checks, nightly database backups, key-only SSH, firewalled ports, and secrets kept only in server environment files'
+                ]
+            },
+            {
+                title: 'Challenges I solved',
+                points: [
+                    'Vague questions failing retrieval: added topic-aware chunking and a "soft zone" relevance band, so short or general questions still get helpful overviews instead of fallbacks',
+                    'Production on ARM with a non-root user: fixed file-permission issues for the embedding model cache and gunicorn found during smoke tests, before go-live',
+                    'Restricted network: diagnosed an ISP-level block on SSH port 22 and moved server access to an alternate port without weakening security',
+                    "Email deliverability on a free domain: chose Gmail SMTP with app passwords, since a free subdomain can't carry SPF/DKIM records",
+                    'Time-zone bug: Windows browsers report legacy zone names (e.g. Asia/Calcutta); fixed with the official tzdata package and a safe fallback'
+                ]
+            },
+            {
+                title: 'What I learned',
+                points: [
+                    'Designing tenant-safe data access and testing for leaks',
+                    'Making LLM features reliable with grounding, fallbacks, caching and budgets',
+                    'Shipping a full production setup (containers, reverse proxy, TLS, CI/CD, backups) on a zero budget'
+                ]
+            }
+        ]
+    },
+    {
         slug: 'gameo',
         title: 'Gameo',
         tagline: 'E-commerce web app for games and consoles',
