@@ -11,12 +11,24 @@ import { site } from "@/data/site";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#e6ebf3" },
+    { media: "(prefers-color-scheme: dark)", color: "#020617" },
+  ],
+};
+
 export const metadata = {
   title: {
     default: `${site.name} — ${site.role}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  applicationName: `${site.name} portfolio`,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  keywords: ["Arjun Raj", "MERN stack developer", "full stack developer", "Node.js developer", "backend developer", "React developer", "Kerala", "India"],
+  robots: { index: true, follow: true },
   metadataBase: new URL(site.url),
   openGraph: {
     type: "website",

@@ -8,6 +8,7 @@ import { radioGenres } from '@/data/radio'
 import { autoplayAllowed, fetchStations, rememberAutoplay } from '@/lib/radio'
 
 const loadPanel = () => import('./RadioPanel')
+const prefetch = () => { loadPanel().catch(() => {}) }
 const RadioPanel = dynamic(loadPanel, { ssr: false })
 
 const DEFAULT_VOLUME = 0.4
@@ -189,9 +190,9 @@ const Radio = () => {
                 aria-label={open ? 'Close radio' : playing ? `Radio: playing ${station?.name}` : 'Open radio'}
                 aria-expanded={open}
                 aria-haspopup="dialog"
-                onPointerEnter={loadPanel}
-                onFocus={loadPanel}
-                onTouchStart={loadPanel}
+                onPointerEnter={prefetch}
+                onFocus={prefetch}
+                onTouchStart={prefetch}
                 onClick={() => { setLoaded(true); setOpen((value) => !value) }}
                 className="glass-strong relative flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-transform duration-200 ease-out
                     hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

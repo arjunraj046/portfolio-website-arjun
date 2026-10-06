@@ -7,6 +7,7 @@ import { AlignRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const loadSheet = () => import('./MobileSheet')
+const prefetch = () => { loadSheet().catch(() => {}) }
 const MobileSheet = dynamic(loadSheet, { ssr: false })
 
 const MobileNav = ({ triggerStyles = '' }) => {
@@ -24,9 +25,9 @@ const MobileNav = ({ triggerStyles = '' }) => {
         aria-label="Open menu"
         aria-haspopup="dialog"
         aria-expanded={open}
-        onPointerEnter={loadSheet}
-        onFocus={loadSheet}
-        onTouchStart={loadSheet}
+        onPointerEnter={prefetch}
+        onFocus={prefetch}
+        onTouchStart={prefetch}
         onClick={() => { setLoaded(true); setOpen(true) }}
       >
         <AlignRight className="h-5 w-5" />

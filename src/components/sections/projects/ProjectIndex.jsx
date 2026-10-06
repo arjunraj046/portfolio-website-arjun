@@ -2,7 +2,7 @@ import { ArrowDownRight } from 'lucide-react'
 
 const ProjectIndex = ({ projects }) => (
     <nav aria-label="Projects on this page">
-        <ol className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+        <ol className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 xl:grid-cols-4">
             {projects.map(({ slug, title, tagline, company, personal, number }) => (
                 <li key={slug}>
                     <a
