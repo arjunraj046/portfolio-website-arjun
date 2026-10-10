@@ -26,7 +26,7 @@ const icons = [
 
 const FloatingIcons = () => {
     return (
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 hidden overflow-hidden md:block">
             {icons.map(({ Icon, color, top, left, right, size, float: [x, y, r, d, delay], className }, index) => (
                 <div key={index} style={{ top, left, right }} className={`absolute ${className}`}>
                     <div
