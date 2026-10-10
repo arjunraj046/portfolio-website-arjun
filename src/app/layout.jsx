@@ -52,6 +52,11 @@ export default function RootLayout({ children }) {
           <Radio />
           <SmoothScroll />
         </ThemeProvider>
+        <script
+          src="https://mozhiai.duckdns.org/widget.js"
+          data-bot-id="bot_sclg0rjov3mh"
+          async
+        />
       </body>
     </html>
   );
