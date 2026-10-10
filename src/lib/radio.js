@@ -44,19 +44,3 @@ export const fetchStations = (tag) => {
     }
     return cache.get(tag)
 }
-
-const AUTOPLAY_KEY = 'radio-autoplay'
-
-export const autoplayAllowed = () => {
-    try {
-        return localStorage.getItem(AUTOPLAY_KEY) !== 'off'
-    } catch {
-        return true
-    }
-}
-
-export const rememberAutoplay = (on) => {
-    try {
-        localStorage.setItem(AUTOPLAY_KEY, on ? 'on' : 'off')
-    } catch {}
-}
