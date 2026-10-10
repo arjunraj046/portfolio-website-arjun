@@ -24,10 +24,10 @@ export default function ProjectsPage() {
     <main className="container mx-auto py-16 xl:py-24">
       <JsonLd data={projectsGraph()} />
       <div className="mb-10 max-w-2xl">
-        <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">Projects</p>
-        <h1 className="text-4xl xl:text-5xl font-bold tracking-[-1px]">Things I&apos;ve built.</h1>
+        <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">Portfolio</p>
+        <h1 className="text-4xl xl:text-5xl font-bold tracking-[-1px]">Projects</h1>
         <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-          A closer look at the systems I&apos;ve worked on: what they do, how they&apos;re built and the problems they solve.
+          Production platforms I worked on at Avaibe, and products I built on my own: what each one does, how it&apos;s built and the part I played.
         </p>
       </div>
 

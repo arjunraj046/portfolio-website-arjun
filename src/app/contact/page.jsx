@@ -27,7 +27,7 @@ const details = [
 ];
 
 const detailsText = [
-  `${site.name} — ${site.role}`,
+  `${site.name}, ${site.role}`,
   site.description,
   "",
   `Email: ${site.email}`,
@@ -45,9 +45,9 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_1.3fr] gap-12 xl:gap-16">
         <div>
           <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">Contact</p>
-          <h1 className="text-4xl xl:text-5xl font-bold tracking-[-1px] mb-6">Let&apos;s work together.</h1>
+          <h1 className="text-4xl xl:text-5xl font-bold tracking-[-1px] mb-6">Get in touch</h1>
           <p className="text-lg leading-relaxed text-muted-foreground max-w-md">
-            Have a project or a question? Send a message with the form, or reach me directly.
+            I&apos;m open to full-time full-stack and backend roles. Send a message with the form, or reach me directly.
           </p>
 
           <ul className="mt-10 flex flex-col gap-3">

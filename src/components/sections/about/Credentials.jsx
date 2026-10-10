@@ -1,10 +1,9 @@
-import TiltCard from '@/components/shared/TiltCard'
 import { education, certifications, training } from '@/data/about'
 import Reveal from '@/components/shared/Reveal'
 import { CardTitle, SectionGlows, SectionHeading, iconTile } from '@/components/shared/SectionParts'
 
 const Timeline = ({ title, note, items }) => (
-    <div data-reveal className="h-full"><TiltCard max={3} className="glass-card h-full p-6 xl:p-8">
+    <div data-reveal className="h-full"><div className="glass-card h-full p-6 xl:p-8">
         <CardTitle note={note}>{title}</CardTitle>
         <ul className="space-y-5">
             {items.map(({ Icon, title: itemTitle, place, period }) => (
@@ -22,7 +21,7 @@ const Timeline = ({ title, note, items }) => (
                 </li>
             ))}
         </ul>
-    </TiltCard></div>
+    </div></div>
 )
 
 const Credentials = () => (

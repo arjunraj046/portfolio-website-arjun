@@ -8,7 +8,7 @@ export const aboutSummary = [
 
 export const aboutStats = [
     { value: '3+', label: 'Years building for the web', Icon: CalendarClock },
-    { value: '3', label: 'Companies, plus freelance work', Icon: Briefcase },
+    { value: '3', label: 'Companies worked at', Icon: Briefcase },
     { value: '2', label: 'Security certifications: CEH and CPT', Icon: ShieldCheck }
 ]
 
@@ -26,28 +26,28 @@ export const strengths = [
 export const education = [
     {
         Icon: GraduationCap,
-        title: 'Master of Computer Applications — AI & ML',
+        title: 'Master of Computer Applications (AI & ML)',
         place: 'Amity University Online',
-        period: 'Jan 2023 — Mar 2025'
+        period: 'Jan 2023 to Mar 2025'
     },
     {
         Icon: GraduationCap,
-        title: 'B.Com — Computer Application',
+        title: 'B.Com in Computer Application',
         place: "Mahatma Gandhi University · St Mary's College, Thuruthiply",
-        period: 'Mar 2017 — Mar 2020'
+        period: 'Mar 2017 to Mar 2020'
     }
 ]
 
 export const certifications = [
     {
         Icon: ShieldCheck,
-        title: 'CEH — Certified Ethical Hacker',
+        title: 'CEH (Certified Ethical Hacker)',
         place: 'Red Team Hacker Academy',
         period: '2021'
     },
     {
         Icon: ShieldCheck,
-        title: 'CPT — Certified Penetration Tester',
+        title: 'CPT (Certified Penetration Tester)',
         place: 'Red Team Hacker Academy',
         period: '2021'
     }

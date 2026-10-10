@@ -19,8 +19,8 @@ const Footer = () => {
 
         <div className="glass flex flex-col items-center justify-between gap-6 rounded-xl p-8 text-center md:flex-row md:p-10 md:text-left">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Have a project in mind?</h2>
-            <p className="mt-2 text-muted-foreground">Let&apos;s talk about what you&apos;re building.</p>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Hiring for a full-stack or backend role?</h2>
+            <p className="mt-2 text-muted-foreground">I&apos;m open to full-time roles. Send me a message, or reach me by email, phone or WhatsApp.</p>
           </div>
           <Button asChild size='cta' className='shrink-0'>
             <Link href='/contact'>
@@ -54,9 +54,13 @@ const Footer = () => {
         </div>
 
         <div className="glass flex flex-col-reverse items-center justify-between gap-6 rounded-xl px-6 py-4 md:flex-row">
-          <p className="text-sm text-muted-foreground">
-            &copy; {year} {site.name}. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center gap-2 text-sm text-muted-foreground md:flex-row md:gap-5">
+            <p>&copy; {year} {site.name}. All rights reserved.</p>
+            <nav aria-label="Legal" className="flex items-center gap-4">
+              <Link href="/privacy" className="hover:text-foreground underline-offset-4 hover:underline transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-foreground underline-offset-4 hover:underline transition-colors">Terms</Link>
+            </nav>
+          </div>
           <div className="flex items-center gap-x-6">
             <Socials
               containerStyles='flex gap-x-2'

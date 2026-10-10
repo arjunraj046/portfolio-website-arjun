@@ -9,7 +9,6 @@ const RADIUS = 0.4
 const CORE = 0.55
 const AUTO_SPIN = 0.0035
 const REDUCED_SPIN = 0.001
-const TILT = 0.45
 const DRAG = 0.008
 const FRICTION = 0.95
 
@@ -83,21 +82,15 @@ const TechSphere = () => {
         }
 
         const onPointerMove = (e) => {
-            if (dragging) {
-                const dx = e.clientX - lastX
-                const dy = e.clientY - lastY
-                lastX = e.clientX
-                lastY = e.clientY
-                rotY -= dx * DRAG
-                rotX += dy * DRAG
-                velY = -dx * DRAG
-                velX = dy * DRAG
-                return
-            }
-            if (reduced) return
-            const rect = el.getBoundingClientRect()
-            const py = (e.clientY - rect.top) / rect.height - 0.5
-            tiltTarget = -0.25 + py * TILT
+            if (!dragging) return
+            const dx = e.clientX - lastX
+            const dy = e.clientY - lastY
+            lastX = e.clientX
+            lastY = e.clientY
+            rotY -= dx * DRAG
+            rotX += dy * DRAG
+            velY = -dx * DRAG
+            velX = dy * DRAG
         }
 
         const onPointerDown = (e) => {
@@ -162,7 +155,7 @@ const TechSphere = () => {
             className="relative h-[520px] w-[520px] 2xl:h-[600px] 2xl:w-[600px] cursor-grab touch-none select-none"
         >
             <div aria-hidden="true" className="absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full
-                bg-[radial-gradient(circle,rgba(56,189,248,0.35),rgba(139,92,246,0.18)_45%,transparent_70%)] blur-2xl" />
+                bg-[radial-gradient(circle,rgba(56,189,248,0.35),rgba(16,185,129,0.14)_45%,transparent_70%)] blur-2xl" />
 
             <div aria-hidden="true" className="absolute inset-0 [perspective:900px]">
                 <div className="absolute inset-[30px] rounded-full border border-foreground/10 [transform:rotateX(72deg)]" />

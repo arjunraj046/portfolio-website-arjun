@@ -1,4 +1,3 @@
-import TiltCard from '@/components/shared/TiltCard'
 import { skillGroups } from '@/data/skills'
 import { strengths } from '@/data/about'
 import Reveal from '@/components/shared/Reveal'
@@ -7,7 +6,7 @@ import { CardTitle, SectionGlows, SectionHeading, iconTile } from '@/components/
 const Skills = () => (
     <section id="skills" aria-labelledby="skills-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
         <SectionGlows>
-            <div className="absolute right-[8%] top-0 h-80 w-80 rounded-full bg-violet-400/25 blur-3xl dark:bg-violet-500/15" />
+            <div className="absolute right-[8%] top-0 h-80 w-80 rounded-full bg-blue-400/25 blur-3xl dark:bg-blue-500/15" />
             <div className="absolute left-[20%] bottom-0 h-72 w-72 rounded-full bg-emerald-300/25 blur-3xl dark:bg-emerald-500/10" />
         </SectionGlows>
 
@@ -15,7 +14,7 @@ const Skills = () => (
             <SectionHeading id="skills-heading" label="Skills">Tools and strengths I work with</SectionHeading>
 
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                <div data-reveal className="lg:col-span-4"><TiltCard max={3} className="glass-card flex h-full flex-col p-6 xl:p-8">
+                <div data-reveal className="lg:col-span-4"><div className="glass-card flex h-full flex-col p-6 xl:p-8">
                     <CardTitle>Core strengths</CardTitle>
                     <ul className="flex flex-1 flex-col justify-between gap-3">
                         {strengths.map(({ label, Icon }) => (
@@ -27,9 +26,9 @@ const Skills = () => (
                             </li>
                         ))}
                     </ul>
-                </TiltCard></div>
+                </div></div>
 
-                <div data-reveal className="lg:col-span-8"><TiltCard max={2} className="glass-card h-full p-6 xl:p-8">
+                <div data-reveal className="lg:col-span-8"><div className="glass-card h-full p-6 xl:p-8">
                     <CardTitle>Tech stack</CardTitle>
                     <dl className="divide-y divide-foreground/10">
                         {Object.entries(skillGroups).map(([key, { label, items }]) => (
@@ -54,7 +53,7 @@ const Skills = () => (
                             </div>
                         ))}
                     </dl>
-                </TiltCard></div>
+                </div></div>
             </div>
         </Reveal>
     </section>
