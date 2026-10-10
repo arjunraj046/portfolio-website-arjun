@@ -29,8 +29,8 @@ export const person = () => ({
 export const homeGraph = () => ({
     '@context': 'https://schema.org',
     '@graph': [
-        { '@type': 'WebSite', '@id': `${site.url}/#website`, url: site.url, name: `${site.name} — ${site.role}`, inLanguage: 'en', publisher: { '@id': personId } },
-        { '@type': 'ProfilePage', url: site.url, name: `${site.name} — ${site.role}`, mainEntity: { '@id': personId } },
+        { '@type': 'WebSite', '@id': `${site.url}/#website`, url: site.url, name: `${site.name} | ${site.role}`, inLanguage: 'en', publisher: { '@id': personId } },
+        { '@type': 'ProfilePage', url: site.url, name: `${site.name} | ${site.role}`, mainEntity: { '@id': personId } },
         person()
     ]
 })

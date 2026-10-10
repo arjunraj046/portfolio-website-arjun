@@ -1,7 +1,5 @@
 import Image from 'next/image'
 
-import TiltCard from '@/components/shared/TiltCard'
-import CountUp from './CountUp'
 import { site } from '@/data/site'
 import { aboutSummary, aboutStats } from '@/data/about'
 import Reveal from '@/components/shared/Reveal'
@@ -11,12 +9,12 @@ const About = () => (
     <section id="about" aria-labelledby="about-heading" className="relative overflow-x-clip py-16 xl:py-24">
         <SectionGlows>
             <div className="absolute left-[5%] top-0 h-80 w-80 rounded-full bg-sky-400/25 blur-3xl dark:bg-sky-500/15" />
-            <div className="absolute right-[5%] bottom-0 h-80 w-80 rounded-full bg-violet-400/25 blur-3xl dark:bg-violet-500/15" />
+            <div className="absolute right-[5%] bottom-0 h-80 w-80 rounded-full bg-blue-400/25 blur-3xl dark:bg-blue-500/15" />
         </SectionGlows>
 
         <Reveal className="container mx-auto">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                <div data-reveal className="lg:col-span-8"><TiltCard max={2} className="glass-card h-full p-6 sm:p-8 xl:p-10">
+                <div data-reveal className="lg:col-span-8"><div className="glass-card h-full p-6 sm:p-8 xl:p-10">
                     <div className="flex items-center gap-4 sm:gap-5 md:gap-7">
                         <Image
                             src={site.photo}
@@ -30,7 +28,7 @@ const About = () => (
                         <div>
                             <p className={eyebrow}>About me</p>
                             <h2 id="about-heading" className="text-[1.375rem] leading-tight sm:text-2xl md:text-4xl xl:text-5xl font-bold tracking-[-1px]">
-                                Ideas, shipped as software that holds up.
+                                I build backend systems and the web apps that run on them.
                             </h2>
                         </div>
                     </div>
@@ -42,20 +40,20 @@ const About = () => (
                             </p>
                         ))}
                     </div>
-                </TiltCard></div>
+                </div></div>
 
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:col-span-4 lg:grid-cols-1">
                     {aboutStats.map(({ value, label, Icon }) => (
                         <div key={label} data-reveal className="h-full">
-                            <TiltCard max={6} className="glass-card flex h-full items-center gap-5 p-6">
+                            <div className="glass-card flex h-full items-center gap-5 p-6">
                                 <span className={`${iconTile} h-12 w-12`}>
                                     <Icon size={22} aria-hidden="true" className="text-primary" />
                                 </span>
                                 <div>
-                                    <CountUp value={value} className="block text-3xl font-bold leading-none tabular-nums" />
+                                    <div className="text-3xl font-bold leading-none tabular-nums">{value}</div>
                                     <div className="text-sm text-muted-foreground mt-1.5 leading-snug">{label}</div>
                                 </div>
-                            </TiltCard>
+                            </div>
                         </div>
                     ))}
                 </div>

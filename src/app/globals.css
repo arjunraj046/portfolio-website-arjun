@@ -197,7 +197,7 @@
 }
 @layer base {
   ::selection {
-    background-color: rgb(139 92 246 / 0.28);
+    background-color: rgb(14 165 233 / 0.24);
     color: hsl(var(--foreground));
   }
   .dark ::selection {

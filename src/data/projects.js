@@ -258,9 +258,9 @@ export const projects = [
         company: 'Personal project',
         personal: true,
         role: 'Built end to end',
-        status: 'Live',
+        status: 'Live · Growing into a product',
         summary:
-            "Mozhi AI is a production-deployed, multi-tenant SaaS for AI customer support. A business signs up, creates a chatbot, adds its FAQs, policies or documents, and pastes one <script> tag into its website. Visitors then get instant answers grounded only in that company's knowledge, with a safe fallback when no reliable answer exists. I designed and built it end to end: backend, dashboard, embeddable widget, AI pipeline, security, and a ₹0/month production deployment with CI/CD.",
+            "Mozhi AI is a production-deployed, multi-tenant SaaS for AI customer support. A business signs up, creates a chatbot, adds its FAQs, policies or documents, and pastes one <script> tag into its website. Visitors then get instant answers grounded only in that company's knowledge, with a safe fallback when no reliable answer exists. I designed and built it end to end, on my own: backend, dashboard, embeddable widget, AI pipeline, security, and a ₹0/month production deployment with CI/CD. I'm now developing it further into a product.",
         stack: [
             { label: 'Backend', items: ['Python 3.14', 'Django 6.1', 'Django REST Framework', 'SimpleJWT', 'gunicorn'] },
             { label: 'Frontend', items: ['React', 'JavaScript', 'Vite', 'React Router'] },

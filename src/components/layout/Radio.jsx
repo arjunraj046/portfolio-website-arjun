@@ -11,7 +11,7 @@ const loadPanel = () => import('./RadioPanel')
 const prefetch = () => { loadPanel().catch(() => {}) }
 const RadioPanel = dynamic(loadPanel, { ssr: false })
 
-const DEFAULT_VOLUME = 0.4
+const DEFAULT_VOLUME = 0.1
 const GESTURES = ['pointerdown', 'keydown', 'touchstart']
 
 const Radio = () => {

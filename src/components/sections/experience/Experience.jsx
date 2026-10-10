@@ -1,4 +1,3 @@
-import TiltCard from '@/components/shared/TiltCard'
 import Reveal from '@/components/shared/Reveal'
 import { CardTitle, SectionGlows, SectionHeading } from '@/components/shared/SectionParts'
 import { roles, otherRoles } from '@/data/experience'
@@ -7,7 +6,7 @@ import RoleCard from './RoleCard'
 const Experience = () => (
     <section id="experience" aria-labelledby="experience-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
         <SectionGlows>
-            <div className="absolute left-[10%] top-0 h-80 w-80 rounded-full bg-violet-400/25 blur-3xl dark:bg-violet-500/15" />
+            <div className="absolute left-[10%] top-0 h-80 w-80 rounded-full bg-blue-400/25 blur-3xl dark:bg-blue-500/15" />
             <div className="absolute right-[6%] top-1/2 h-72 w-72 rounded-full bg-sky-400/25 blur-3xl dark:bg-sky-500/15" />
         </SectionGlows>
 
@@ -28,7 +27,7 @@ const Experience = () => (
             </ol>
 
             <div data-reveal className="mt-6 pl-10 md:pl-14">
-                <TiltCard max={2} className="glass-card p-6 xl:p-8">
+                <div className="glass-card p-6 xl:p-8">
                     <CardTitle>Also</CardTitle>
                     <ul className="space-y-5">
                         {otherRoles.map(({ title, detail }) => (
@@ -38,7 +37,7 @@ const Experience = () => (
                             </li>
                         ))}
                     </ul>
-                </TiltCard>
+                </div>
             </div>
         </Reveal>
     </section>

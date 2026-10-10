@@ -1,10 +1,8 @@
 import { MapPin } from 'lucide-react'
 
-import TiltCard from '@/components/shared/TiltCard'
-
 const RoleCard = ({ title, company, employment, location, current, mark, stack, highlights }) => (
     <div data-reveal>
-        <TiltCard max={2} className="glass-card p-6 xl:p-8">
+        <div className="glass-card p-6 xl:p-8">
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="flex items-start gap-4">
                     <span aria-hidden="true" className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-md border text-sm font-bold tracking-wide shadow-sm ${mark.className}`}>
@@ -48,7 +46,7 @@ const RoleCard = ({ title, company, employment, location, current, mark, stack, 
                     </li>
                 ))}
             </ul>
-        </TiltCard>
+        </div>
     </div>
 )
 
