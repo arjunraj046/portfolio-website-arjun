@@ -10,24 +10,24 @@ import HeroArt from "./HeroArt"
 
 const Hero = () => {
     return (
-        <section className="relative overflow-hidden py-12 xl:py-16 min-h-[84vh] flex items-center">
+        <section className="relative overflow-hidden pt-8 pb-14 md:py-12 xl:py-16 md:min-h-[84vh] flex items-center">
             <FloatingIcons />
             <div className="container mx-auto relative z-10 w-full">
                 <div className="flex items-center justify-between gap-x-8">
                     <div className="flex max-w-[600px] flex-col justify-center mx-auto xl:mx-0 text-center xl:text-left">
-                        <p className="mx-auto mb-6 inline-flex w-fit flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-md border border-foreground/10 bg-background/40 px-3 py-1.5 text-sm text-muted-foreground backdrop-blur xl:mx-0">
+                        <p className="mx-auto mb-6 inline-flex w-fit flex-col items-center gap-0.5 rounded-md border border-foreground/10 bg-background/40 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur sm:flex-row sm:gap-2 sm:text-sm xl:mx-0">
                             <span className="inline-flex items-center gap-2 font-medium text-foreground">
                                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-emerald-500" />
                                 {site.availability}
                             </span>
-                            <span aria-hidden="true" className="text-foreground/30">|</span>
+                            <span aria-hidden="true" className="hidden text-foreground/30 sm:inline">|</span>
                             <span>{site.currentRole}</span>
                         </p>
-                        <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">{site.role}</p>
+                        <p className="mb-4 text-xs font-semibold uppercase tracking-[3px] text-primary sm:text-sm sm:tracking-[4px]">{site.role}</p>
                         <h1 className="h1">Hello, my name is {site.name}</h1>
                         <p className="subtitle max-w-[490px] mx-auto xl:mx-0 mt-4">{site.heroIntro}</p>
 
-                        <div className="flex flex-col gap-y-3 md:flex-row gap-x-3 mx-auto xl:mx-0 mb-12">
+                        <div className="mx-auto mb-12 flex w-full max-w-xs flex-col gap-y-3 md:w-auto md:max-w-none md:flex-row md:gap-x-3 xl:mx-0">
                             <Button asChild size='cta'>
                                 <Link href='/contact'>
                                     Contact me
