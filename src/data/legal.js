@@ -25,13 +25,12 @@ export const privacy = {
         {
             heading: 'What is saved on your device',
             paragraphs: [
-                'Two small settings are saved in your own browser (local storage) so the site remembers your choices. They never leave your device and are never sent to me:'
+                'One small setting is saved in your own browser (local storage) so the site remembers your choice. It never leaves your device and is never sent to me:'
             ],
             list: [
-                'theme: whether you chose light or dark mode.',
-                'radio-autoplay: whether you paused the radio, so it doesn\'t start again on your next visit.'
+                'theme: whether you chose light or dark mode.'
             ],
-            after: 'You can remove them at any time by clearing this site\'s data in your browser settings.'
+            after: 'You can remove it at any time by clearing this site\'s data in your browser settings.'
         },
         {
             heading: 'Services your browser connects to',
@@ -41,7 +40,7 @@ export const privacy = {
             list: [
                 'Vercel hosts this website and keeps standard server logs.',
                 'Web3Forms receives your message, only when you submit the contact form.',
-                'Radio Browser provides the list of radio stations, and the station you play streams from that broadcaster\'s own server.',
+                'Radio Browser provides the list of radio stations when you open the radio, and the station you play streams from that broadcaster\'s own server. Nothing plays unless you press play.',
                 'Google Drive serves my CV when you download it.',
                 'LinkedIn, GitHub, WhatsApp and Mozhi AI open only when you click their links.'
             ]

@@ -4,21 +4,16 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Radio as RadioIcon } from 'lucide-react'
 
-import { radioGenres } from '@/data/radio'
-import { autoplayAllowed, fetchStations, rememberAutoplay } from '@/lib/radio'
-
 const loadPanel = () => import('./RadioPanel')
 const prefetch = () => { loadPanel().catch(() => {}) }
 const RadioPanel = dynamic(loadPanel, { ssr: false })
 
-const DEFAULT_VOLUME = 0.1
-const GESTURES = ['pointerdown', 'keydown', 'touchstart']
+const DEFAULT_VOLUME = 0.6
 
 const Radio = () => {
     const root = useRef(null)
     const trigger = useRef(null)
     const audio = useRef(null)
-    const autoplayDone = useRef(false)
     const [open, setOpen] = useState(false)
     const [loaded, setLoaded] = useState(false)
     const [station, setStation] = useState(null)
@@ -86,62 +81,6 @@ const Radio = () => {
 
     const pause = useCallback(() => audio.current.pause(), [])
 
-    const userPlay = useCallback((next) => {
-        autoplayDone.current = true
-        rememberAutoplay(true)
-        play(next)
-    }, [play])
-
-    const userPause = useCallback(() => {
-        autoplayDone.current = true
-        rememberAutoplay(false)
-        pause()
-    }, [pause])
-
-    useEffect(() => {
-        if (!autoplayAllowed()) return
-        const el = audio.current
-        let list = null
-        let cancelled = false
-
-        const stop = () => GESTURES.forEach((event) => document.removeEventListener(event, onGesture, true))
-        const finish = () => {
-            autoplayDone.current = true
-            stop()
-        }
-        const attempt = () => {
-            if (cancelled || autoplayDone.current || !list?.length) return
-            if (!el.src) {
-                el.src = list[0].url
-                setStation(list[0])
-            }
-            el.play().then(finish).catch((error) => {
-                if (error?.name === 'NotAllowedError') return
-                finish()
-                setStatus('error')
-            })
-        }
-        function onGesture(e) {
-            if (root.current?.contains(e.target)) return
-            attempt()
-        }
-
-        GESTURES.forEach((event) => document.addEventListener(event, onGesture, true))
-        const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200))
-        const cancelIdle = window.cancelIdleCallback || clearTimeout
-        const handle = idle(() => {
-            fetchStations(radioGenres[0].tag)
-                .then((stations) => { list = stations; attempt() })
-                .catch(finish)
-        })
-
-        return () => {
-            cancelled = true
-            stop()
-            cancelIdle(handle)
-        }
-    }, [])
-
     const changeVolume = useCallback((value) => {
         setVolume(value)
         setMuted(value === 0)
@@ -154,13 +93,13 @@ const Radio = () => {
             artist: [station.country, station.detail].filter(Boolean).join(' · ') || 'Live radio',
             album: 'Arjun Raj · Radio'
         })
-        navigator.mediaSession.setActionHandler('play', () => userPlay())
-        navigator.mediaSession.setActionHandler('pause', userPause)
+        navigator.mediaSession.setActionHandler('play', () => play())
+        navigator.mediaSession.setActionHandler('pause', pause)
         return () => {
             navigator.mediaSession.setActionHandler('play', null)
             navigator.mediaSession.setActionHandler('pause', null)
         }
-    }, [station, userPlay, userPause])
+    }, [station, play, pause])
 
     const playing = status === 'playing'
 
@@ -179,8 +118,8 @@ const Radio = () => {
                     muted={muted}
                     onMute={setMuted}
                     volumeControl={volumeControl}
-                    onPlay={userPlay}
-                    onPause={userPause}
+                    onPlay={play}
+                    onPause={pause}
                 />
             )}
 

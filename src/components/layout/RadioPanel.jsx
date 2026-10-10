@@ -86,7 +86,7 @@ const RadioPanel = ({ open, onClose, station, status, volume, onVolume, muted, o
                 <button
                     type="button"
                     onClick={() => {
-                        if (muted && volume === 0) onVolume(0.1)
+                        if (muted && volume === 0) onVolume(0.6)
                         onMute(!muted)
                     }}
                     aria-label={muted ? 'Unmute' : 'Mute'}
