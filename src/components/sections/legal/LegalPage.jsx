@@ -1,14 +1,14 @@
 const LegalPage = ({ title, updated, intro, sections }) => (
-    <main className="container mx-auto py-16 xl:py-24">
+    <main id="main" className="container mx-auto py-16 xl:py-24">
         <div className="mx-auto max-w-3xl">
-            <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">Legal</p>
-            <h1 className="text-4xl xl:text-5xl font-bold tracking-[-1px]">{title}</h1>
-            <p className="mt-3 text-sm text-muted-foreground">Last updated: {updated}</p>
+            <p className="font-mono text-xs sm:text-sm uppercase font-medium mb-4 text-brand tracking-[3px]">Legal</p>
+            <h1 className="text-4xl xl:text-5xl font-semibold tracking-[-1px]">{title}</h1>
+            <p className="mt-3 font-mono text-xs text-muted-foreground">Last updated: {updated}</p>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{intro}</p>
 
-            <div className="glass-card mt-10 space-y-8 p-6 sm:p-10">
+            <div className="mt-10 border-b border-border">
                 {sections.map(({ heading, paragraphs = [], list = [], after }) => (
-                    <section key={heading}>
+                    <section key={heading} className="border-t border-border py-7">
                         <h2 className="text-xl font-semibold">{heading}</h2>
                         {paragraphs.map((text) => (
                             <p key={text} className="mt-3 leading-relaxed text-muted-foreground">{text}</p>
@@ -17,7 +17,7 @@ const LegalPage = ({ title, updated, intro, sections }) => (
                             <ul className="mt-3 space-y-2">
                                 {list.map((item) => (
                                     <li key={item} className="flex gap-3 leading-relaxed text-muted-foreground">
-                                        <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                                        <span aria-hidden="true" className="mt-[0.8rem] h-px w-3 shrink-0 bg-brand" />
                                         {item}
                                     </li>
                                 ))}

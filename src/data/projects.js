@@ -276,7 +276,7 @@ export const projects = [
             'Built Mozhi AI, a multi-tenant AI customer-support SaaS (Django REST, React, PostgreSQL/pgvector) where businesses turn their FAQs into an embeddable RAG chatbot with source-cited answers and safe fallbacks.',
             'Implemented a retrieval pipeline with local multilingual embeddings, HNSW vector search scoped per tenant and per bot, a relevance threshold and prompt-injection defences, plus a Redis answer cache and an LLM budget guard to control cost.',
             'Delivered secure auth (JWT with rotating HttpOnly refresh cookies, email-verified sign-up with hashed one-time codes), a real-time analytics dashboard and 260+ automated tests.',
-            'Deployed to Oracle Cloud ARM at ₹0/month with Docker Compose, nginx, Let\'s Encrypt HTTPS and GitHub Actions CI/CD (auto-deploy over SSH), with health checks and nightly backups.'
+            'Deployed to Oracle Cloud ARM at no hosting cost with Docker Compose, nginx, Let\'s Encrypt HTTPS and GitHub Actions CI/CD (auto-deploy over SSH), with health checks and nightly backups.'
         ],
         features: [
             {
@@ -353,7 +353,7 @@ export const projects = [
             {
                 title: 'Deployment and DevOps',
                 points: [
-                    'Runs on an Oracle Cloud Always Free ARM server with Docker Compose: ₹0/month hosting',
+                    'Runs on an Oracle Cloud Always Free ARM server with Docker Compose, at no hosting cost',
                     "nginx serves the React build and the minified widget, terminates HTTPS (Let's Encrypt, auto-renewing) and proxies the API",
                     'CI/CD: every push runs lint and 260+ tests on GitHub Actions; when main passes, it deploys automatically over SSH with a deploy key restricted to a single command',
                     'Hardening: non-root containers, health checks, nightly database backups, key-only SSH, firewalled ports, and secrets kept only in server environment files'

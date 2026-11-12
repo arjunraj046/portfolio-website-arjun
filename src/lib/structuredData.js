@@ -18,7 +18,8 @@ export const person = () => ({
     image: `${site.url}${site.photo}`,
     email: `mailto:${site.email}`,
     telephone: site.phone.replace(/\s/g, ''),
-    address: { '@type': 'PostalAddress', addressCountry: 'IN' },
+    address: { '@type': 'PostalAddress', addressLocality: 'Kochi', addressRegion: 'Kerala', addressCountry: 'IN' },
+    nationality: { '@type': 'Country', name: 'India' },
     sameAs: [profile('LinkedIn'), profile('GitHub')].filter(Boolean),
     worksFor: roles.filter((role) => role.current).map((role) => ({ '@type': 'Organization', name: role.company })),
     alumniOf: [...new Set(education.map((item) => item.place.split(' · ')[0]))].map((name) => ({ '@type': 'CollegeOrUniversity', name })),
@@ -53,6 +54,7 @@ export const projectsGraph = () => ({
                 description: project.summary,
                 url: `${site.url}/projects#${project.slug}`,
                 sameAs: project.liveUrl,
+                codeRepository: project.repoUrl,
                 image: project.images[0] ? `${site.url}${project.images[0].src}` : undefined,
                 keywords: (project.stack ?? []).flatMap((group) => group.items).join(', ') || undefined,
                 creator: { '@id': personId }

@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <main id="main">
       <JsonLd data={homeGraph()} />
       <Hero />
       <SectionDivider />

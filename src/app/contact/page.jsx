@@ -40,29 +40,30 @@ const detailsText = [
 
 export default function ContactPage() {
   return (
-    <main className="container mx-auto py-16 xl:py-24">
+    <main id="main" className="container mx-auto py-16 xl:py-24">
       <JsonLd data={contactGraph()} />
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_1.3fr] gap-12 xl:gap-16">
         <div>
-          <p className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">Contact</p>
-          <h1 className="text-4xl xl:text-5xl font-bold tracking-[-1px] mb-6">Get in touch</h1>
+          <p className="font-mono text-xs sm:text-sm uppercase font-medium mb-4 text-brand tracking-[3px]">Contact</p>
+          <h1 className="text-4xl xl:text-5xl font-semibold tracking-[-1px] mb-6">Get in touch</h1>
           <p className="text-lg leading-relaxed text-muted-foreground max-w-md">
             I&apos;m open to full-time full-stack and backend roles. Send a message with the form, or reach me directly.
           </p>
+          <p className="mt-4 font-mono text-xs text-muted-foreground">
+            Based in {site.location} <span aria-hidden="true">·</span> {site.workSetup}
+          </p>
 
-          <ul className="mt-10 flex flex-col gap-3">
+          <ul className="mt-10 border-b border-border">
             {details.map(({ label, value, href, Icon, external }) => (
-              <li key={label}>
+              <li key={label} className="border-t border-border">
                 <a
                   href={href}
                   {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-                  className="glass flex items-center gap-4 rounded-lg p-4 transition-colors hover:bg-white/70 dark:hover:bg-white/10"
+                  className="group flex items-center gap-4 py-4 transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                    <Icon size={20} aria-hidden="true" />
-                  </span>
-                  <span className="flex min-w-0 flex-col">
-                    <span className="text-xs uppercase tracking-[2px] text-muted-foreground">{label}</span>
+                  <Icon size={18} aria-hidden="true" className="shrink-0 text-muted-foreground transition-colors group-hover:text-brand" />
+                  <span className="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                    <span className="font-mono text-xs uppercase tracking-[2px] text-muted-foreground">{label}</span>
                     <span className="font-medium break-all">{value}</span>
                   </span>
                 </a>
@@ -75,7 +76,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <section aria-labelledby="form-heading" className="glass flex flex-col rounded-xl p-6 sm:p-8">
+        <section aria-labelledby="form-heading" className="flex flex-col border-t border-border pt-8 xl:border-l xl:border-t-0 xl:pl-12 xl:pt-0">
           <h2 id="form-heading" className="text-xl font-semibold mb-1">Send a message</h2>
           <p className="text-sm text-muted-foreground mb-6">I&apos;ll reply to you by email.</p>
           <ContactForm />

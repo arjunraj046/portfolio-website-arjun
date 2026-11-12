@@ -17,7 +17,9 @@ export const site = {
     url: 'https://portfolio-website-arjun.vercel.app',
     availability: 'Open to full-time roles',
     currentRole: 'Currently at Avaibe',
-    cvUrl: 'https://drive.google.com/uc?export=download&id=1DYVvs_Zs12ksDZ5n8SDEegVwHiWlf1rr'
+    location: 'Kochi, India (UTC+5:30)',
+    workSetup: 'Remote worldwide, or hybrid in Kochi',
+    cvUrl: '/arjun-raj-resume.pdf'
 }
 
 export const navLinks = [

@@ -173,7 +173,7 @@ const TechSphere = () => {
                     ref={(node) => { nodes.current[i] = node }}
                     aria-hidden="true"
                     title={name}
-                    className="glass absolute left-1/2 top-1/2 flex h-14 w-14 2xl:h-16 2xl:w-16 items-center justify-center rounded-lg text-[28px] 2xl:text-[32px] will-change-transform"
+                    className="surface absolute left-1/2 top-1/2 flex h-14 w-14 2xl:h-16 2xl:w-16 items-center justify-center rounded-lg text-[28px] 2xl:text-[32px] will-change-transform"
                 >
                     <Icon style={color ? { color } : undefined} className={tone || ''} />
                 </div>

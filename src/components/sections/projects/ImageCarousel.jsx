@@ -34,11 +34,11 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
     }
 
     const multiple = images.length > 1
-    const arrow = 'glass absolute top-[calc(50%+1rem)] -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+    const arrow = 'surface absolute top-[calc(50%+1rem)] -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
 
     return (
         <div className={className}>
-            <div className="group relative overflow-clip rounded-lg border border-white/70 bg-white/70 shadow-lg shadow-slate-900/5 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/30">
+            <div className="group relative overflow-clip rounded-lg border border-border bg-card">
             <div aria-hidden="true" className="flex h-8 items-center gap-3 border-b border-foreground/10 px-3.5">
                 <span className="flex gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
@@ -96,7 +96,7 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
             <div className="mt-3 flex items-center justify-between gap-4">
                 <p className="text-sm text-muted-foreground" aria-live="polite">{images[active].caption}</p>
                 {multiple && (
-                    <div className="flex items-center gap-1.5">
+                    <div className="-mr-2 flex items-center">
                         {images.map((image, i) => (
                             <button
                                 key={image.src}
@@ -104,11 +104,16 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
                                 onClick={() => goTo(i)}
                                 aria-label={`Show image ${i + 1}: ${image.caption}`}
                                 aria-current={i === active}
-                                className={cn(
-                                    'h-2 rounded-full transition-all duration-300',
-                                    i === active ? 'w-6 bg-primary' : 'w-2 bg-foreground/25 hover:bg-foreground/40'
-                                )}
-                            />
+                                className="group/dot flex h-6 min-w-6 items-center justify-center px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+                            >
+                                <span
+                                    aria-hidden="true"
+                                    className={cn(
+                                        'block h-2 rounded-full transition-all duration-300',
+                                        i === active ? 'w-6 bg-primary' : 'w-2 bg-foreground/25 group-hover/dot:bg-foreground/40'
+                                    )}
+                                />
+                            </button>
                         ))}
                     </div>
                 )}
