@@ -44,7 +44,6 @@ export const privacy = {
                 'Web3Forms receives your message, only when you submit the contact form.',
                 'Radio Browser provides the list of radio stations when you open the radio, and the station you play streams from that broadcaster\'s own server. Nothing plays unless you press play.',
                 'Mozhi AI (mozhiai.duckdns.org) loads the chat assistant on every page and receives your messages only when you use it.',
-                'Google Drive serves my CV when you download it.',
                 'LinkedIn, GitHub and WhatsApp open only when you click their links.'
             ]
         },

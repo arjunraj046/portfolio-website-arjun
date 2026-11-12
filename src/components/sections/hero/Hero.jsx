@@ -35,8 +35,8 @@ const Hero = () => {
                                 </Link>
                             </Button>
                             <Button asChild variant='outline' size='cta'>
-                                <a href={site.cvUrl} target="_blank" rel="noopener noreferrer" aria-label="View my CV (opens in a new tab)">
-                                    View CV
+                                <a href={site.cvUrl} target="_blank" rel="noopener noreferrer" aria-label="View my résumé (PDF, opens in a new tab)">
+                                    View résumé
                                     <ArrowUpRight size={18} aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                                 </a>
                             </Button>
