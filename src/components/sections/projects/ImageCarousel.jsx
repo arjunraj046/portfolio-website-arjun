@@ -96,7 +96,7 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
             <div className="mt-3 flex items-center justify-between gap-4">
                 <p className="text-sm text-muted-foreground" aria-live="polite">{images[active].caption}</p>
                 {multiple && (
-                    <div className="flex items-center gap-1.5">
+                    <div className="-mr-2 flex items-center">
                         {images.map((image, i) => (
                             <button
                                 key={image.src}
@@ -104,11 +104,16 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
                                 onClick={() => goTo(i)}
                                 aria-label={`Show image ${i + 1}: ${image.caption}`}
                                 aria-current={i === active}
-                                className={cn(
-                                    'h-2 rounded-full transition-all duration-300',
-                                    i === active ? 'w-6 bg-primary' : 'w-2 bg-foreground/25 hover:bg-foreground/40'
-                                )}
-                            />
+                                className="group/dot flex h-6 min-w-6 items-center justify-center px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
+                            >
+                                <span
+                                    aria-hidden="true"
+                                    className={cn(
+                                        'block h-2 rounded-full transition-all duration-300',
+                                        i === active ? 'w-6 bg-primary' : 'w-2 bg-foreground/25 group-hover/dot:bg-foreground/40'
+                                    )}
+                                />
+                            </button>
                         ))}
                     </div>
                 )}

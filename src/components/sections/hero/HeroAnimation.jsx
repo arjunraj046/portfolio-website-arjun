@@ -9,7 +9,7 @@ const HeroAnimation = ({ className = '' }) => {
   const [animationData, setAnimationData] = useState(null)
 
   useEffect(() => {
-    fetch('/hero-animation.json')
+    fetch('/hero-animation-green.json')
       .then((response) => response.json())
       .then(setAnimationData)
       .catch(() => {})

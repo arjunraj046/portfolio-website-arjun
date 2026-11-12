@@ -43,7 +43,7 @@ const Footer = () => {
             <ul className="flex flex-col gap-y-3">
               {navLinks.map((link) => (
                 <li key={link.path}>
-                  <Link href={link.path} className="text-sm capitalize text-foreground/80 hover:text-brand transition-colors">
+                  <Link href={link.path} className="inline-block py-1 text-sm capitalize text-foreground/80 hover:text-brand transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -56,8 +56,8 @@ const Footer = () => {
           <div className="flex flex-col items-center gap-2 font-mono text-xs text-muted-foreground md:flex-row md:gap-5">
             <p>&copy; {year} {site.name}. All rights reserved.</p>
             <nav aria-label="Legal" className="flex items-center gap-4">
-              <Link href="/privacy" className="hover:text-foreground underline-offset-4 hover:underline transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-foreground underline-offset-4 hover:underline transition-colors">Terms</Link>
+              <Link href="/privacy" className="inline-block py-1.5 hover:text-foreground underline-offset-4 hover:underline transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="inline-block py-1.5 hover:text-foreground underline-offset-4 hover:underline transition-colors">Terms</Link>
             </nav>
           </div>
           <div className="flex items-center gap-x-6">

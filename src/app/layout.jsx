@@ -1,4 +1,5 @@
 import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 import Header from "@/components/layout/Header";
@@ -54,10 +55,10 @@ export default function RootLayout({ children }) {
           <Radio />
           <SmoothScroll />
         </ThemeProvider>
-        <script
+        <Script
           src="https://mozhiai.duckdns.org/widget.js"
           data-bot-id="bot_sclg0rjov3mh"
-          async
+          strategy="lazyOnload"
         />
       </body>
     </html>

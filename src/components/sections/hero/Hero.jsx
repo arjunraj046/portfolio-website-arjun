@@ -44,8 +44,8 @@ const Hero = () => {
 
                         <div>
                             <Socials
-                                containerStyles='flex gap-x-6 justify-center xl:justify-start'
-                                iconsStyles='text-foreground text-[22px] hover:text-brand transition-colors'
+                                containerStyles='flex gap-x-3 justify-center xl:justify-start xl:-ml-2'
+                                iconsStyles='flex h-9 w-9 items-center justify-center rounded-md text-foreground text-[22px] hover:text-brand transition-colors'
                             />
                         </div>
 
