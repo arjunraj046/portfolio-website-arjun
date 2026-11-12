@@ -1,4 +1,5 @@
 import { ArrowUpRight, Building2, ChevronDown, CircleDot, UserRound } from 'lucide-react'
+import { RiGithubFill } from 'react-icons/ri'
 
 import { Button } from '@/components/ui/button'
 
@@ -23,7 +24,7 @@ const AccordionItem = ({ title, points, group, open = false }) => (
 )
 
 const ProjectSection = ({ project, number, reverse = false, priority = false }) => {
-    const { slug, title, tagline, company, personal, role, status, summary, stack, images, highlights, features, liveUrl } = project
+    const { slug, title, tagline, company, personal, role, status, summary, stack, images, highlights, features, liveUrl, repoUrl } = project
     const CompanyIcon = personal ? UserRound : Building2
     const stackGroups = (Array.isArray(stack?.[0]?.items) ? stack : [{ label: null, items: stack ?? [] }]).filter((group) => group.items.length)
 
@@ -54,13 +55,25 @@ const ProjectSection = ({ project, number, reverse = false, priority = false }) 
 
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
                     <h3 id={`${slug}-title`} className="text-3xl font-semibold tracking-tight md:text-4xl">{title}</h3>
-                    {liveUrl && (
-                        <Button asChild variant="outline" size="sm" className="group shrink-0">
-                            <a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`Visit the live ${title} site (opens in a new tab)`}>
-                                Visit live site
-                                <ArrowUpRight size={16} aria-hidden="true" className="ml-1 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                            </a>
-                        </Button>
+                    {(liveUrl || repoUrl) && (
+                        <div className="flex shrink-0 flex-wrap gap-2">
+                            {liveUrl && (
+                                <Button asChild variant="outline" size="sm" className="group">
+                                    <a href={liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`Visit the live ${title} site (opens in a new tab)`}>
+                                        Visit live site
+                                        <ArrowUpRight size={16} aria-hidden="true" className="ml-1 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                    </a>
+                                </Button>
+                            )}
+                            {repoUrl && (
+                                <Button asChild variant="outline" size="sm" className="group">
+                                    <a href={repoUrl} target="_blank" rel="noopener noreferrer" aria-label={`View the ${title} source code on GitHub (opens in a new tab)`}>
+                                        <RiGithubFill size={16} aria-hidden="true" className="mr-1.5" />
+                                        View code
+                                    </a>
+                                </Button>
+                            )}
+                        </div>
                     )}
                 </div>
                 <p className="mt-1 text-muted-foreground">{tagline}</p>

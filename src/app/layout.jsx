@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${mono.variable} font-sans`}>
-        <ThemeProvider attribute='class' defaultTheme='light'>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">Skip to content</a>
           <SiteBackground />
           <Header />

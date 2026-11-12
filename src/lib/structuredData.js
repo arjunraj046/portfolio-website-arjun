@@ -54,6 +54,7 @@ export const projectsGraph = () => ({
                 description: project.summary,
                 url: `${site.url}/projects#${project.slug}`,
                 sameAs: project.liveUrl,
+                codeRepository: project.repoUrl,
                 image: project.images[0] ? `${site.url}${project.images[0].src}` : undefined,
                 keywords: (project.stack ?? []).flatMap((group) => group.items).join(', ') || undefined,
                 creator: { '@id': personId }

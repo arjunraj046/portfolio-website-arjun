@@ -28,7 +28,7 @@ const FeaturedProjects = () => (
                             <Link
                                 href={`/projects#${slug}`}
                                 className="group -mx-4 grid grid-cols-[auto_1fr] items-center gap-x-5 gap-y-1 px-4 py-6 transition-colors duration-200 hover:bg-muted/60
-                                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:grid-cols-[3rem_1fr_11rem] md:gap-x-8 lg:grid-cols-[3rem_1fr_11rem_11rem]"
+                                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:grid-cols-[3rem_1fr_9rem_13rem] md:gap-x-8 md:py-8 xl:grid-cols-[3rem_1fr_11rem_16rem]"
                             >
                                 <span className="font-mono text-sm tabular-nums text-muted-foreground">{String(i + 1).padStart(2, '0')}</span>
                                 <div className="min-w-0">
@@ -40,13 +40,13 @@ const FeaturedProjects = () => (
                                 </div>
                                 <p className="col-start-2 font-mono text-xs uppercase tracking-wider text-muted-foreground md:col-start-auto">{personal ? 'Personal project' : company}</p>
                                 {image && (
-                                    <div className="hidden overflow-hidden rounded-md border border-border lg:block">
+                                    <div className="hidden overflow-hidden rounded-md border border-border md:block">
                                         <Image
                                             src={image.src}
                                             alt=""
                                             width={image.width}
                                             height={image.height}
-                                            sizes="176px"
+                                            sizes="(min-width: 1280px) 256px, 208px"
                                             className="aspect-[16/9] h-auto w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                                         />
                                     </div>
