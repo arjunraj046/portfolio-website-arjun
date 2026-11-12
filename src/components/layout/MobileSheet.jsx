@@ -16,19 +16,17 @@ const MobileSheet = ({ open, onOpenChange, triggerRef }) => {
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         onCloseAutoFocus={(e) => { e.preventDefault(); triggerRef.current?.focus() }}
-        className="flex flex-col justify-between overflow-hidden border-l border-white/60 bg-white/60 backdrop-blur-2xl backdrop-saturate-150 dark:border-white/10 dark:bg-slate-900/60"
+        className="flex flex-col justify-between overflow-hidden border-l border-border bg-card "
       >
-        <div aria-hidden="true" className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-sky-400/30 blur-3xl dark:bg-sky-500/20" />
-        <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-blue-400/30 blur-3xl dark:bg-blue-500/20" />
         <SheetTitle className="sr-only">Menu</SheetTitle>
 
         <div className="relative flex flex-col gap-y-12">
           <Logo onClick={close} />
           <Nav
             containerStyles='flex flex-col gap-y-2'
-            linkStyles='relative rounded-md px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground hover:bg-white/40 dark:hover:bg-white/5 transition-colors'
+            linkStyles='relative rounded-md px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors'
             activeLinkStyles='text-foreground'
-            underLineStyles='absolute inset-0 rounded-md border border-white/70 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/10'
+            underLineStyles='absolute inset-0 rounded-md border border-border bg-card shadow-sm '
             onLinkClick={close}
           />
         </div>

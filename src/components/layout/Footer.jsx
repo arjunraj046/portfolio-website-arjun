@@ -12,17 +12,17 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative pt-4 pb-6">
-      <SectionDivider className="mb-16" />
+    <footer className="relative pt-4 pb-8">
+      <SectionDivider className="mb-16 xl:mb-24" />
 
-      <div className="container relative mx-auto flex flex-col gap-6">
+      <div className="container relative mx-auto">
 
-        <div className="glass flex flex-col items-center justify-between gap-6 rounded-xl p-8 text-center md:flex-row md:p-10 md:text-left">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Hiring for a full-stack or backend role?</h2>
-            <p className="mt-2 text-muted-foreground">I&apos;m open to full-time roles. Send me a message, or reach me by email, phone or WhatsApp.</p>
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <h2 className="text-balance text-3xl font-semibold tracking-[-1px] md:text-5xl">Hiring for a full-stack or backend role?</h2>
+            <p className="mt-4 text-lg text-muted-foreground">I&apos;m open to full-time roles. Send me a message, or reach me by email, phone or WhatsApp.</p>
           </div>
-          <Button asChild size='cta' className='shrink-0'>
+          <Button asChild size='cta' className='shrink-0 self-start md:self-auto'>
             <Link href='/contact'>
               Get in touch
               <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -30,7 +30,7 @@ const Footer = () => {
           </Button>
         </div>
 
-        <div className="glass grid gap-10 rounded-xl p-8 sm:grid-cols-3 md:p-10">
+        <div className="mt-16 grid gap-10 border-t border-border pt-10 sm:grid-cols-3">
           <div className="flex flex-col gap-y-5 sm:col-span-2 lg:pr-16">
             <Logo />
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -39,22 +39,21 @@ const Footer = () => {
           </div>
 
           <div className="sm:justify-self-end sm:pr-8">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[2px]">Navigation</h3>
+            <h3 className="mb-4 font-mono text-xs font-medium uppercase tracking-[2px] text-muted-foreground">Navigation</h3>
             <ul className="flex flex-col gap-y-3">
               {navLinks.map((link) => (
                 <li key={link.path}>
-                  <Link href={link.path} className="text-sm capitalize text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href={link.path} className="text-sm capitalize text-foreground/80 hover:text-brand transition-colors">
                     {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-
         </div>
 
-        <div className="glass flex flex-col-reverse items-center justify-between gap-6 rounded-xl px-6 py-4 md:flex-row">
-          <div className="flex flex-col items-center gap-2 text-sm text-muted-foreground md:flex-row md:gap-5">
+        <div className="mt-10 flex flex-col-reverse items-center justify-between gap-6 border-t border-border pt-6 md:flex-row">
+          <div className="flex flex-col items-center gap-2 font-mono text-xs text-muted-foreground md:flex-row md:gap-5">
             <p>&copy; {year} {site.name}. All rights reserved.</p>
             <nav aria-label="Legal" className="flex items-center gap-4">
               <Link href="/privacy" className="hover:text-foreground underline-offset-4 hover:underline transition-colors">Privacy Policy</Link>
@@ -64,8 +63,8 @@ const Footer = () => {
           <div className="flex items-center gap-x-6">
             <Socials
               containerStyles='flex gap-x-2'
-              iconsStyles='flex h-9 w-9 items-center justify-center rounded-md border border-white/60 bg-white/40 text-base text-muted-foreground
-                hover:bg-white/80 hover:text-foreground transition-colors dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/15'
+              iconsStyles='flex h-9 w-9 items-center justify-center rounded-md border border-border text-base text-muted-foreground
+                hover:border-brand hover:text-brand transition-colors'
             />
             <BackToTop />
           </div>

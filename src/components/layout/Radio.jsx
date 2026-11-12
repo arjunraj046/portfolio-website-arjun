@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Radio as RadioIcon } from 'lucide-react'
 
+import { defaultStation } from '@/data/radio'
+
 const loadPanel = () => import('./RadioPanel')
 const prefetch = () => { loadPanel().catch(() => {}) }
 const RadioPanel = dynamic(loadPanel, { ssr: false })
@@ -16,7 +18,7 @@ const Radio = () => {
     const audio = useRef(null)
     const [open, setOpen] = useState(false)
     const [loaded, setLoaded] = useState(false)
-    const [station, setStation] = useState(null)
+    const [station, setStation] = useState(defaultStation)
     const [status, setStatus] = useState('idle')
     const [volume, setVolume] = useState(DEFAULT_VOLUME)
     const [muted, setMuted] = useState(false)
@@ -48,6 +50,7 @@ const Radio = () => {
             error: () => setStatus('error')
         }
         Object.entries(on).forEach(([event, handler]) => el.addEventListener(event, handler))
+        el.src = defaultStation.url
         return () => {
             Object.entries(on).forEach(([event, handler]) => el.removeEventListener(event, handler))
             el.pause()
@@ -133,7 +136,7 @@ const Radio = () => {
                 onFocus={prefetch}
                 onTouchStart={prefetch}
                 onClick={() => { setLoaded(true); setOpen((value) => !value) }}
-                className="glass-strong relative flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-transform duration-200 ease-out
+                className="surface-raised relative flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-transform duration-200 ease-out
                     hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
                 {playing ? (

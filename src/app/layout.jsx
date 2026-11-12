@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 import Header from "@/components/layout/Header";
@@ -9,12 +9,13 @@ import SiteBackground from "@/components/layout/SiteBackground";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { site } from "@/data/site";
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-sans", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-mono", display: "swap" });
 
 export const viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#e6ebf3" },
-    { media: "(prefers-color-scheme: dark)", color: "#020617" },
+    { media: "(prefers-color-scheme: light)", color: "#f7f5ef" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b100e" },
   ],
 };
 
@@ -35,7 +36,7 @@ export const metadata = {
     siteName: site.name,
     title: `${site.name} | ${site.role}`,
     description: site.description,
-    locale: "en_IN",
+    locale: "en_US",
   },
   twitter: { card: "summary_large_image" },
 };
@@ -43,8 +44,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${sans.variable} ${mono.variable} font-sans`}>
         <ThemeProvider attribute='class' defaultTheme='light'>
+          <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">Skip to content</a>
           <SiteBackground />
           <Header />
           {children}

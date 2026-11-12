@@ -15,15 +15,15 @@ const Hero = () => {
             <div className="container mx-auto relative z-10 w-full">
                 <div className="flex items-center justify-between gap-x-8">
                     <div className="flex max-w-[600px] flex-col justify-center mx-auto xl:mx-0 text-center xl:text-left">
-                        <p className="mx-auto mb-6 hidden sm:inline-flex w-fit items-center gap-2 rounded-full border border-foreground/10 bg-background/50 px-3.5 py-1.5 text-xs sm:text-sm text-muted-foreground backdrop-blur xl:mx-0 shadow-sm">
+                        <p className="mx-auto mb-6 hidden sm:inline-flex w-fit items-center gap-2 rounded-md border border-border bg-card px-3.5 py-1.5 font-mono text-xs text-muted-foreground xl:mx-0">
                             <span className="inline-flex items-center gap-2 font-medium text-foreground">
-                                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand animate-pulse" />
                                 {site.availability}
                             </span>
                             <span aria-hidden="true" className="text-foreground/30">|</span>
                             <span>{site.currentRole}</span>
                         </p>
-                        <p className="mb-4 text-xs font-semibold uppercase tracking-[3px] text-primary sm:text-sm sm:tracking-[4px]">{site.role}</p>
+                        <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[3px] text-brand sm:text-sm">{site.role}</p>
                         <h1 className="h1">Hello, my name is {site.name}</h1>
                         <p className="subtitle max-w-[490px] mx-auto xl:mx-0 mt-4">{site.heroIntro}</p>
 
@@ -45,9 +45,13 @@ const Hero = () => {
                         <div>
                             <Socials
                                 containerStyles='flex gap-x-6 justify-center xl:justify-start'
-                                iconsStyles='text-foreground text-[22px] hover:text-primary transition-colors'
+                                iconsStyles='text-foreground text-[22px] hover:text-brand transition-colors'
                             />
                         </div>
+
+                        <p className="mt-8 font-mono text-xs text-muted-foreground xl:mt-10">
+                            Based in {site.location} <span aria-hidden="true">·</span> {site.workSetup}
+                        </p>
                     </div>
 
                     <HeroArt />
@@ -55,7 +59,7 @@ const Hero = () => {
             </div>
 
             <div aria-hidden="true" className="hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-6 z-10 animate-bounce">
-                <RiArrowDownSLine className="text-3xl text-primary" />
+                <RiArrowDownSLine className="text-3xl text-brand" />
             </div>
         </section>
     )

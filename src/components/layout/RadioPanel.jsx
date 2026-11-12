@@ -43,7 +43,7 @@ const RadioPanel = ({ open, onClose, station, status, volume, onVolume, muted, o
             role="dialog"
             aria-label="Radio"
             hidden={!open}
-            className="absolute bottom-16 left-0 w-[min(21rem,calc(100vw-2.5rem))] rounded-xl border border-white/70 bg-white/90 p-4 shadow-xl backdrop-blur-2xl backdrop-saturate-150 dark:border-white/10 dark:bg-slate-900/90 animate-in fade-in slide-in-from-bottom-2 duration-200"
+            className="absolute bottom-16 left-0 w-[min(21rem,calc(100vw-2.5rem))] rounded-xl border border-border bg-card p-4 shadow-xl animate-in fade-in slide-in-from-bottom-2 duration-200"
         >
             <div className="flex items-center justify-between">
                 <p className="text-xs font-semibold uppercase tracking-[3px] text-muted-foreground">Radio</p>
@@ -123,7 +123,7 @@ const RadioPanel = ({ open, onClose, station, status, volume, onVolume, muted, o
                             'shrink-0 rounded-md border px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                             genre === g.id
                                 ? 'border-transparent bg-primary text-primary-foreground'
-                                : 'border-white/60 bg-white/40 text-muted-foreground hover:text-foreground dark:border-white/10 dark:bg-white/5'
+                                : 'border-border bg-card text-muted-foreground hover:text-foreground '
                         )}
                     >
                         {g.label}
@@ -131,7 +131,7 @@ const RadioPanel = ({ open, onClose, station, status, volume, onVolume, muted, o
                 ))}
             </div>
 
-            <div className="mt-3 max-h-56 overflow-y-auto rounded-lg border border-white/60 bg-white/30 dark:border-white/10 dark:bg-white/[0.03]">
+            <div className="mt-3 max-h-56 overflow-y-auto rounded-lg border border-border bg-card ">
                 {loadError ? (
                     <p className="p-4 text-sm text-muted-foreground">Couldn&apos;t load stations right now. Please try again later.</p>
                 ) : !list ? (

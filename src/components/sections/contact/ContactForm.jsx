@@ -51,7 +51,7 @@ const rules = {
     }
 }
 
-const fieldStyles = 'h-11 rounded-md border-white/60 bg-white/50 dark:border-white/10 dark:bg-white/5 aria-[invalid=true]:border-destructive/60'
+const fieldStyles = 'h-11 rounded-md border-input bg-card aria-[invalid=true]:border-destructive/60'
 
 const Required = () => <span aria-hidden="true" className="ml-0.5 text-destructive dark:text-red-400">*</span>
 

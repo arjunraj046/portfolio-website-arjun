@@ -34,11 +34,11 @@ const ImageCarousel = ({ images, title, priority = false, className = '' }) => {
     }
 
     const multiple = images.length > 1
-    const arrow = 'glass absolute top-[calc(50%+1rem)] -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
+    const arrow = 'surface absolute top-[calc(50%+1rem)] -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-md opacity-0 transition-opacity duration-200 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring'
 
     return (
         <div className={className}>
-            <div className="group relative overflow-clip rounded-lg border border-white/70 bg-white/70 shadow-lg shadow-slate-900/5 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/30">
+            <div className="group relative overflow-clip rounded-lg border border-border bg-card">
             <div aria-hidden="true" className="flex h-8 items-center gap-3 border-b border-foreground/10 px-3.5">
                 <span className="flex gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />

@@ -1,23 +1,18 @@
-export const iconTile = 'flex shrink-0 items-center justify-center rounded-md border border-white/70 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/10'
+export const eyebrow = 'font-mono text-xs sm:text-sm uppercase font-medium mb-3 text-brand tracking-[3px]'
 
-export const eyebrow = 'text-sm uppercase font-semibold mb-3 text-primary tracking-[4px]'
-
-export const SectionHeading = ({ id, label, children }) => (
-    <div className="mb-10 text-center xl:text-left">
-        <p className={eyebrow}>{label}</p>
-        <h2 id={id} className="text-2xl md:text-4xl font-bold tracking-[-1px]">{children}</h2>
+export const SectionHeading = ({ id, index, label, children }) => (
+    <div className="mb-10 xl:mb-14">
+        <p className={eyebrow}>{index} / {label}</p>
+        <h2 id={id} className="max-w-3xl text-balance text-3xl font-semibold tracking-[-1px] md:text-5xl">{children}</h2>
     </div>
 )
 
-export const CardTitle = ({ children, note }) => (
-    <div className="mb-6">
-        <h3 className="text-xl font-semibold">{children}</h3>
-        {note && <p className="text-sm text-muted-foreground mt-1">{note}</p>}
-    </div>
-)
-
-export const SectionGlows = ({ children }) => (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-24 bottom-24 -z-10">
-        {children}
+export const Row = ({ label, note, children, className = '' }) => (
+    <div data-reveal className={`grid grid-cols-1 gap-4 border-t border-border py-7 md:grid-cols-12 md:gap-8 ${className}`}>
+        <div className="md:col-span-4 xl:col-span-3">
+            <h3 className="font-mono text-xs font-medium uppercase tracking-[2px] text-muted-foreground md:pt-1.5">{label}</h3>
+            {note && <p className="mt-2 text-sm text-muted-foreground">{note}</p>}
+        </div>
+        <div className="md:col-span-8 xl:col-span-9">{children}</div>
     </div>
 )

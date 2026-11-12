@@ -1,6 +1,6 @@
 import { site } from './site'
 
-const updated = '10 October 2026'
+const updated = '12 November 2026'
 
 export const privacy = {
     title: 'Privacy Policy',
@@ -11,7 +11,8 @@ export const privacy = {
             heading: 'What I collect',
             paragraphs: [
                 "The only personal information I receive is what you choose to send through the contact form: your name, email address, an optional subject and your message. Your browser sends it to Web3Forms, a form service, which emails it to me.",
-                "I use it only to read and reply to your message. I don't add you to a mailing list, sell it or share it with anyone else. It stays in my email inbox until it's no longer needed, and you can ask me to delete it at any time."
+                "I use it only to read and reply to your message. I don't add you to a mailing list, sell it or share it with anyone else. It stays in my email inbox until it's no longer needed, and you can ask me to delete it at any time.",
+                "The site also has a chat assistant, built on Mozhi AI, my own project. It's a small button in the corner of every page. If you open it and type a message, that message is sent to the Mozhi AI server so it can answer, and the conversation is kept there so you can continue it later. Please don't put personal details into the chat; use the contact form or email instead."
             ]
         },
         {
@@ -25,10 +26,11 @@ export const privacy = {
         {
             heading: 'What is saved on your device',
             paragraphs: [
-                'One small setting is saved in your own browser (local storage) so the site remembers your choice. It never leaves your device and is never sent to me:'
+                'A few small items are saved in your own browser (local storage) so the site works the way you left it:'
             ],
             list: [
-                'theme: whether you chose light or dark mode.'
+                'theme: whether you chose light or dark mode. It never leaves your device.',
+                'A random visitor ID and a conversation ID for the chat assistant, so it can show you your earlier messages. They are sent to the Mozhi AI server only when you use the chat.'
             ],
             after: 'You can remove it at any time by clearing this site\'s data in your browser settings.'
         },
@@ -41,8 +43,9 @@ export const privacy = {
                 'Vercel hosts this website and keeps standard server logs.',
                 'Web3Forms receives your message, only when you submit the contact form.',
                 'Radio Browser provides the list of radio stations when you open the radio, and the station you play streams from that broadcaster\'s own server. Nothing plays unless you press play.',
+                'Mozhi AI (mozhiai.duckdns.org) loads the chat assistant on every page and receives your messages only when you use it.',
                 'Google Drive serves my CV when you download it.',
-                'LinkedIn, GitHub, WhatsApp and Mozhi AI open only when you click their links.'
+                'LinkedIn, GitHub and WhatsApp open only when you click their links.'
             ]
         },
         {
