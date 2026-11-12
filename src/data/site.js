@@ -19,7 +19,7 @@ export const site = {
     currentRole: 'Currently at Avaibe',
     location: 'Kochi, India (UTC+5:30)',
     workSetup: 'Remote worldwide, or hybrid in Kochi',
-    cvUrl: 'https://drive.google.com/uc?export=download&id=1QKGq6qgjcj8HYWVCcUimJoRnxTTtMsM4'
+    cvUrl: 'https://drive.google.com/file/d/1z77xf_iafJLrfmkhR0AON4rb7TrMajZp/view'
 }
 
 export const navLinks = [

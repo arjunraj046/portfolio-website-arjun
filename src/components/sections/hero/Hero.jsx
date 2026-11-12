@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Download } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { RiArrowDownSLine } from 'react-icons/ri'
 
 import { Button } from "@/components/ui/button"
@@ -35,9 +35,9 @@ const Hero = () => {
                                 </Link>
                             </Button>
                             <Button asChild variant='outline' size='cta'>
-                                <a href={site.cvUrl} target="_blank" rel="noopener noreferrer">
-                                    Download CV
-                                    <Download size={18} className="transition-transform duration-200 group-hover:translate-y-0.5" />
+                                <a href={site.cvUrl} target="_blank" rel="noopener noreferrer" aria-label="View my CV (opens in a new tab)">
+                                    View CV
+                                    <ArrowUpRight size={18} aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                                 </a>
                             </Button>
                         </div>
