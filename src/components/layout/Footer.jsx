@@ -7,6 +7,7 @@ import { site, navLinks } from "@/data/site"
 import SectionDivider from "@/components/shared/SectionDivider"
 import Logo from "./Logo"
 import BackToTop from "./BackToTop"
+import HideOnPaths from "./HideOnPaths"
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -17,7 +18,8 @@ const Footer = () => {
 
       <div className="container relative mx-auto">
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+        <HideOnPaths paths={['/contact']}>
+        <div className="mb-10 grid grid-cols-1 gap-8 border-b border-border pb-16 lg:grid-cols-12 lg:items-end lg:gap-16">
           <h2 className="text-balance text-3xl font-semibold leading-[1.15] tracking-[-1px] md:text-5xl md:leading-[1.1] lg:col-span-7">Working on something I could help with?</h2>
           <div className="lg:col-span-5">
             <p className="max-w-md text-lg leading-relaxed text-muted-foreground">Whether it&apos;s a role, a project or a question about my work, I&apos;m always glad to talk.</p>
@@ -29,8 +31,9 @@ const Footer = () => {
             </Button>
           </div>
         </div>
+        </HideOnPaths>
 
-        <div className="mt-16 grid gap-10 border-t border-border pt-10 sm:grid-cols-3">
+        <div className="grid gap-10 sm:grid-cols-3">
           <div className="flex flex-col gap-y-5 sm:col-span-2 lg:pr-16">
             <Logo />
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
