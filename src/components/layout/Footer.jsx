@@ -3,8 +3,7 @@ import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import Socials from "@/components/shared/Socials"
-import ContactList from "@/components/shared/ContactList"
-import { site, navLinks, contactChannels } from "@/data/site"
+import { site, navLinks } from "@/data/site"
 import SectionDivider from "@/components/shared/SectionDivider"
 import Logo from "./Logo"
 import BackToTop from "./BackToTop"
@@ -18,20 +17,16 @@ const Footer = () => {
 
       <div className="container relative mx-auto">
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <h2 className="text-balance text-3xl font-semibold leading-[1.15] tracking-[-1px] md:text-5xl md:leading-[1.1]">Have a backend or full-stack role open?</h2>
-            <p className="mt-4 max-w-xl text-lg text-muted-foreground">I&apos;m looking for full-time work: {site.workSetup.charAt(0).toLowerCase() + site.workSetup.slice(1)}.</p>
-            <Button asChild size='cta' className='mt-8 w-full sm:w-auto'>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+          <h2 className="text-balance text-3xl font-semibold leading-[1.15] tracking-[-1px] md:text-5xl md:leading-[1.1] lg:col-span-7">Working on something I could help with?</h2>
+          <div className="lg:col-span-5">
+            <p className="max-w-md text-lg leading-relaxed text-muted-foreground">Whether it&apos;s a role, a project or a question about my work, I&apos;m always glad to talk.</p>
+            <Button asChild size='cta' className='mt-6 w-full sm:w-auto'>
               <Link href='/contact'>
-                Discuss a role
+                Start a conversation
                 <ArrowRight size={18} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
             </Button>
-          </div>
-          <div className="lg:col-span-5">
-            <p className="mb-3 font-mono text-xs font-medium uppercase tracking-[2px] text-muted-foreground">Or reach me directly</p>
-            <ContactList channels={contactChannels.filter((channel) => ['Email', 'WhatsApp', 'LinkedIn'].includes(channel.label))} />
           </div>
         </div>
 

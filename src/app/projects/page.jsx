@@ -2,6 +2,7 @@ import { Fragment } from "react";
 
 import ProjectIndex from "@/components/sections/projects/ProjectIndex";
 import ProjectSection from "@/components/sections/projects/ProjectSection";
+import ConfidentialNote from "@/components/sections/projects/ConfidentialNote";
 import SectionDivider from "@/components/shared/SectionDivider";
 import { projects } from "@/data/projects";
 import { JsonLd, projectsGraph } from "@/lib/structuredData";
@@ -50,6 +51,8 @@ export default function ProjectsPage() {
           </div>
         </section>
       ))}
+
+      <ConfidentialNote className="mt-20 border-y border-border" />
     </main>
   );
 }

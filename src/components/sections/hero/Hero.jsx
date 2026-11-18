@@ -30,7 +30,7 @@ const Hero = () => {
                         <div className="mx-auto mb-12 flex w-full max-w-xs flex-col gap-y-3 md:w-auto md:max-w-none md:flex-row md:gap-x-3 xl:mx-0">
                             <Button asChild size='cta'>
                                 <Link href='/contact'>
-                                    Discuss a role
+                                    Start a conversation
                                     <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5" />
                                 </Link>
                             </Button>
