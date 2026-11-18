@@ -1,9 +1,9 @@
 export const eyebrow = 'font-mono text-xs sm:text-sm uppercase font-medium mb-3 text-brand tracking-[3px]'
 
-export const SectionHeading = ({ id, index, label, children }) => (
+export const SectionHeading = ({ id, label, children }) => (
     <div className="mb-10 xl:mb-14">
-        <p className={eyebrow}>{index} / {label}</p>
-        <h2 id={id} className="max-w-3xl text-balance text-3xl font-semibold tracking-[-1px] md:text-5xl">{children}</h2>
+        <p className={eyebrow}>{label}</p>
+        <h2 id={id} className="max-w-3xl text-balance text-3xl font-semibold leading-[1.15] tracking-[-1px] md:text-5xl md:leading-[1.1]">{children}</h2>
     </div>
 )
 

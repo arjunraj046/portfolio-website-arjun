@@ -22,7 +22,7 @@ const RoleCard = ({ title, company, employment, location, current, stack, highli
         </div>
 
         <div className="md:col-span-7 xl:col-span-8">
-            <ul className="space-y-2.5">
+            <ul className="max-w-[68ch] space-y-2.5">
                 {highlights.map((item) => (
                     <li key={item} className="flex gap-3 leading-relaxed text-muted-foreground">
                         <span aria-hidden="true" className="mt-[0.7rem] h-px w-3 shrink-0 bg-brand" />

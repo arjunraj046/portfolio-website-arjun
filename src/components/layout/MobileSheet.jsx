@@ -34,7 +34,7 @@ const MobileSheet = ({ open, onOpenChange, triggerRef }) => {
 
         <div className="relative flex flex-col gap-y-6">
           <Button asChild size='cta' className='w-full'>
-            <Link href='/contact' onClick={close}>Contact me <Send size={18} /></Link>
+            <Link href='/contact' onClick={close}>Discuss a role <Send size={18} aria-hidden="true" /></Link>
           </Button>
           <Socials
             containerStyles='flex justify-center gap-x-2'

@@ -19,8 +19,8 @@ const About = () => (
                         hover:-translate-y-1 sm:w-24 md:w-28 xl:w-32"
                 />
                 <div>
-                    <p className={eyebrow}>01 / About me</p>
-                    <h2 id="about-heading" className="max-w-3xl text-balance text-[1.375rem] font-semibold leading-tight tracking-[-1px] sm:text-2xl md:text-4xl xl:text-5xl">
+                    <p className={eyebrow}>About me</p>
+                    <h2 id="about-heading" className="max-w-3xl text-balance text-[1.375rem] font-semibold leading-tight tracking-[-1px] sm:text-2xl md:text-4xl md:leading-[1.15] xl:text-5xl xl:leading-[1.1]">
                         I build backend systems and the web apps that run on them.
                     </h2>
                 </div>

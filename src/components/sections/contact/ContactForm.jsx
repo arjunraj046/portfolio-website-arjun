@@ -103,7 +103,7 @@ const ContactForm = () => {
             <div role="status" className="flex flex-1 flex-col items-center justify-center gap-4 py-16 text-center">
                 <CheckCircle2 size={44} aria-hidden="true" className="text-emerald-500" />
                 <h3 className="text-2xl font-semibold">Message sent</h3>
-                <p className="max-w-sm text-muted-foreground">Thanks for getting in touch. I&apos;ll reply to you by email.</p>
+                <p className="max-w-sm text-muted-foreground">Thanks, it&apos;s in my inbox. I&apos;ll reply to you by email.</p>
                 <Button variant="outline" onClick={() => setStatus('idle')}>Send another message</Button>
             </div>
         )

@@ -40,7 +40,7 @@ const CopyDetails = ({ text }) => {
         <div className="flex flex-wrap items-center gap-3">
             <Button type="button" variant="outline" size="cta" onClick={onCopy}>
                 {state === 'copied' ? <Check size={18} aria-hidden="true" className="text-emerald-500" /> : <Copy size={18} aria-hidden="true" />}
-                {state === 'copied' ? 'Copied' : 'Copy my details'}
+                {state === 'copied' ? 'Copied' : 'Copy contact details'}
             </Button>
             <p aria-live="polite" className="text-sm text-muted-foreground">
                 {state === 'copied' && 'My intro and contact details are on your clipboard.'}
