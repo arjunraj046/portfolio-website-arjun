@@ -5,7 +5,7 @@ export const roles = [
         employment: 'Full-time',
         location: 'Remote',
         current: true,
-        mark: { text: 'AV', className: 'bg-neutral-950 text-violet-400 border-white/10' },
+        mark: { text: 'AV', className: 'bg-neutral-950 text-white border-white/10' },
         stack: ['Node.js', 'Express', 'TypeScript', 'Socket.IO', 'AWS', 'React.js', 'RTK Query', 'Tailwind CSS'],
         highlights: [
             'Built scalable REST APIs with Node.js, Express and TypeScript',

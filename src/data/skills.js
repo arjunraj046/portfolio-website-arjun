@@ -1,5 +1,9 @@
 import {
     SiReact,
+    SiPython,
+    SiDjango,
+    SiNginx,
+    SiGithubactions,
     SiNextdotjs,
     SiNestjs,
     SiRedux,
@@ -30,6 +34,7 @@ export const skillGroups = {
         items: [
             { name: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
             { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
+            { name: 'Python', Icon: SiPython, color: '#3776AB' },
             { name: 'Core Java', Icon: SiOpenjdk, tone: 'text-slate-900 dark:text-slate-100' }
         ]
     },
@@ -38,6 +43,8 @@ export const skillGroups = {
         items: [
             { name: 'Node.js', Icon: SiNodedotjs, color: '#5FA04E' },
             { name: 'Express', Icon: SiExpress, tone: 'text-slate-900 dark:text-slate-100' },
+            { name: 'Django', Icon: SiDjango, tone: 'text-emerald-800 dark:text-emerald-300' },
+            { name: 'Django REST Framework' },
             { name: 'NestJS', Icon: SiNestjs, color: '#E0234E' },
             { name: 'React.js', Icon: SiReact, color: '#61DAFB' },
             { name: 'Next.js', Icon: SiNextdotjs, tone: 'text-slate-900 dark:text-slate-100' },
@@ -71,6 +78,8 @@ export const skillGroups = {
             { name: 'Postman', Icon: SiPostman, color: '#FF6C37' },
             { name: 'AWS (EC2, Route 53, S3)', Icon: SiAmazonaws, color: '#FF9900' },
             { name: 'Docker', Icon: SiDocker, color: '#2496ED' },
+            { name: 'nginx', Icon: SiNginx, color: '#009639' },
+            { name: 'GitHub Actions', Icon: SiGithubactions, color: '#2088FF' },
             { name: 'REST API' },
             { name: 'Socket.IO', Icon: SiSocketdotio, tone: 'text-slate-900 dark:text-slate-100' },
             { name: 'Redis', Icon: SiRedis, color: '#FF4438' },
