@@ -10,6 +10,7 @@ import SmoothScroll from "@/components/layout/SmoothScroll";
 import SiteBackground from "@/components/layout/SiteBackground";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { site } from "@/data/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-sans", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-mono", display: "swap" });
