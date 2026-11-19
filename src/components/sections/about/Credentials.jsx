@@ -1,6 +1,7 @@
 import { education, certifications, training } from '@/data/about'
 import Reveal from '@/components/shared/Reveal'
 import { Row, SectionHeading } from '@/components/shared/SectionParts'
+import { numberWord } from '@/lib/utils'
 
 const Entries = ({ items }) => (
     <ul className="space-y-5">
@@ -19,7 +20,7 @@ const Entries = ({ items }) => (
 const Credentials = () => (
     <section id="education" aria-labelledby="education-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
         <Reveal className="container mx-auto">
-            <SectionHeading id="education-heading" index="05" label="Education">Education and certifications</SectionHeading>
+            <SectionHeading id="education-heading" label="Education">An MCA in AI and ML, and {numberWord(certifications.length)} security certifications</SectionHeading>
 
             <div className="border-b border-border">
                 <Row label="Degrees"><Entries items={education} /></Row>

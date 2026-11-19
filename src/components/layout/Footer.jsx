@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import Socials from "@/components/shared/Socials"
@@ -7,30 +7,33 @@ import { site, navLinks } from "@/data/site"
 import SectionDivider from "@/components/shared/SectionDivider"
 import Logo from "./Logo"
 import BackToTop from "./BackToTop"
+import HideOnPaths from "./HideOnPaths"
 
 const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative pt-4 pb-8">
+    <footer className="relative pt-4 pb-28">
       <SectionDivider className="mb-16 xl:mb-24" />
 
       <div className="container relative mx-auto">
 
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <h2 className="text-balance text-3xl font-semibold tracking-[-1px] md:text-5xl">Hiring for a full-stack or backend role?</h2>
-            <p className="mt-4 text-lg text-muted-foreground">I&apos;m open to full-time roles. Send me a message, or reach me by email, phone or WhatsApp.</p>
+        <HideOnPaths paths={['/contact']}>
+        <div className="mb-10 grid grid-cols-1 gap-8 border-b border-border pb-16 lg:grid-cols-12 lg:items-end lg:gap-16">
+          <h2 className="text-balance text-3xl font-semibold leading-[1.15] tracking-[-1px] md:text-5xl md:leading-[1.1] lg:col-span-7">Working on something I could help with?</h2>
+          <div className="lg:col-span-5">
+            <p className="max-w-md text-lg leading-relaxed text-muted-foreground">Whether it&apos;s a role, a project or a question about my work, I&apos;m always glad to talk.</p>
+            <Button asChild size='cta' className='mt-6 w-full sm:w-auto'>
+              <Link href='/contact'>
+                Start a conversation
+                <ArrowRight size={18} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
+              </Link>
+            </Button>
           </div>
-          <Button asChild size='cta' className='shrink-0 self-start md:self-auto'>
-            <Link href='/contact'>
-              Get in touch
-              <ArrowUpRight size={18} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </Button>
         </div>
+        </HideOnPaths>
 
-        <div className="mt-16 grid gap-10 border-t border-border pt-10 sm:grid-cols-3">
+        <div className="grid gap-10 sm:grid-cols-3">
           <div className="flex flex-col gap-y-5 sm:col-span-2 lg:pr-16">
             <Logo />
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">

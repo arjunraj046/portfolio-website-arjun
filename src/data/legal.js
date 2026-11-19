@@ -1,6 +1,6 @@
 import { site } from './site'
 
-const updated = '12 November 2026'
+const updated = '19 November 2026'
 
 export const privacy = {
     title: 'Privacy Policy',
@@ -20,7 +20,7 @@ export const privacy = {
             list: [
                 'No accounts or sign-ups.',
                 'No cookies.',
-                'No analytics, tracking pixels or advertising.'
+                'No advertising, tracking pixels or cookie-based analytics.'
             ]
         },
         {
@@ -41,6 +41,7 @@ export const privacy = {
             ],
             list: [
                 'Vercel hosts this website and keeps standard server logs.',
+                'Vercel Web Analytics counts visits anonymously so I can see how the site is used: which pages are viewed, the site that linked to it, and the country, browser and type of device. It uses no cookies, doesn\'t identify you and doesn\'t follow you to other websites.',
                 'Web3Forms receives your message, only when you submit the contact form.',
                 'Radio Browser provides the list of radio stations when you open the radio, and the station you play streams from that broadcaster\'s own server. Nothing plays unless you press play.',
                 'Mozhi AI (mozhiai.duckdns.org) loads the chat assistant on every page and receives your messages only when you use it.',

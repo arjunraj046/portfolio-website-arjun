@@ -2,7 +2,7 @@ const dev = process.env.NODE_ENV !== 'production';
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ''} https://mozhiai.duckdns.org`,
+  `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval' https://va.vercel-scripts.com" : ''} https://mozhiai.duckdns.org`,
   "style-src 'self' 'unsafe-inline'",
   'img-src \'self\' data: blob: https://mozhiai.duckdns.org',
   "font-src 'self'",

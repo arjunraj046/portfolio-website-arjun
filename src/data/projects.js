@@ -443,3 +443,8 @@ export const projects = [
         ]
     }
 ]
+
+export const confidentialNote = {
+    title: "More I can't show here",
+    text: "These are the projects I can share publicly. Several more, built for clients and past employers, are confidential, so I don't publish them here. I'm happy to talk about them one to one."
+}

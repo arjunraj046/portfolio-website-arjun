@@ -6,22 +6,23 @@ import { Button } from '@/components/ui/button'
 import Reveal from '@/components/shared/Reveal'
 import { SectionHeading } from '@/components/shared/SectionParts'
 import { projects } from '@/data/projects'
+import ConfidentialNote from './ConfidentialNote'
 
 const FeaturedProjects = () => (
     <section id="projects" aria-labelledby="projects-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
         <Reveal className="container mx-auto">
             <div className="flex flex-col justify-between gap-x-6 lg:flex-row lg:items-end">
-                <SectionHeading id="projects-heading" index="03" label="Projects">Selected projects</SectionHeading>
-                <Button asChild variant="outline" className="mb-14 hidden lg:inline-flex">
+                <SectionHeading id="projects-heading" label="Projects">A selection of products I&apos;ve built</SectionHeading>
+                <Button asChild variant="outline" size="cta" className="mb-10 hidden lg:inline-flex xl:mb-14">
                     <Link href="/projects">
-                        See all projects
-                        <ArrowRight size={16} aria-hidden="true" className="ml-1" />
+                        Full write-ups
+                        <ArrowRight size={18} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
                     </Link>
                 </Button>
             </div>
 
             <ul className="border-b border-border">
-                {projects.map(({ slug, title, tagline, company, personal, images }, i) => {
+                {projects.map(({ slug, title, tagline, personal, images }, i) => {
                     const image = images?.[0]
                     return (
                         <li key={slug} data-reveal className="border-t border-border">
@@ -38,7 +39,7 @@ const FeaturedProjects = () => (
                                     </h3>
                                     <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-muted-foreground md:text-base">{tagline}</p>
                                 </div>
-                                <p className="col-start-2 font-mono text-xs uppercase tracking-wider text-muted-foreground md:col-start-auto">{personal ? 'Personal project' : company}</p>
+                                <p className="col-start-2 font-mono text-xs uppercase tracking-wider text-muted-foreground md:col-start-auto">{personal ? 'Personal project' : 'Work project'}</p>
                                 {image && (
                                     <div className="hidden overflow-hidden rounded-md border border-border md:block">
                                         <Image
@@ -47,7 +48,7 @@ const FeaturedProjects = () => (
                                             width={image.width}
                                             height={image.height}
                                             sizes="(min-width: 1280px) 256px, 208px"
-                                            className="aspect-[16/9] h-auto w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                                            className="aspect-[2/1] h-auto w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                                         />
                                     </div>
                                 )}
@@ -55,13 +56,16 @@ const FeaturedProjects = () => (
                         </li>
                     )
                 })}
+                <li data-reveal className="border-t border-border">
+                    <ConfidentialNote />
+                </li>
             </ul>
 
             <div className="mt-8 flex justify-center lg:hidden">
-                <Button asChild variant="outline">
+                <Button asChild variant="outline" size="cta">
                     <Link href="/projects">
-                        See all projects
-                        <ArrowRight size={16} aria-hidden="true" className="ml-1" />
+                        Full write-ups
+                        <ArrowRight size={18} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5" />
                     </Link>
                 </Button>
             </div>

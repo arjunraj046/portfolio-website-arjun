@@ -6,7 +6,7 @@ import RoleCard from './RoleCard'
 const Experience = () => (
     <section id="experience" aria-labelledby="experience-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
         <Reveal className="container mx-auto">
-            <SectionHeading id="experience-heading" index="02" label="Experience">Where I&apos;ve worked</SectionHeading>
+            <SectionHeading id="experience-heading" label="Experience">From Java intern to full-stack developer</SectionHeading>
 
             <div className="border-b border-border">
                 {roles.map((role) => (
@@ -19,7 +19,7 @@ const Experience = () => (
                         {otherRoles.map(({ title, detail }) => (
                             <li key={title}>
                                 <p className="font-semibold leading-snug">{title}</p>
-                                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{detail}</p>
+                                <p className="mt-1 max-w-[68ch] text-sm leading-relaxed text-muted-foreground">{detail}</p>
                             </li>
                         ))}
                     </ul>

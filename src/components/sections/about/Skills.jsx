@@ -6,7 +6,7 @@ import { Row, SectionHeading } from '@/components/shared/SectionParts'
 const Skills = () => (
     <section id="skills" aria-labelledby="skills-heading" className="render-lazy relative overflow-x-clip py-16 xl:py-24">
         <Reveal className="container mx-auto">
-            <SectionHeading id="skills-heading" index="04" label="Skills">Tools and strengths I work with</SectionHeading>
+            <SectionHeading id="skills-heading" label="Skills">Backend first, from the database to the browser</SectionHeading>
 
             <div className="border-b border-border">
                 <Row label="Core strengths">

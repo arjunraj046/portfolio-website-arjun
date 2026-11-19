@@ -2,7 +2,7 @@ const LegalPage = ({ title, updated, intro, sections }) => (
     <main id="main" className="container mx-auto py-16 xl:py-24">
         <div className="mx-auto max-w-3xl">
             <p className="font-mono text-xs sm:text-sm uppercase font-medium mb-4 text-brand tracking-[3px]">Legal</p>
-            <h1 className="text-4xl xl:text-5xl font-semibold tracking-[-1px]">{title}</h1>
+            <h1 className="text-balance text-4xl font-semibold leading-[1.1] tracking-[-1px] xl:text-6xl">{title}</h1>
             <p className="mt-3 font-mono text-xs text-muted-foreground">Last updated: {updated}</p>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{intro}</p>
 

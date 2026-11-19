@@ -12,7 +12,7 @@ const AccordionItem = ({ title, points, group, open = false }) => (
             {title}
             <ChevronDown size={17} aria-hidden="true" className="shrink-0 text-muted-foreground transition-transform duration-200 group-open/item:rotate-180" />
         </summary>
-        <ul className="space-y-2 pb-3.5">
+        <ul className="max-w-[70ch] space-y-2 pb-3.5 text-sm">
             {points.map((point) => (
                 <li key={point} className="flex gap-2.5 text-sm leading-relaxed text-muted-foreground">
                     <span aria-hidden="true" className="mt-[0.65rem] h-px w-2.5 shrink-0 bg-brand" />
@@ -28,7 +28,7 @@ const ProjectSection = ({ project, number, reverse = false, priority = false }) 
     const CompanyIcon = personal ? UserRound : Building2
     const stackGroups = (Array.isArray(stack?.[0]?.items) ? stack : [{ label: null, items: stack ?? [] }]).filter((group) => group.items.length)
 
-    const rows = [{ title: 'Key highlights', points: highlights }, ...features]
+    const rows = [{ title: 'Highlights', points: highlights }, ...features]
     const half = Math.ceil(rows.length / 2)
     const columns = [rows.slice(0, half), rows.slice(half)]
 
